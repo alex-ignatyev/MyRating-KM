@@ -1,0 +1,125 @@
+[versions]
+#Kotlin
+kotlin = "1.8.20"
+kotlinx-serialization = "1.5.0"
+kotlinx-coroutines = "1.6.4"
+
+#Android
+agp = "8.0.0"
+androidx-appcompat = "1.6.1"
+androidx-activityCompose = "1.7.0"
+
+#Compose
+compose = "1.4.0"
+composeIcons = "1.1.0"
+composeImageLoader = "1.4.0"
+
+#Navigation
+odyssey = "1.4.0-alpha05"
+voyager = "1.0.0-rc05"
+
+#MVVM
+kviewmodel = "0.13"
+
+#DI
+kodein = "7.17.0"
+koin = "3.4.0"
+
+#Database
+sqldelight = "2.0.0-alpha05"
+kstore = "0.5.0"
+
+#Res
+libres = "1.1.8"
+
+#Other
+klock = "3.4.0"
+napier = "2.6.1"
+buildConfig = "3.1.0"
+ktor = "2.2.4"
+multiplatformSettings = "1.0.0"
+
+[libraries]
+
+#Kotlin
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+#Android
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+
+#Compose
+compose-imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "composeImageLoader" }
+compose-imageLoaderBlur = { module = "io.github.qdsfdhvh:image-loader-extension-blur", version.ref = "composeImageLoader" }
+compose-icons = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "composeIcons" }
+
+#DI
+kodein = { module = "org.kodein.di:kodein-di", version.ref = "kodein" }
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+
+#Ktor
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
+ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+
+#Database
+sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+
+#Settings
+multiplatformSettings = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
+
+#MVI
+kviewmodel-core = { module = "com.adeo:kviewmodel", version.ref = "kviewmodel" }
+kviewmodel-compose = { module = "com.adeo:kviewmodel-compose", version.ref = "kviewmodel" }
+kviewmodel-odyssey = { module = "com.adeo:kviewmodel-odyssey", version.ref = "kviewmodel" }
+
+#Navigation
+odyssey-core = { module = "io.github.alexgladkov:odyssey-core", version.ref = "odyssey" }
+odyssey-compose = { module = "io.github.alexgladkov:odyssey-compose", version.ref = "odyssey" }
+voyager-core = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-bottomSheet = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
+voyager-tab = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
+
+#Res
+libres = { module = "io.github.skeptick.libres:libres-compose", version.ref = "libres" }
+
+#Time
+klock-common = { module = "com.soywiz.korlibs.klock:klock", version.ref = "klock" }
+
+#Other
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+kstore = { module = "io.github.xxfast:kstore", version.ref = "kstore" }
+
+[plugins]
+#MPP
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
+#Kotlin
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+#Android
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+#IOS
+cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+
+#Compose
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+
+#Res
+libres = { id = "io.github.skeptick.libres", version.ref = "libres" }
+
+#Database
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+
+#Other
+buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }

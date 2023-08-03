@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мой рейтинг</string>
+
+    // Auth
+    <string name="text_login">Логин</string>
+    <string name="text_password">Пароль</string>
+    <string name="text_password_repeat">Повторите пароль</string>
+
+    // Create Account
+    <string name="text_account_name">Имя</string>
+    <string name="text_account_create">Создать Аккаунт</string>
+    <string name="text_account_create_different">Логин и имя должны отличаться</string>
+
+    // Login
+    <string name="title_login">Авторизоваться</string>
+    <string name="subtitle_login">С возвращением! Используйте ваш логин и пароль для авторизации</string>
+    <string name="text_password_forgot">Забыли Пароль ?</string>
+    <string name="text_account_dont_have">Нет аккаунта ?</string>
+    <string name="text_account_create_one">Создать</string>
+
+    // Forgot
+    <string name="title_forgot">Восстановить Пароль</string>
+    <string name="subtitle_forgot">Введите существующий Логин и новый Пароль</string>
+    <string name="text_forgot_reset">Сбросить Пароль</string>
+
+    // Main
+    <string name="title_tobacco_feed">Список тобаков</string>
+    <string name="title_mix">Микс</string>
+    <string name="title_admin">Админ</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_settings">Настройки</string>
+
+    // Admin
+    <string name="title_admin_add_tobacco">Добавить табак</string>
+    <string name="text_admin_empty_choose">Не выбрано</string>
+    <string name="text_admin_manually">Ручной ввод</string>
+
+    // Tobacco feed
+    <string name="title_create_request">Создать запрос</string>
+
+    // Tobacco info
+    <string name="title_tobacco_info">Информация о табаке</string>
+    <string name="title_vote">Оценить</string>
+
+    // All
+    <string name="text_taste">Вкус</string>
+    <string name="text_company">Компания</string>
+    <string name="text_line">Линейка</string>
+    <string name="text_strength">Крепкость</string>
+    <string name="text_rating">Рейтинг</string>
+    <string name="text_smokiness">Дымность</string>
+    <string name="text_aroma">Аромат</string>
+    <string name="text_search">Поиск</string>
+    <string name="text_empty_list">Список пуст</string>
+    <string name="text_cant_find">Не нашли ваш любимый табак ? Всегда можно создать запрос и мы обязательно его добавим</string>
+    <string name="text_repeat">Повторить</string>
+
+    // Settings
+    <string name="action_dark_theme_enable">Enable dark theme</string>
+    <string name="text_logout">Выйти</string>
+
+    // Error
+    <string name="error_something_went_wrong">Что-то пошло не так, попробуйте позже</string>
+    <string name="error_something_went_wrong_screen_title">Ой...Что-то пошло не так</string>
+    <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или повторите позже</string>
+</resources>
