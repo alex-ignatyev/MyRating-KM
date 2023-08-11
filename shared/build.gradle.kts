@@ -11,8 +11,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-version = "1.0-SNAPSHOT"
-
 kotlin {
     android()
 
@@ -20,8 +18,9 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Shared Code"
-        homepage = "https://github.com/alex-ignatyev/my_rating"
+        version = "1.0.0"
+        summary = "Multiplatform app built with Kotlin and Compose"
+        homepage = "https://github.com/alex-ignatyev/MyRating-KMP"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
 
@@ -125,7 +124,6 @@ libres {
 
 android {
     compileSdk = 33
-
     namespace = "com.my_rating.shared"
 
     defaultConfig {

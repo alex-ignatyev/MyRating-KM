@@ -1,7 +1,6 @@
 package database
 
 import Database
-import Database.Companion
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import di.PlatformConfiguration

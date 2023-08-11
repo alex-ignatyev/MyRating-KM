@@ -15,7 +15,7 @@ Pods/
 
 iosApp/Podfile.lock
 iosApp/Pods/*
-iosApp/Kalyan.xcworkspace/*
-iosApp/Kalyan.xcodeproj/*
-!iosApp/Kalyan.xcodeproj/project.pbxproj
+iosApp/MyRating.xcworkspace/*
+iosApp/MyRating.xcodeproj/*
+!iosApp/MyRating.xcodeproj/project.pbxproj
 shared/shared.podspec
