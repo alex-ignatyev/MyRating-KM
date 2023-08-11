@@ -1,4 +1,4 @@
-# Kalyan
+# My Rating
 
 ### Tech Stack:
 - Navigation: Voyager
