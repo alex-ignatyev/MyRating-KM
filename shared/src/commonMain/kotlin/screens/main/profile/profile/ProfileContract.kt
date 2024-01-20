@@ -8,7 +8,8 @@ sealed class ProfileEvent {
 
 data class ProfileState(
     val isLoading: Boolean = true,
-    val name: String = "Test Name"
+    val name: String = "",
+    val login: String = ""
 )
 
 sealed class ProfileAction {

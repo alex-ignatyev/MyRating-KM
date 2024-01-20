@@ -1,6 +1,7 @@
 package domain.repository
 
 import com.my_rating.shared.AppRes
+import com.my_rating.shared.BuildKonfig
 import data.RemoteAuthDataSource
 import data.SettingsDataSource
 import model.data.auth.request.AccountCreateRequest
@@ -16,7 +17,10 @@ class AuthRepositoryImpl(
     private val settings: SettingsDataSource
 ) : AuthRepository {
 
+    private val isMocked = BuildKonfig.isMocked
+
     override suspend fun authorize(): Answer<Unit> {
+        if (isMocked) return Answer.success(Unit) //TODO
         return remote.authorize(settings.getToken())
     }
 
@@ -26,6 +30,7 @@ class AuthRepositoryImpl(
         password: String,
         repeatPassword: String
     ): Answer<Unit> {
+        if (isMocked) return Answer.success(Unit) //TODO
         return remote.createAccount(
             AccountCreateRequest(
                 login = login,
@@ -40,6 +45,7 @@ class AuthRepositoryImpl(
         login: String,
         password: String
     ): Answer<Unit> {
+        if (isMocked) return Answer.success(Unit) //TODO
         remote.login(
             AccountLoginRequest(
                 login = login, password = password
@@ -60,6 +66,7 @@ class AuthRepositoryImpl(
         newPassword: String,
         repeatNewPassword: String
     ): Answer<Unit> {
+        if (isMocked) return Answer.success(Unit) //TODO
         return remote.forgotPassword(
             AccountForgotRequest(
                 login = login,
