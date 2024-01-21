@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_feed
+package screens.main.feed
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,19 +21,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
-import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnDataRefresh
-import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnTobaccoSearch
-import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Data
-import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Empty
-import screens.main.tobacco.tobacco_feed.view.TobaccoFeedEmptyView
-import screens.main.tobacco.tobacco_feed.view.TobaccoFeedSuccessView
+import screens.main.feed.FeedEvent.OnCategorySearch
+import screens.main.feed.FeedEvent.OnDataRefresh
+import screens.main.feed.FeedState.Data
+import screens.main.feed.FeedState.Empty
+import screens.main.feed.view.FeedEmptyView
+import screens.main.feed.view.FeedSuccessView
 import ui.KalyanTheme
 import ui.components.KalyanSearch
 import utils.mvi.Event
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun TobaccoFeedView(state: TobaccoFeedState, obtainEvent: (Event) -> Unit) {
+fun FeedView(state: FeedState, obtainEvent: (Event) -> Unit) {
     val refreshing by remember { mutableStateOf(false) }
     val refresh = rememberPullRefreshState(refreshing, {
         obtainEvent(OnDataRefresh())
@@ -52,14 +52,14 @@ fun TobaccoFeedView(state: TobaccoFeedState, obtainEvent: (Event) -> Unit) {
                 KalyanSearch(
                     modifier = Modifier.padding(horizontal = 16.dp).padding(top = 16.dp),
                     onValueChange = {
-                        obtainEvent(OnTobaccoSearch(it))
+                        obtainEvent(OnCategorySearch(it))
                     }
                 )
 
                 Box(modifier = Modifier.fillMaxSize()) {
                     when (state) {
-                        is Empty -> TobaccoFeedEmptyView(obtainEvent)
-                        is Data -> TobaccoFeedSuccessView(state, obtainEvent)
+                        is Empty -> FeedEmptyView(obtainEvent)
+                        is Data -> FeedSuccessView(state, obtainEvent)
                         else -> throw IllegalStateException("Illegal state $state")
                     }
 

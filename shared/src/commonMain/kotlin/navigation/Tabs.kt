@@ -15,12 +15,12 @@ import com.my_rating.shared.AppRes
 import screens.main.admin.admin_feed.AdminFeedScreen
 import screens.main.mix.mix_feed.MixFeedScreen
 import screens.main.profile.profile.ProfileScreen
-import screens.main.tobacco.tobacco_feed.TobaccoFeedScreen
+import screens.main.feed.FeedScreen
 
 internal object TobaccoFeedTab : Tab {
     @Composable
     override fun Content() {
-        Navigator(TobaccoFeedScreen)
+        Navigator(FeedScreen)
     }
 
     override val options: TabOptions

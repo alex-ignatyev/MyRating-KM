@@ -28,7 +28,7 @@ fun MainView() {
             LocalPlatform provides Android,
             LocalSettingsEventBus provides settingsEventBus
         ) {
-            Navigator(SplashScreen)
+            Navigator(screen = SplashScreen, onBackPressed = { false })
         }
     }
 }

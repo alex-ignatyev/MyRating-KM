@@ -5,7 +5,8 @@ import data.RemoteMainDataSource
 import model.data.tobacco.TobaccoInfoRequest
 import model.data.tobacco.TobaccoVoteRequest
 import model.data.tobacco.TobaccoVoteRequest.VoteType
-import model.domain.TobaccoFeed
+import model.domain.Category
+import model.domain.Category.Subcategory
 import model.domain.TobaccoInfo
 import model.domain.toDomain
 import utils.answer.Answer
@@ -18,9 +19,42 @@ class RatingRepositoryImpl(
 
     private val isMocked = BuildKonfig.isMocked
 
-    override suspend fun getTobaccoFeed(search: String): Answer<List<TobaccoFeed>> {
-        if (isMocked) return Answer.success(listOf<TobaccoFeed>()) //TODO
-        return remote.getTobaccoFeed(search).map { it.toDomain() }
+    override suspend fun getFeed(search: String): Answer<List<Category>> {
+        return Answer.success(
+            listOf<Category>(
+                Category(
+                    id = "",
+                    image = "",
+                    title = "Напиток",
+                    subcategories = listOf(
+                        Subcategory(
+                            id = "",
+                            title = "Газировка",
+                            image = ""
+                        )
+                    )
+                ),
+                Category(
+                    id = "",
+                    image = "",
+                    title = "222",
+                    subcategories = listOf()
+                ),
+                Category(
+                    id = "",
+                    image = "",
+                    title = "333",
+                    subcategories = listOf()
+                ),
+                Category(
+                    id = "",
+                    image = "",
+                    title = "444",
+                    subcategories = listOf()
+                )
+            )
+        )
+        // return remote.getTobaccoFeed(search).map { it.toDomain() }
     }
 
     override suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfo> {
@@ -66,7 +100,7 @@ class RatingRepositoryImpl(
 }
 
 interface RatingRepository {
-    suspend fun getTobaccoFeed(search: String): Answer<List<TobaccoFeed>>
+    suspend fun getFeed(search: String): Answer<List<Category>>
     suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfo>
     suspend fun postTobaccoVote(
         tobaccoId: String,

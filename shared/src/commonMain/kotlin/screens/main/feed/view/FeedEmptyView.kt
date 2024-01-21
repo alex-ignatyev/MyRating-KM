@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_feed.view
+package screens.main.feed.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.my_rating.shared.images.AppResImages
 import com.my_rating.shared.strings.AppResStrings
 import io.github.skeptick.libres.compose.painterResource
-import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnAddTobaccoRequest
+import screens.main.feed.FeedEvent.OnAddRequest
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import utils.mvi.Event
 
 @Composable
-fun TobaccoFeedEmptyView(obtainEvent: (Event) -> Unit) {
+fun FeedEmptyView(obtainEvent: (Event) -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -42,7 +42,7 @@ fun TobaccoFeedEmptyView(obtainEvent: (Event) -> Unit) {
                 modifier = Modifier.padding(horizontal = 32.dp)
             )
             KalyanButton(text = AppResStrings.title_create_request, modifier = Modifier.padding(top = 32.dp)) {
-                obtainEvent(OnAddTobaccoRequest())
+                obtainEvent(OnAddRequest())
             }
         }
     }

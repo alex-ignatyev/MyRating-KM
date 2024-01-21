@@ -48,6 +48,9 @@ kotlin {
 
                 implementation(libs.insetsx)
 
+                implementation(libs.decompose)
+                implementation(libs.decompose.compose)
+
                 implementation(libs.kviewmodel.core)
                 implementation(libs.kviewmodel.compose)
 
