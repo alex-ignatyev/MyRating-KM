@@ -1,15 +1,15 @@
-package screens.main.profile.settings
+package screens.main.profile.user
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 
 @Composable
-fun SettingsScreen(component: SettingsComponent) {
+fun UserScreen(component: UserComponent) {
 
     val state by component.state.subscribeAsState()
 
-    SettingsView(state) {
+    ProfileView(state) {
         component.doAction(it)
     }
 }

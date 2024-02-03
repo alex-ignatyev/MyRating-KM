@@ -42,7 +42,15 @@ class DefaultRootComponent(
             is RootScreenConfig.Login -> RootScreen.Login(DefaultAuthComponent(childComponentContext) {
                 navigation.replaceAll(RootScreenConfig.Main)
             })
-            is RootScreenConfig.Main -> RootScreen.Main(DefaultMainComponent(childComponentContext))
+
+            is RootScreenConfig.Main -> RootScreen.Main(
+                DefaultMainComponent(
+                    componentContext = childComponentContext,
+                    openLoginScreen = {
+                        navigation.replaceAll(RootScreenConfig.Login)
+                    })
+            )
+
             else -> throw IllegalArgumentException()
         }
 

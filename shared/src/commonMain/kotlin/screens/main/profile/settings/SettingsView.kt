@@ -17,20 +17,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.my_rating.shared.AppRes
-import com.my_rating.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
+import com.my_rating.shared.AppRes
+import com.my_rating.shared.strings.AppResStrings
 import data.LocalSettingsEventBus
-import screens.main.profile.settings.SettingsEvent.OnBackClick
-import screens.main.profile.settings.SettingsEvent.OnLogOutClick
+import screens.main.profile.settings.SettingsAction.OnBackClick
+import screens.main.profile.settings.SettingsAction.OnLogOutClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanDivider
 import ui.components.KalyanToolbar
 
 @Composable
-fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
+fun SettingsView(state: SettingsState, doAction: (SettingsAction) -> Unit) {
     val settingsEventBus = LocalSettingsEventBus.current
     val currentSettings = settingsEventBus.currentSettings.value
 
@@ -40,7 +40,7 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
         backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(title = AppResStrings.title_settings, onBackClick = {
-                obtainEvent.invoke(OnBackClick())
+                doAction.invoke(OnBackClick)
             })
         }
     ) {
@@ -76,7 +76,7 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
                 backgroundColor = KalyanTheme.colors.error,
                 text = AppResStrings.text_logout
             ) {
-                obtainEvent.invoke(OnLogOutClick())
+                doAction.invoke(OnLogOutClick)
             }
         }
         //TODO Добавить смену пароля

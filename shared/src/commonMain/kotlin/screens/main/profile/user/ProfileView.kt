@@ -1,7 +1,6 @@
-package screens.main.profile.profile
+package screens.main.profile.user
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -19,20 +17,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.statusBars
-import com.my_rating.shared.strings.AppResStrings
-import screens.main.profile.profile.ProfileEvent.ClickOnSettings
 import ui.KalyanTheme
-import ui.components.KalyanToolbar
 
 @Composable
-fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
+fun ProfileView(state: UserState, doAction: (UserAction) -> Unit) {
     Scaffold(
         modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars),
         backgroundColor = KalyanTheme.colors.background
@@ -65,7 +58,7 @@ fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
                 textAlign = TextAlign.Center,
                 style = KalyanTheme.typography.hint
             )
-            ProfileSettingsBox(obtainEvent)
+            ProfileSettingsBox(doAction)
         }
 
     }

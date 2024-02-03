@@ -1,15 +1,12 @@
 package screens.main.profile.settings
 
-sealed class SettingsEvent {
-    class OnLogOutClick : SettingsEvent()
-    class OnBackClick : SettingsEvent()
+sealed interface SettingsAction {
+    data object OnLogOutClick : SettingsAction
+    data object OnBackClick : SettingsAction
 }
 
 data class SettingsState(
     val isLoading: Boolean = true
 )
 
-sealed class SettingsAction {
-    class OpenLoginScreen : SettingsAction()
-    class ReturnBack : SettingsAction()
-}
+sealed interface SettingsEffect

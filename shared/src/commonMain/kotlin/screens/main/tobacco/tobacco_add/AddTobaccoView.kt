@@ -1,4 +1,4 @@
-package screens.main.profile.tobacco_add
+package screens.main.tobacco.tobacco_add
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,15 +33,15 @@ import com.moriatsushi.insetsx.ime
 import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
 import model.domain.Company
-import screens.main.profile.tobacco_add.AddTobaccoEvent.AddTobaccoClick
-import screens.main.profile.tobacco_add.AddTobaccoEvent.ChangeCompany
-import screens.main.profile.tobacco_add.AddTobaccoEvent.ChangeLine
-import screens.main.profile.tobacco_add.AddTobaccoEvent.ChangeManual
-import screens.main.profile.tobacco_add.AddTobaccoEvent.ChangeStrengthByCompany
-import screens.main.profile.tobacco_add.AddTobaccoEvent.ChangeTaste
-import screens.main.profile.tobacco_add.AddTobaccoEvent.OnBackClick
-import screens.main.profile.tobacco_add.AddTobaccoEvent.OnCompanyClick
-import screens.main.profile.tobacco_add.AddTobaccoEvent.OnLineClick
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.AddTobaccoClick
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeCompany
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeLine
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeManual
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeStrengthByCompany
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeTaste
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.OnBackClick
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.OnCompanyClick
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.OnLineClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
