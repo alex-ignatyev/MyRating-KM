@@ -12,5 +12,6 @@ plugins {
     alias(libs.plugins.libres).apply(false)
     alias(libs.plugins.buildConfig).apply(false)
     alias(libs.plugins.kotlin.serialization).apply(false)
+    alias(libs.plugins.kotlin.parcelize).apply(false)
     alias(libs.plugins.sqldelight).apply(false)
 }

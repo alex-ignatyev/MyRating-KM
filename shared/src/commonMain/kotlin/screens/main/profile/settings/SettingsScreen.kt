@@ -26,7 +26,7 @@ object SettingsScreen : Screen {
             }
 
             when (action) {
-                is OpenLoginScreen -> navigator.parent?.parent?.parent?.replaceAll(AccountLoginScreen)
+               // is OpenLoginScreen -> navigator.parent?.parent?.parent?.replaceAll(AccountLoginScreen)
                 is ReturnBack -> navigator.pop()
                 else -> {}
             }

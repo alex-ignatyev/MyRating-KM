@@ -15,27 +15,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.moriatsushi.insetsx.statusBars
 import com.my_rating.shared.AppRes
 import com.my_rating.shared.strings.AppResStrings
-import com.moriatsushi.insetsx.statusBars
-import screens.auth.account_forgot.AccountForgotEvent.ChangeLogin
-import screens.auth.account_forgot.AccountForgotEvent.ChangePassword
-import screens.auth.account_forgot.AccountForgotEvent.ChangePasswordRepeat
-import screens.auth.account_forgot.AccountForgotEvent.OnBackClick
-import screens.auth.account_forgot.AccountForgotEvent.ResetPasswordClick
-import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
-import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
-import ui.view.PasswordShowIcon
+import screens.auth.account_forgot.AccountForgotAction.ChangeLogin
+import screens.auth.account_forgot.AccountForgotAction.ChangePassword
+import screens.auth.account_forgot.AccountForgotAction.ChangePasswordRepeat
+import screens.auth.account_forgot.AccountForgotAction.OnBackClick
+import screens.auth.account_forgot.AccountForgotAction.ResetPasswordClick
+import screens.auth.account_forgot.AccountForgotAction.ShowPasswordClick
+import screens.auth.account_forgot.AccountForgotAction.ShowPasswordRepeatClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
 import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
-import utils.mvi.Event
+import ui.view.PasswordShowIcon
 
 @Composable
-fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
+fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction) -> Unit) {
 
     Scaffold(
         modifier = Modifier.background(KalyanTheme.colors.background)
@@ -43,7 +42,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
         backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
-                obtainEvent.invoke(OnBackClick())
+                doAction.invoke(OnBackClick)
             })
         }
     ) {
@@ -72,7 +71,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
-                obtainEvent(ChangeLogin(it))
+                doAction(ChangeLogin(it))
             }
 
             KalyanTextField(
@@ -83,11 +82,11 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
                 fieldType = Password(state.isPasswordHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordHidden) {
-                        obtainEvent(ShowPasswordClick())
+                        doAction(ShowPasswordClick)
                     }
                 }
             ) {
-                obtainEvent(ChangePassword(it))
+                doAction(ChangePassword(it))
             }
 
             KalyanTextField(
@@ -98,11 +97,11 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
                 fieldType = Password(state.isPasswordRepeatHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordRepeatHidden) {
-                        obtainEvent(ShowPasswordRepeatClick())
+                        doAction(ShowPasswordRepeatClick)
                     }
                 }
             ) {
-                obtainEvent(ChangePasswordRepeat(it))
+                doAction(ChangePasswordRepeat(it))
             }
 
             KalyanButton(
@@ -113,7 +112,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
                     KalyanCircularProgress()
                 },
                 onClick = {
-                    obtainEvent(ResetPasswordClick())
+                    doAction(ResetPasswordClick)
                 })
 
             Text(

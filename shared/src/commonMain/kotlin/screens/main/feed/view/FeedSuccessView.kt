@@ -20,25 +20,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.my_rating.shared.images.AppResImages
 import io.github.skeptick.libres.compose.painterResource
-import screens.main.feed.FeedEvent.OnCategoryClick
+import screens.main.feed.FeedAction
+import screens.main.feed.FeedAction.OnCategoryClick
 import screens.main.feed.FeedState
 import ui.KalyanTheme
-import utils.mvi.Event
 
 @Composable
-fun FeedSuccessView(state: FeedState.Data, obtainEvent: (Event) -> Unit) {
-    if (state.isLoading) {
-        FeedLoadingView()
-    } else {
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 100.dp),
-            modifier = Modifier.padding(horizontal = 8.dp)
-        ) {
-            itemsIndexed(state.data) { index, item ->
-                FeedItem(item.title, modifier = Modifier.clickable {
-                    obtainEvent.invoke(OnCategoryClick(item))
-                })
-            }
+fun FeedSuccessView(state: FeedState.Data, doAction: (FeedAction) -> Unit) {
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 100.dp),
+        modifier = Modifier.padding(horizontal = 8.dp)
+    ) {
+        itemsIndexed(state.data) { index, item ->
+            FeedItem(item.title, modifier = Modifier.clickable {
+                doAction.invoke(OnCategoryClick(item))
+            })
         }
     }
 }

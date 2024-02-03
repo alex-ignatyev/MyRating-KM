@@ -1,16 +1,16 @@
 [versions]
 #Kotlin
-kotlin = "1.9.0"
-kotlinx-serialization = "1.5.0"
-kotlinx-coroutines = "1.7.3"
+kotlin = "1.9.20"
+kotlinx-serialization = "1.6.2"
+kotlinx-coroutines = "1.7.1"
 
 #Android
-agp = "8.0.0"
+agp = "8.2.2"
 androidx-appcompat = "1.6.1"
 androidx-activityCompose = "1.8.2"
 
 #Compose
-compose = "1.4.3"
+compose = "1.6.0-alpha01"
 composeIcons = "1.1.0"
 composeImageLoader = "1.4.0"
 
@@ -19,7 +19,7 @@ odyssey = "1.4.0-alpha05"
 voyager = "1.0.0-rc05"
 
 #Decompose
-decompose = "3.0.0-alpha04"
+decompose = "3.0.0-alpha05"
 
 #MVVM
 kviewmodel = "0.13"
@@ -63,7 +63,7 @@ compose-imageLoaderBlur = { module = "io.github.qdsfdhvh:image-loader-extension-
 compose-icons = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "composeIcons" }
 
 #Decompose
-decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-core = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
 decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
 
 #DI
@@ -115,6 +115,7 @@ multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotl
 
 #Kotlin
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 
 #Android
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -22,28 +22,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.my_rating.shared.AppRes
-import com.my_rating.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
 import com.moriatsushi.insetsx.ime
 import com.moriatsushi.insetsx.navigationBars
-import screens.auth.account_login.AccountLoginEvent.ChangeLogin
-import screens.auth.account_login.AccountLoginEvent.ChangePassword
-import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
-import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
-import screens.auth.account_login.AccountLoginEvent.LoginClick
-import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
-import ui.view.PasswordShowIcon
+import com.my_rating.shared.AppRes
+import com.my_rating.shared.strings.AppResStrings
+import screens.auth.account_login.AccountLoginAction.ChangeLogin
+import screens.auth.account_login.AccountLoginAction.ChangePassword
+import screens.auth.account_login.AccountLoginAction.CreateAccountClick
+import screens.auth.account_login.AccountLoginAction.ForgotPasswordClick
+import screens.auth.account_login.AccountLoginAction.LoginClick
+import screens.auth.account_login.AccountLoginAction.ShowPasswordClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
 import ui.components.KalyanTextField
 import ui.components.TextFieldType.Password
-import utils.mvi.Event
+import ui.view.PasswordShowIcon
 
 @OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
-fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent: (Event) -> Unit) {
+fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (AccountLoginAction) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.ime)
@@ -73,7 +72,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
             enabled = !state.isLoading,
             isError = state.error.isNotBlank(),
         ) {
-            obtainEvent(ChangeLogin(it))
+            doAction(ChangeLogin(it))
         }
 
         KalyanTextField(
@@ -84,11 +83,11 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
             fieldType = Password(state.isPasswordHidden),
             endIcon = {
                 PasswordShowIcon(state.isPasswordHidden) {
-                    obtainEvent(ShowPasswordClick())
+                    doAction(ShowPasswordClick)
                 }
             }
         ) {
-            obtainEvent(ChangePassword(it))
+            doAction(ChangePassword(it))
         }
 
         Row(modifier = Modifier.padding(end = 32.dp, top = 16.dp).fillMaxWidth()) {
@@ -99,7 +98,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
                 color = KalyanTheme.colors.primary,
                 fontSize = 14.sp,
                 modifier = Modifier.clickable {
-                    obtainEvent.invoke(ForgotPasswordClick())
+                    doAction.invoke(ForgotPasswordClick)
                 }
             )
         }
@@ -111,7 +110,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
             content = {
                 KalyanCircularProgress()
             },
-            onClick = { obtainEvent(LoginClick()) }
+            onClick = { doAction(LoginClick) }
         )
 
         Text(
@@ -141,7 +140,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
                 style = KalyanTheme.typography.body,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
-                    obtainEvent.invoke(CreateAccountClick())
+                    doAction.invoke(CreateAccountClick)
                 }
             )
         }

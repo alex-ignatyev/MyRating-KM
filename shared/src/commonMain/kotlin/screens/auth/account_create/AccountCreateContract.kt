@@ -1,18 +1,14 @@
 package screens.auth.account_create
 
-import utils.mvi.Action
-import utils.mvi.Event
-
-sealed class AccountCreateEvent : Event {
-    data class ChangeLogin(val value: String) : AccountCreateEvent()
-    data class ChangeName(val value: String) : AccountCreateEvent()
-    data class ChangePassword(val value: String) : AccountCreateEvent()
-    class ShowPasswordClick : AccountCreateEvent()
-    data class ChangePasswordRepeat(val value: String) : AccountCreateEvent()
-    class ShowPasswordRepeatClick : AccountCreateEvent()
-    class CreateAccountClick : AccountCreateEvent()
-    class OnBackClick : AccountCreateEvent()
-    class ClearActions : AccountCreateEvent()
+sealed interface AccountCreateAction {
+    data class ChangeLogin(val value: String) : AccountCreateAction
+    data class ChangeName(val value: String) : AccountCreateAction
+    data class ChangePassword(val value: String) : AccountCreateAction
+    data object ShowPasswordClick : AccountCreateAction
+    data class ChangePasswordRepeat(val value: String) : AccountCreateAction
+    data object ShowPasswordRepeatClick : AccountCreateAction
+    data object CreateAccountClick : AccountCreateAction
+    data object OnBackClick : AccountCreateAction
 }
 
 data class AccountCreateState(
@@ -26,7 +22,4 @@ data class AccountCreateState(
     val error: String = ""
 )
 
-sealed class AccountCreateAction : Action {
-    class OpenLoginScreen : AccountCreateAction()
-    class ReturnToPreviousScreen : AccountCreateAction()
-}
+sealed interface AccountCreateEffect

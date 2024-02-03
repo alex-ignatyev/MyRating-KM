@@ -48,7 +48,7 @@ kotlin {
 
                 implementation(libs.insetsx)
 
-                implementation(libs.decompose)
+                implementation(libs.decompose.core)
                 implementation(libs.decompose.compose)
 
                 implementation(libs.kviewmodel.core)
@@ -134,12 +134,11 @@ libres {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.my_rating.shared"
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
     }
 
     compileOptions {

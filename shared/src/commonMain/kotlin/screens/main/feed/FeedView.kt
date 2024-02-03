@@ -21,28 +21,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
-import screens.main.feed.FeedEvent.OnCategorySearch
-import screens.main.feed.FeedEvent.OnDataRefresh
+import screens.main.feed.FeedAction.OnCategorySearch
+import screens.main.feed.FeedAction.OnDataRefresh
 import screens.main.feed.FeedState.Data
 import screens.main.feed.FeedState.Empty
 import screens.main.feed.view.FeedEmptyView
 import screens.main.feed.view.FeedSuccessView
 import ui.KalyanTheme
 import ui.components.KalyanSearch
-import utils.mvi.Event
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun FeedView(state: FeedState, obtainEvent: (Event) -> Unit) {
+fun FeedView(state: FeedState, doAction: (FeedAction) -> Unit) {
+
     val refreshing by remember { mutableStateOf(false) }
     val refresh = rememberPullRefreshState(refreshing, {
-        obtainEvent(OnDataRefresh())
+        doAction(OnDataRefresh)
     })
 
     Scaffold(
         modifier = Modifier.pullRefresh(refresh)
             .windowInsetsPadding(WindowInsets.statusBars)
-            .windowInsetsPadding(WindowInsets.navigationBars)
             .pullRefresh(refresh),
     ) {
         Box(modifier = Modifier.background(KalyanTheme.colors.background).fillMaxSize()) {
@@ -52,14 +51,14 @@ fun FeedView(state: FeedState, obtainEvent: (Event) -> Unit) {
                 KalyanSearch(
                     modifier = Modifier.padding(horizontal = 16.dp).padding(top = 16.dp),
                     onValueChange = {
-                        obtainEvent(OnCategorySearch(it))
+                        doAction(OnCategorySearch(it))
                     }
                 )
 
                 Box(modifier = Modifier.fillMaxSize()) {
                     when (state) {
-                        is Empty -> FeedEmptyView(obtainEvent)
-                        is Data -> FeedSuccessView(state, obtainEvent)
+                        is Empty -> FeedEmptyView(doAction)
+                        is Data -> FeedSuccessView(state, doAction)
                         else -> throw IllegalStateException("Illegal state $state")
                     }
 

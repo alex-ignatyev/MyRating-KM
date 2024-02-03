@@ -6,7 +6,6 @@ import model.data.tobacco.TobaccoInfoRequest
 import model.data.tobacco.TobaccoVoteRequest
 import model.data.tobacco.TobaccoVoteRequest.VoteType
 import model.domain.Category
-import model.domain.Category.Subcategory
 import model.domain.TobaccoInfo
 import model.domain.toDomain
 import utils.answer.Answer
@@ -23,14 +22,24 @@ class RatingRepositoryImpl(
         return Answer.success(
             listOf<Category>(
                 Category(
-                    id = "",
+                    id = "0",
                     image = "",
                     title = "Напиток",
                     subcategories = listOf(
-                        Subcategory(
-                            id = "",
+                        Category(
+                            id = "1",
                             title = "Газировка",
-                            image = ""
+                            image = "",
+                            subcategories = listOf(
+                                Category(
+                                    id = "2",
+                                    title = "Cola",
+                                    image = "",
+                                    subcategories = listOf(
+
+                                    )
+                                )
+                            )
                         )
                     )
                 ),

@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
-import cafe.adriel.voyager.navigator.tab.Tab
 import di.LocalPlatform
 import di.Platform.iOS
 import di.currentPlatform
@@ -53,14 +53,21 @@ fun KalyanNavigationBar(
     }
 }
 
-@Composable
-internal fun RowScope.TabNavigationItem(tab: Tab) {
-    val tabNavigator = LocalTabNavigator.current
+interface Tab {
+    val index: Int
+    val title: String
+    val icon: ImageVector
+}
 
+@Composable
+internal fun RowScope.TabNavigationItem(tab: Tab, selectedIndexTab: Int, onClick: (Int) -> Unit) {
     BottomNavigationItem(
-        selected = tabNavigator.current == tab,
-        onClick = { tabNavigator.current = tab },
-        icon = { tab.options.icon?.let { Icon(painter = it, contentDescription = tab.options.title) } },
+        selected = selectedIndexTab == tab.index,
+        onClick = { onClick(tab.index) },
+        icon = {
+            val painterIcon = rememberVectorPainter(tab.icon)
+            Icon(painter = painterIcon, contentDescription = tab.title)
+        },
         selectedContentColor = KalyanTheme.colors.primary,
         unselectedContentColor = KalyanTheme.colors.surfaceVariantOn
     )

@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.my_rating.shared.images.AppResImages
 import com.my_rating.shared.strings.AppResStrings
 import io.github.skeptick.libres.compose.painterResource
-import screens.main.feed.FeedEvent.OnAddRequest
+import screens.main.feed.FeedAction
+import screens.main.feed.FeedAction.OnAddRequest
 import ui.KalyanTheme
 import ui.components.KalyanButton
-import utils.mvi.Event
 
 @Composable
-fun FeedEmptyView(obtainEvent: (Event) -> Unit) {
+fun FeedEmptyView(doAction: (FeedAction) -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -42,7 +42,7 @@ fun FeedEmptyView(obtainEvent: (Event) -> Unit) {
                 modifier = Modifier.padding(horizontal = 32.dp)
             )
             KalyanButton(text = AppResStrings.title_create_request, modifier = Modifier.padding(top = 32.dp)) {
-                obtainEvent(OnAddRequest())
+                doAction(OnAddRequest)
             }
         }
     }

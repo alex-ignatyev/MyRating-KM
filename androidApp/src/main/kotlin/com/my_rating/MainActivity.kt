@@ -1,10 +1,12 @@
 package com.my_rating
 
+import DefaultRootComponent
 import MainView
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import com.arkivanov.decompose.defaultComponentContext
 import di.PlatformConfiguration
 import di.PlatformSDK
 
@@ -18,9 +20,10 @@ class MainActivity : AppCompatActivity() {
                 activityContext = applicationContext
             )
         )
+        val root = DefaultRootComponent(componentContext = defaultComponentContext())
 
         setContent {
-            MainView()
+            MainView(root)
         }
     }
 }
