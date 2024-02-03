@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_add
+package screens.main.category.category_add
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults.colors
@@ -26,22 +25,22 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
-import com.my_rating.shared.AppRes
-import com.my_rating.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
 import com.moriatsushi.insetsx.ime
 import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
+import com.my_rating.shared.AppRes
+import com.my_rating.shared.strings.AppResStrings
 import model.domain.Company
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.AddTobaccoClick
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeCompany
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeLine
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeManual
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeStrengthByCompany
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ChangeTaste
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.OnBackClick
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.OnCompanyClick
-import screens.main.tobacco.tobacco_add.AddTobaccoEvent.OnLineClick
+import screens.main.category.category_add.AddCategoryAction.AddCategoryClick
+import screens.main.category.category_add.AddCategoryAction.ChangeCompany
+import screens.main.category.category_add.AddCategoryAction.ChangeLine
+import screens.main.category.category_add.AddCategoryAction.ChangeManual
+import screens.main.category.category_add.AddCategoryAction.ChangeStrengthByCompany
+import screens.main.category.category_add.AddCategoryAction.ChangeTaste
+import screens.main.category.category_add.AddCategoryAction.OnBackClick
+import screens.main.category.category_add.AddCategoryAction.OnCompanyClick
+import screens.main.category.category_add.AddCategoryAction.OnLineClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
@@ -49,22 +48,20 @@ import ui.components.KalyanSelect
 import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 
-@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
-fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Unit) {
+fun AddTobaccoView(state: AddCategoryState, modifier: Modifier = Modifier, doAction: (AddCategoryAction) -> Unit) {
 
     val tobacco = state.tobacco
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.background)
-            .windowInsetsPadding(WindowInsets.statusBars)
-            .windowInsetsPadding(WindowInsets.ime),
+        modifier = modifier.background(KalyanTheme.colors.background)
+            .windowInsetsPadding(WindowInsets.statusBars),
         backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(
                 title = AppResStrings.title_admin_add_tobacco,
                 onBackClick = {
-                    obtainEvent(OnBackClick())
+                    doAction(OnBackClick)
                 })
         }
     ) {
@@ -91,7 +88,7 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
                         checkedTrackColor = KalyanTheme.colors.backgroundOn,
                         uncheckedTrackColor = KalyanTheme.colors.backgroundOn
                     ), onCheckedChange = {
-                        obtainEvent(ChangeManual(it))
+                        doAction(ChangeManual(it))
                     })
                 }
 
@@ -102,11 +99,11 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
                         enabled = !state.isLoading,
                         isError = state.error.isNotBlank()
                     ) {
-                        obtainEvent(ChangeCompany(it))
+                        doAction(ChangeCompany(it))
                     }
                 } else {
                     KalyanSelect(title = AppResStrings.text_company, text = tobacco.company) {
-                        obtainEvent(OnCompanyClick())
+                        doAction(OnCompanyClick)
                     }
                 }
 
@@ -116,7 +113,7 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
                     enabled = !state.isLoading,
                     isError = state.error.isNotBlank(),
                 ) {
-                    obtainEvent(ChangeTaste(it))
+                    doAction(ChangeTaste(it))
                 }
 
                 if (state.isManual) {
@@ -126,12 +123,12 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
                         enabled = !state.isLoading,
                         isError = state.error.isNotBlank()
                     ) {
-                        obtainEvent(ChangeLine(it))
+                        doAction(ChangeLine(it))
                     }
                 } else {
                     KalyanSelect(title = AppResStrings.text_line, text = tobacco.line) {
                         val lines = state.companies.findLast { it.company == tobacco.company }?.lines ?: return@KalyanSelect
-                        obtainEvent(OnLineClick(lines))
+                        doAction(OnLineClick(lines))
                     }
                 }
 
@@ -142,7 +139,7 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
                     inputType = KeyboardType.NumberPassword,
                     isError = state.error.isNotBlank()
                 ) {
-                    obtainEvent(ChangeStrengthByCompany(it))
+                    doAction(ChangeStrengthByCompany(it))
                 }
 
                 Text(
@@ -153,47 +150,46 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
             }
 
             KalyanButton(
-                modifier = Modifier.padding(vertical = 32.dp).align(Alignment.BottomCenter)
-                    .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars)),
+                modifier = Modifier.padding(vertical = 16.dp).align(Alignment.BottomCenter),
                 text = if (state.isLoading) null else AppRes.string.title_admin_add_tobacco,
                 enabled = !state.isLoading && state.isButtonEnabled,
                 content = {
                     KalyanCircularProgress()
                 },
                 onClick = {
-                    obtainEvent(AddTobaccoClick())
+                    doAction(AddCategoryClick)
                 }
             )
         }
     }
 }
 
-data class CompanyBottomSheet(val companies: List<Company>, val obtainEvent: (AddTobaccoEvent) -> Unit) : Screen {
+data class CompanyBottomSheet(val companies: List<Company>, val doAction: (AddCategoryAction) -> Unit) : Screen {
 
     @OptIn(ExperimentalSoftwareKeyboardApi::class)
     @Composable
     override fun Content() {
-         val bottomSheetNavigator = LocalBottomSheetNavigator.current
+        val bottomSheetNavigator = LocalBottomSheetNavigator.current
 
-            LazyColumn(
-                modifier = Modifier.wrapContentHeight()
-                    .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 8.dp)))
-                    .windowInsetsPadding(WindowInsets.ime)
-            ) {
-                items(companies) {
-                    Text(
-                        text = it.company,
-                        style = KalyanTheme.typography.body,
-                        modifier = Modifier.fillMaxWidth().clickable {
-                            obtainEvent(ChangeCompany(it.company))
-                            bottomSheetNavigator.hide()
-                        })
-                }
+        LazyColumn(
+            modifier = Modifier.wrapContentHeight()
+                .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 8.dp)))
+                .windowInsetsPadding(WindowInsets.ime)
+        ) {
+            items(companies) {
+                Text(
+                    text = it.company,
+                    style = KalyanTheme.typography.body,
+                    modifier = Modifier.fillMaxWidth().clickable {
+                        doAction(ChangeCompany(it.company))
+                        bottomSheetNavigator.hide()
+                    })
             }
+        }
     }
 }
 
-data class LineBottomSheet(val lines: List<String>, val obtainEvent: (AddTobaccoEvent) -> Unit) : Screen {
+data class LineBottomSheet(val lines: List<String>, val doAction: (AddCategoryAction) -> Unit) : Screen {
 
     @OptIn(ExperimentalSoftwareKeyboardApi::class)
     @Composable
@@ -210,7 +206,7 @@ data class LineBottomSheet(val lines: List<String>, val obtainEvent: (AddTobacco
                     text = it,
                     style = KalyanTheme.typography.body,
                     modifier = Modifier.fillMaxWidth().clickable {
-                        obtainEvent(ChangeLine(it))
+                        doAction(ChangeLine(it))
                         bottomSheetNavigator.hide()
                     })
             }

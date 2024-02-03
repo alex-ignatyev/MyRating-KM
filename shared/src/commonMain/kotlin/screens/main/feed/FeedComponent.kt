@@ -57,6 +57,7 @@ class DefaultFeedComponent(
                 state.value = when {
                     response.isEmpty() -> Empty(isLoading = false)
                     else -> {
+                        categoriesStack.clear()
                         categoriesStack.add(response)
                         Data(data = categoriesStack.first())
                     }

@@ -60,10 +60,10 @@ interface Tab {
 }
 
 @Composable
-internal fun RowScope.TabNavigationItem(tab: Tab, selectedIndexTab: Int, onClick: (Int) -> Unit) {
+internal fun RowScope.TabNavigationItem(tab: Tab, selectedIndexTab: Int, onClick: () -> Unit) {
     BottomNavigationItem(
         selected = selectedIndexTab == tab.index,
-        onClick = { onClick(tab.index) },
+        onClick = { onClick.invoke() },
         icon = {
             val painterIcon = rememberVectorPainter(tab.icon)
             Icon(painter = painterIcon, contentDescription = tab.title)

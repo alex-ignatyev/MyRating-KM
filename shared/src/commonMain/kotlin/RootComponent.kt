@@ -32,16 +32,22 @@ class DefaultRootComponent(
 
     private fun child(config: RootScreenConfig, childComponentContext: ComponentContext): RootScreen =
         when (config) {
-            is RootScreenConfig.Splash -> RootScreen.Splash(DefaultSplashComponent(childComponentContext) { splashFlow ->
+            is RootScreenConfig.Splash -> RootScreen.Splash(DefaultSplashComponent(
+                componentContext = childComponentContext
+            ) { splashFlow ->
                 when (splashFlow) {
                     is SplashFlow.AuthFlow -> navigation.replaceAll(RootScreenConfig.Login)
                     is SplashFlow.MainFlow -> navigation.replaceAll(RootScreenConfig.Main)
                 }
             })
 
-            is RootScreenConfig.Login -> RootScreen.Login(DefaultAuthComponent(childComponentContext) {
-                navigation.replaceAll(RootScreenConfig.Main)
-            })
+            is RootScreenConfig.Login -> RootScreen.Login(
+                DefaultAuthComponent(
+                    componentContext = childComponentContext,
+                    openMainScreen = {
+                        navigation.replaceAll(RootScreenConfig.Main)
+                    })
+            )
 
             is RootScreenConfig.Main -> RootScreen.Main(
                 DefaultMainComponent(
