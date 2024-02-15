@@ -3,12 +3,10 @@ package ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -28,7 +26,7 @@ import data.LocalSettingsEventBus
 import io.github.skeptick.libres.compose.painterResource
 
 @Composable
-fun KalyanImage(
+fun MRImage(
     url: String,
     modifier: Modifier = Modifier,
     size: Int = 48,
@@ -61,7 +59,7 @@ fun KalyanImage(
             is ImageRequestState.Loading -> {
                 val event = requestState.event
                 if (event is ImageRequestEvent.ReadDiskCache && !event.hasCache) {
-                    KalyanCircularProgress()
+                    MRCircularProgress()
                 }
             }
 

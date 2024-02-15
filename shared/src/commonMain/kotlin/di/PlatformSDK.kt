@@ -18,9 +18,7 @@ object PlatformSDK {
                 settingsModule,
 
                 authModule,
-                ratingModule,
-
-                adminModule
+                ratingModule
             )
         }
     }

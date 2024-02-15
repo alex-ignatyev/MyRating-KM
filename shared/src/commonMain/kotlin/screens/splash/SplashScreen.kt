@@ -7,10 +7,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import com.my_rating.shared.strings.AppResStrings
 import screens.splash.SplashAction.InitScreen
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
 fun SplashScreen(component: SplashComponent, modifier: Modifier = Modifier) {
@@ -22,9 +21,8 @@ fun SplashScreen(component: SplashComponent, modifier: Modifier = Modifier) {
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = AppResStrings.app_name,
-            style = KalyanTheme.typography.header,
-            color = KalyanTheme.colors.backgroundOn,
-            textAlign = TextAlign.Center
+            style = MRTheme.typography.header,
+            color = MRTheme.colors.backgroundOn
         )
     }
 

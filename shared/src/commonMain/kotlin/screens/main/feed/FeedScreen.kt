@@ -15,7 +15,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.moriatsushi.insetsx.statusBars
@@ -31,7 +30,7 @@ import screens.main.feed.FeedState.Error
 import screens.main.feed.FeedState.Loading
 import screens.main.feed.view.FeedEmptyView
 import screens.main.feed.view.FeedLoadingView
-import ui.KalyanTheme
+import ui.MRTheme
 import ui.components.ErrorScreen
 
 @Composable
@@ -61,14 +60,13 @@ fun FeedScreen(component: FeedComponent, modifier: Modifier = Modifier) {
 fun Toolbar(doAction: (FeedAction) -> Unit) {
     Box(
         modifier = Modifier.fillMaxWidth()
-            .background(KalyanTheme.colors.background)
+            .background(MRTheme.colors.background)
             .padding(top = 16.dp)
     ) {
         Text(
             text = AppResStrings.title_categories,
             modifier = Modifier.align(Alignment.Center),
-            textAlign = TextAlign.Center,
-            style = KalyanTheme.typography.header
+            style = MRTheme.typography.header
         )
 
         Icon(

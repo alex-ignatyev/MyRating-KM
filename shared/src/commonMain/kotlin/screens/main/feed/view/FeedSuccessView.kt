@@ -24,13 +24,13 @@ import model.domain.Category
 import screens.main.feed.FeedAction
 import screens.main.feed.FeedAction.OnCategoryClick
 import screens.main.feed.FeedAction.OnCategorySearch
-import ui.KalyanTheme
-import ui.components.KalyanSearch
+import ui.MRTheme
+import ui.components.MRSearch
 
 @Composable
 fun FeedSuccessView(categories: List<Category>, doAction: (FeedAction) -> Unit) {
     Column {
-        KalyanSearch(
+        MRSearch(
             modifier = Modifier.padding(horizontal = 16.dp).padding(top = 16.dp),
             onValueChange = {
                 doAction(OnCategorySearch(it))
@@ -58,7 +58,7 @@ fun FeedItem(title: String, modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.background),
+            modifier = Modifier.fillMaxSize().background(MRTheme.colors.background),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {

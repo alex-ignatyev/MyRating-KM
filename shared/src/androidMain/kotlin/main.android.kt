@@ -8,8 +8,7 @@ import data.SettingsEventBus
 import di.LocalPlatform
 import di.Platform.Android
 import navigation.RootFlow
-import ui.KalyanTheme
-import ui.MainTheme
+import ui.MRTheme
 
 @Composable
 fun MainView(component: DefaultRootComponent) {
@@ -17,11 +16,11 @@ fun MainView(component: DefaultRootComponent) {
     val settingsEventBus = remember { SettingsEventBus() }
     val currentSettings = settingsEventBus.currentSettings.collectAsState().value
 
-    MainTheme(
+    MRTheme(
         darkTheme = currentSettings.isDarkMode
     ) {
 
-        systemUiController.setSystemBarsColor(color = KalyanTheme.colors.background)
+        systemUiController.setSystemBarsColor(color = MRTheme.colors.background)
 
         CompositionLocalProvider(
             LocalPlatform provides Android,

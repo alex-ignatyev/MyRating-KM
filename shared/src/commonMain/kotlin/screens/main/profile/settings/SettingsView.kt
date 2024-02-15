@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -17,17 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
 import com.my_rating.shared.AppRes
 import com.my_rating.shared.strings.AppResStrings
 import data.LocalSettingsEventBus
 import screens.main.profile.settings.SettingsAction.OnBackClick
 import screens.main.profile.settings.SettingsAction.OnLogOutClick
-import ui.KalyanTheme
-import ui.components.KalyanButton
-import ui.components.KalyanDivider
-import ui.components.KalyanToolbar
+import ui.MRTheme
+import ui.components.MRButton
+import ui.components.MRDivider
+import ui.components.MRToolbar
 
 @Composable
 fun SettingsView(state: SettingsState, doAction: (SettingsAction) -> Unit) {
@@ -35,11 +33,11 @@ fun SettingsView(state: SettingsState, doAction: (SettingsAction) -> Unit) {
     val currentSettings = settingsEventBus.currentSettings.value
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.background)
+        modifier = Modifier.background(MRTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars),
-        backgroundColor = KalyanTheme.colors.background,
+        backgroundColor = MRTheme.colors.background,
         topBar = {
-            KalyanToolbar(title = AppResStrings.title_settings, onBackClick = {
+            MRToolbar(title = AppResStrings.title_settings, onBackClick = {
                 doAction.invoke(OnBackClick)
             })
         }
@@ -53,26 +51,26 @@ fun SettingsView(state: SettingsState, doAction: (SettingsAction) -> Unit) {
                     Text(
                         modifier = Modifier.weight(1f),
                         text = AppRes.string.action_dark_theme_enable,
-                        color = KalyanTheme.colors.backgroundOn,
-                        style = KalyanTheme.typography.body
+                        color = MRTheme.colors.backgroundOn,
+                        style = MRTheme.typography.body
                     )
                     Checkbox(
                         checked = currentSettings.isDarkMode, onCheckedChange = {
                             settingsEventBus.updateDarkMode(!currentSettings.isDarkMode)
                         },
                         colors = CheckboxDefaults.colors(
-                            checkedColor = KalyanTheme.colors.backgroundOn,
-                            uncheckedColor = KalyanTheme.colors.backgroundOn
+                            checkedColor = MRTheme.colors.backgroundOn,
+                            uncheckedColor = MRTheme.colors.backgroundOn
                         )
                     )
                 }
 
-                KalyanDivider()
+                MRDivider()
             }
 
-            KalyanButton(
+            MRButton(
                 modifier = Modifier.padding(bottom = 16.dp).align(Alignment.BottomCenter),
-                backgroundColor = KalyanTheme.colors.error,
+                backgroundColor = MRTheme.colors.error,
                 text = AppResStrings.text_logout
             ) {
                 doAction.invoke(OnLogOutClick)

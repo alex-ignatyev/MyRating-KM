@@ -28,7 +28,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
@@ -45,10 +44,10 @@ import model.data.tobacco.TobaccoVoteRequest.VoteType.Strength
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Taste
 import screens.main.category.category_info.TobaccoInfoEvent.OnBackClick
 import screens.main.category.category_info.view.VoteBottomSheet
-import ui.KalyanTheme
-import ui.components.KalyanDivider
-import ui.components.KalyanImage
-import ui.components.KalyanToolbar
+import ui.MRTheme
+import ui.components.MRDivider
+import ui.components.MRImage
+import ui.components.MRToolbar
 import ui.components.android.AndroidBottomBarHeight
 
 @Composable
@@ -58,12 +57,12 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
 
     Scaffold(
         modifier = Modifier
-            .background(KalyanTheme.colors.background)
+            .background(MRTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
             .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets(bottom = AndroidBottomBarHeight))),
-        backgroundColor = KalyanTheme.colors.background,
+        backgroundColor = MRTheme.colors.background,
         topBar = {
-            KalyanToolbar(
+            MRToolbar(
                 title = AppResStrings.title_category_info,
                 isTransparent = true,
                 onBackClick = {
@@ -82,11 +81,11 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
 
             Text(
                 text = "Оценки пользователей",
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText,
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.secondaryText,
                 modifier = Modifier.padding(start = 16.dp, top = 16.dp)
             )
-            KalyanDivider(modifier = Modifier.fillMaxWidth(0.5f).padding(start = 16.dp))
+            MRDivider(modifier = Modifier.fillMaxWidth(0.5f).padding(start = 16.dp))
 
             RatingInfoUsers(
                 data.strengthByUsers.toString(),
@@ -98,11 +97,11 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
 
             Text(
                 text = "Ваши оценки",
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText,
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.secondaryText,
                 modifier = Modifier.padding(start = 16.dp, top = 16.dp)
             )
-            KalyanDivider(modifier = Modifier.fillMaxWidth(0.5f).padding(start = 16.dp))
+            MRDivider(modifier = Modifier.fillMaxWidth(0.5f).padding(start = 16.dp))
 
             RatingInfoUser(
                 ratingByUser = data.ratingByUser,
@@ -177,8 +176,7 @@ fun RatingInfoUser(
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = "${AppResStrings.text_rating}: $ratingByUser",
-            style = KalyanTheme.typography.caption,
-            textAlign = TextAlign.Center,
+            style = MRTheme.typography.caption,
             modifier = Modifier.padding(top = 16.dp).wrapContentHeight().clickable {
                 bottomSheetNavigator.show(VoteBottomSheet(Rating, ratingByUser, obtainEvent))
             }
@@ -187,8 +185,7 @@ fun RatingInfoUser(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = "${AppResStrings.text_strength}: $strengthByUser",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
+                style = MRTheme.typography.caption,
                 modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f).clickable {
                     bottomSheetNavigator.show(VoteBottomSheet(Strength, strengthByUser, obtainEvent))
                 }
@@ -196,9 +193,12 @@ fun RatingInfoUser(
 
             Text(
                 text = "${AppResStrings.text_smokiness}: $smokinessByUser",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f).clickable {
+                style = MRTheme.typography.caption,
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .wrapContentHeight()
+                    .weight(1f)
+                    .clickable {
                     bottomSheetNavigator.show(VoteBottomSheet(Smokiness, smokinessByUser, obtainEvent))
                 }
             )
@@ -207,8 +207,7 @@ fun RatingInfoUser(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = "${AppResStrings.text_aroma}: $aromaByUser",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
+                style = MRTheme.typography.caption,
                 modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f).clickable {
                     bottomSheetNavigator.show(VoteBottomSheet(Aroma, aromaByUser, obtainEvent))
                 }
@@ -216,9 +215,10 @@ fun RatingInfoUser(
 
             Text(
                 text = "${AppResStrings.text_taste}: $tasteByUser",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f).clickable {
+                style = MRTheme.typography.caption,
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .wrapContentHeight().weight(1f).clickable {
                     bottomSheetNavigator.show(VoteBottomSheet(Taste, tasteByUser, obtainEvent))
                 }
             )
@@ -233,7 +233,7 @@ fun TobaccoBlock(state: TobaccoInfoState, modifier: Modifier = Modifier, obtainE
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        KalyanImage(
+        MRImage(
             state.data.image,
             modifier = Modifier.padding(top = 16.dp).clip(CircleShape),
             size = 160,
@@ -253,20 +253,20 @@ fun TobaccoBlock(state: TobaccoInfoState, modifier: Modifier = Modifier, obtainE
         ) {
             Text(
                 text = state.data.company,
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.secondaryText
             )
 
             Text(
                 text = " / ",
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.secondaryText
             )
 
             Text(
                 text = state.data.line,
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.secondaryText
             )
         }
     }
@@ -292,14 +292,14 @@ fun RatingValue(value: String, title: String, modifier: Modifier = Modifier, obt
             text = value,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            style = KalyanTheme.typography.caption
+            style = MRTheme.typography.caption
         )
 
         Text(
             text = title,
             fontSize = 12.sp,
-            style = KalyanTheme.typography.caption,
-            color = KalyanTheme.colors.secondaryText
+            style = MRTheme.typography.caption,
+            color = MRTheme.colors.secondaryText
         )
     }
 }
@@ -321,23 +321,22 @@ fun RatingBlockValue(
             Text(
                 text = ratingByUsers,
                 fontSize = 18.sp,
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.backgroundOn,
-                textAlign = TextAlign.Center
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.backgroundOn
             )
             Spacer(Modifier.width(4.dp))
             Text(
                 text = "($votes)",
                 fontSize = 18.sp,
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText
+                style = MRTheme.typography.caption,
+                color = MRTheme.colors.secondaryText
             )
         }
 
         Image(
             painter = painterResource(AppResImages.ic_star),
             contentDescription = "", //TODO,
-            colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
+            colorFilter = ColorFilter.tint(MRTheme.colors.secondaryText),
             modifier = Modifier.size(36.dp)
         )
     }
@@ -361,15 +360,14 @@ fun RatingValueImage(
         Text(
             text = value,
             fontSize = 18.sp,
-            style = KalyanTheme.typography.hint,
-            color = KalyanTheme.colors.backgroundOn,
-            textAlign = TextAlign.Center
+            style = MRTheme.typography.hint,
+            color = MRTheme.colors.backgroundOn
         )
 
         Image(
             painter = painterResource(image),
             contentDescription = contentDescription,
-            colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
+            colorFilter = ColorFilter.tint(MRTheme.colors.secondaryText),
             modifier = Modifier.size(36.dp)
         )
     }

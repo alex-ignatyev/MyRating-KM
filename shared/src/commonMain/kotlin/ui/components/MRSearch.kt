@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -15,7 +14,6 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,14 +25,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.text.style.TextAlign.Companion
 import androidx.compose.ui.unit.dp
 import com.my_rating.shared.strings.AppResStrings
 import kotlinx.coroutines.delay
-import ui.KalyanTheme
+import ui.MRTheme
 import utils.EMPTY
 
 @Composable
-fun KalyanSearch(
+fun MRSearch(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
@@ -52,16 +51,16 @@ fun KalyanSearch(
             onValueChange = {
                 inputText = it
             },
-            textStyle = KalyanTheme.typography.hint,
+            textStyle = MRTheme.typography.hint.copy(textAlign = Companion.Start),
             modifier = Modifier
-                .background(color = KalyanTheme.colors.surfaceVariant.copy(alpha = 0.4f), shape = RoundedCornerShape(8.dp))
+                .background(color = MRTheme.colors.surfaceVariant.copy(alpha = 0.4f), shape = RoundedCornerShape(8.dp))
                 .weight(1f)
                 .height(48.dp),
-            placeholder = { Text(text = AppResStrings.text_search, style = KalyanTheme.typography.hint) },
+            placeholder = { Text(text = AppResStrings.text_search, style = MRTheme.typography.hint) },
             leadingIcon = {
                 Image(
                     imageVector = Icons.Outlined.Search,
-                    colorFilter = ColorFilter.tint(KalyanTheme.colors.primaryText.copy(alpha = 0.5f)),
+                    colorFilter = ColorFilter.tint(MRTheme.colors.primaryText.copy(alpha = 0.5f)),
                     contentDescription = null
                 )
             },
@@ -76,8 +75,8 @@ fun KalyanSearch(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 backgroundColor = Color.Transparent,
-                textColor = KalyanTheme.colors.primaryText,
-                cursorColor = KalyanTheme.colors.surfaceVariantOn
+                textColor = MRTheme.colors.primaryText,
+                cursorColor = MRTheme.colors.surfaceVariantOn
             )
         )
 
@@ -88,7 +87,7 @@ fun KalyanSearch(
                 .padding(start = 16.dp)
                 .size(46.dp)
                 .border(
-                    border = BorderStroke(1.dp, KalyanTheme.colors.surfaceVariant.copy(alpha = 0.4f)),
+                    border = BorderStroke(1.dp, MRTheme.colors.surfaceVariant.copy(alpha = 0.4f)),
                     shape = RoundedCornerShape(8.dp)
                 ).clickable {
                     onClick()

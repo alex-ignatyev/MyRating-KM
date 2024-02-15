@@ -3,7 +3,7 @@ package screens.main.profile.settings
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import data.SettingsDataSource
+import data.remote.SettingsDataSource
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 import screens.main.profile.settings.SettingsAction.OnBackClick

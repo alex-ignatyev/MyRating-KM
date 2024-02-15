@@ -1,7 +1,7 @@
 package screens.splash
 
 import com.arkivanov.decompose.ComponentContext
-import data.SettingsDataSource
+import data.remote.SettingsDataSource
 import domain.repository.AuthRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

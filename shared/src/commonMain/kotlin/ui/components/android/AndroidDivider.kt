@@ -5,7 +5,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
 internal fun AndroidDivider(
@@ -15,6 +15,6 @@ internal fun AndroidDivider(
     Divider(
         modifier = modifier.fillMaxWidth(),
         thickness = thickness,
-        color = KalyanTheme.colors.surfaceVariant
+        color = MRTheme.colors.surfaceVariant
     )
 }

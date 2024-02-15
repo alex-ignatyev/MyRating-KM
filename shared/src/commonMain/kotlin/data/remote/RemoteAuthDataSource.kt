@@ -1,4 +1,4 @@
-package data
+package data.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

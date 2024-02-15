@@ -10,12 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.my_rating.shared.images.AppResImages
 import com.my_rating.shared.strings.AppResStrings
 import io.github.skeptick.libres.compose.painterResource
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
 fun FeedEmptyView(modifier: Modifier = Modifier) {
@@ -27,14 +26,16 @@ fun FeedEmptyView(modifier: Modifier = Modifier) {
         Image(
             painterResource(AppResImages.ic_empty),
             null,
-            colorFilter = ColorFilter.tint(KalyanTheme.colors.surfaceVariant),
+            colorFilter = ColorFilter.tint(MRTheme.colors.surfaceVariant),
             modifier = Modifier.size(128.dp)
         )
-        Text(text = AppResStrings.title_categories_empty, style = KalyanTheme.typography.header)
+        Text(
+            text = AppResStrings.title_categories_empty,
+            style = MRTheme.typography.header
+        )
         Text(
             text = AppResStrings.text_categories_cant_find,
-            style = KalyanTheme.typography.hint,
-            textAlign = TextAlign.Center,
+            style = MRTheme.typography.hint,
             modifier = Modifier.padding(horizontal = 32.dp)
         )
     }

@@ -2,7 +2,7 @@ package ui
 
 import androidx.compose.ui.graphics.Color
 
-internal val paletteLight = KalyanColors(
+internal val paletteLight = MRColors(
     primary = Color(0xFFBBE9FF),
     primaryOn = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFFBBE9FF),
@@ -37,7 +37,7 @@ internal val paletteLight = KalyanColors(
     secondaryText = Color(0xCC7A8A99),
 )
 
-internal val paletteDark = KalyanColors(
+internal val paletteDark = MRColors(
     primary = Color(0xFF61D4FF),
     primaryOn = Color(0xFF003545),
     primaryContainer = Color(0xFF004D63),
@@ -71,21 +71,3 @@ internal val paletteDark = KalyanColors(
     primaryText = Color(0xFF3D454C),
     secondaryText = Color(0xCC7A8A99),
 )
-
-val md_theme_light_inverseOnSurface = Color(0xFFE1F4FF)
-val md_theme_light_inverseSurface = Color(0xFF003547)
-val md_theme_light_inversePrimary = Color(0xFF61D4FF)
-val md_theme_light_shadow = Color(0xFF000000)
-val md_theme_light_surfaceTint = Color(0xFF006782)
-val md_theme_light_outlineVariant = Color(0xFFC0C8CC)
-val md_theme_light_scrim = Color(0xFF000000)
-
-val md_theme_dark_inverseOnSurface = Color(0xFF001F2A)
-val md_theme_dark_inverseSurface = Color(0xFFBFE9FF)
-val md_theme_dark_inversePrimary = Color(0xFF006782)
-val md_theme_dark_shadow = Color(0xFF000000)
-val md_theme_dark_surfaceTint = Color(0xFF61D4FF)
-val md_theme_dark_outlineVariant = Color(0xFF40484C)
-val md_theme_dark_scrim = Color(0xFF000000)
-
-val seed = Color(0xFFB3E5FC)

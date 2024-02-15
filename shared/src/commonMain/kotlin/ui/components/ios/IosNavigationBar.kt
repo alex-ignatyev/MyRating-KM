@@ -23,14 +23,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.navigationBars
-import ui.KalyanTheme
+import ui.MRTheme
 import ui.components.AdaptiveElevation
 
 @Composable
 @NonRestartableComposable
 fun IosNavigationBar(
     modifier: Modifier = Modifier,
-    containerColor: Color = KalyanTheme.colors.primary,
+    containerColor: Color = MRTheme.colors.primary,
     contentColor: Color = contentColorFor(containerColor),
     tonalElevation: Dp = NavigationBarDefaults.AdaptiveElevation,
     isTransparent: () -> Boolean = { false },

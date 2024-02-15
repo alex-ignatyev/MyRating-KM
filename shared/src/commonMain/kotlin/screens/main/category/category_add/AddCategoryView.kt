@@ -25,10 +25,10 @@ import com.my_rating.shared.strings.AppResStrings
 import screens.main.category.category_add.AddCategoryAction.AddCategory
 import screens.main.category.category_add.AddCategoryAction.OnBackClick
 import screens.main.category.category_add.AddCategoryAction.OnCategoryChange
-import ui.KalyanTheme
-import ui.components.KalyanButton
-import ui.components.KalyanCircularProgress
-import ui.components.KalyanTextField
+import ui.MRTheme
+import ui.components.MRButton
+import ui.components.MRCircularProgress
+import ui.components.MRTextField
 import utils.keyboardAsState
 
 @Composable
@@ -51,21 +51,21 @@ fun AddCategoryView(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(KalyanTheme.colors.background)
+                .background(MRTheme.colors.background)
         ) {
-            KalyanTextField(
+            MRTextField(
                 value = state.title,
                 placeholder = AppResStrings.text_categories_name
             ) {
                 doAction(OnCategoryChange(it))
             }
 
-            KalyanButton(
+            MRButton(
                 modifier = buttonModifier.padding(vertical = 16.dp).align(Alignment.BottomCenter),
                 text = if (state.isLoading) null else AppRes.string.title_add_category,
                 enabled = !state.isLoading && state.isButtonEnabled,
                 content = {
-                    KalyanCircularProgress()
+                    MRCircularProgress()
                 },
                 onClick = {
                     doAction(AddCategory)
@@ -80,7 +80,7 @@ fun Toolbar(doAction: (AddCategoryAction) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(KalyanTheme.colors.background)
+            .background(MRTheme.colors.background)
             .padding(top = 16.dp)
     ) {
         Icon(
@@ -95,7 +95,7 @@ fun Toolbar(doAction: (AddCategoryAction) -> Unit) {
         )
         Text(
             text = AppResStrings.title_add_category,
-            style = KalyanTheme.typography.header,
+            style = MRTheme.typography.header,
             modifier = Modifier.align(Alignment.Center)
         )
     }

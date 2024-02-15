@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import screens.main.profile.user.UserAction.ClickOnSettings
-import ui.KalyanTheme
-import ui.components.KalyanDivider
+import ui.MRTheme
+import ui.components.MRDivider
 
 @Composable
 fun ProfileSettingsBox(doAction: (UserAction) -> Unit) {
@@ -23,7 +23,7 @@ fun ProfileSettingsBox(doAction: (UserAction) -> Unit) {
             .padding(top = 24.dp, start = 16.dp, end = 16.dp)
             .fillMaxWidth()
             .wrapContentHeight()
-            .background(KalyanTheme.colors.primary, RoundedCornerShape(8))
+            .background(MRTheme.colors.primary, RoundedCornerShape(8))
     ) {
         Column {
             SettingsItem("Настройки", modifier = Modifier.clickable {
@@ -42,7 +42,7 @@ fun SettingsItem(title: String, showDivider: Boolean = true, modifier: Modifier 
             .fillMaxWidth()
             .padding(start = 24.dp, top = 8.dp, bottom = 8.dp),
         text = title,
-        style = KalyanTheme.typography.body
+        style = MRTheme.typography.body
     )
-    if (showDivider) KalyanDivider(modifier = Modifier.padding(start = 24.dp))
+    if (showDivider) MRDivider(modifier = Modifier.padding(start = 24.dp))
 }

@@ -1,6 +1,6 @@
 package di
 
-import data.RemoteMainDataSource
+import data.remote.RemoteMainDataSource
 import domain.repository.RatingRepository
 import domain.repository.RatingRepositoryImpl
 import org.koin.dsl.module

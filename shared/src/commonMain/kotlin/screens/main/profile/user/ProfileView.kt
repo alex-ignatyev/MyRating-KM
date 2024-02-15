@@ -19,16 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.statusBars
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
 fun ProfileView(state: UserState, doAction: (UserAction) -> Unit) {
     Scaffold(
         modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars),
-        backgroundColor = KalyanTheme.colors.background
+        backgroundColor = MRTheme.colors.background
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
@@ -36,27 +35,25 @@ fun ProfileView(state: UserState, doAction: (UserAction) -> Unit) {
         ) {
             Image(
                 imageVector = Icons.Default.Person,
-                colorFilter = ColorFilter.tint(KalyanTheme.colors.primary),
+                colorFilter = ColorFilter.tint(MRTheme.colors.primary),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(84.dp)
                     .clip(CircleShape)                       // clip to the circle shape
-                    .border(2.dp, KalyanTheme.colors.primary, CircleShape)
+                    .border(2.dp, MRTheme.colors.primary, CircleShape)
             )
             Text(
                 text = state.name,
                 modifier = Modifier
                     .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                style = KalyanTheme.typography.header
+                style = MRTheme.typography.header
             )
             Text(
                 text = state.login,
                 modifier = Modifier
                     .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                style = KalyanTheme.typography.hint
+                style = MRTheme.typography.hint
             )
             ProfileSettingsBox(doAction)
         }

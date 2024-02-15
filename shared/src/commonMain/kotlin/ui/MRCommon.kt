@@ -5,7 +5,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 
-data class KalyanColors(
+data class MRColors(
     val primary: Color,
     val primaryOn: Color,
     val primaryContainer: Color,
@@ -41,7 +41,7 @@ data class KalyanColors(
     val secondaryText: Color
 )
 
-data class KalyanTypography(
+data class MRTypography(
     val header: TextStyle,
     val toolbar: TextStyle,
     val body: TextStyle,
@@ -49,15 +49,13 @@ data class KalyanTypography(
     val hint: TextStyle
 )
 
-object KalyanTheme {
-    internal val colors: KalyanColors
-        @Composable
-        internal get() = LocalKalyanColors.current
+object MRTheme {
+    internal val colors: MRColors
+        @Composable get() = LocalMRColors.current
 
-    internal val typography: KalyanTypography
-        @Composable
-        internal get() = LocalKalyanTypography.current
+    internal val typography: MRTypography
+        @Composable get() = LocalMRTypography.current
 }
 
-internal val LocalKalyanColors = staticCompositionLocalOf<KalyanColors> { error("No colors provided") }
-internal val LocalKalyanTypography = staticCompositionLocalOf<KalyanTypography> { error("No font provided") }
+internal val LocalMRColors = staticCompositionLocalOf<MRColors> { error("No colors provided") }
+internal val LocalMRTypography = staticCompositionLocalOf<MRTypography> { error("No font provided") }

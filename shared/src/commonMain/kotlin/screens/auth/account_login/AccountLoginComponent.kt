@@ -3,7 +3,6 @@ package screens.auth.account_login
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import data.SettingsDataSource
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject

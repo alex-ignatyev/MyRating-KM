@@ -20,7 +20,7 @@ import screens.main.MainComponent.MainScreen.Feed
 import screens.main.MainComponent.MainScreen.Profile
 import screens.main.category.category_add.AddCategoryScreen
 import screens.main.feed.FeedScreen
-import ui.components.KalyanNavigationBar
+import ui.components.MRNavigationBar
 import ui.components.TabNavigationItem
 
 @Composable
@@ -60,7 +60,7 @@ internal fun MainScreensFlow(component: MainComponent, modifier: Modifier = Modi
             }
         },
         bottomBar = {
-            KalyanNavigationBar(onFloatingAction = {
+            MRNavigationBar(onFloatingAction = {
                 component.navigateToAddCategory()
             }) {
                 TabNavigationItem(tab = FeedTab(), currentTab) {

@@ -11,8 +11,6 @@ import screens.main.category.category_info.TobaccoInfoEvent.ClearActions
 import screens.main.category.category_info.TobaccoInfoEvent.InitTobaccoInfoScreen
 import screens.main.category.category_info.TobaccoInfoEvent.OnBackClick
 import screens.main.category.category_info.TobaccoInfoEvent.VoteForTobacco
-import utils.answer.onFailure
-import utils.answer.onSuccess
 
 class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState, TobaccoInfoAction, TobaccoInfoEvent>(
     initialState = TobaccoInfoState()
@@ -33,23 +31,13 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
     private fun fetchData(tobaccoId: String) {
         this.tobaccoId = tobaccoId
         viewModelScope.launch {
-            repo.getTobaccoInfo(tobaccoId).onSuccess {
-                viewState = viewState.copy(isLoading = false, data = it)
-            }.onFailure {
-                viewState = viewState.copy(isLoading = false)
-            }
+
         }
     }
 
     private fun voteForTobacco(type: VoteType, value: Long) {
         viewModelScope.launch {
-            repo.postTobaccoVote(
-                tobaccoId = tobaccoId,
-                type = type,
-                value = value
-            ).onSuccess {
-                fetchData(tobaccoId)
-            }
+
         }
     }
 

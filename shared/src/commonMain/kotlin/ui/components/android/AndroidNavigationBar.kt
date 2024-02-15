@@ -11,13 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.navigationBars
-import ui.KalyanTheme
+import ui.MRTheme
 import ui.components.ios.IosDivider
 
 @Composable
 fun AndroidNavigationBar(
     modifier: Modifier = Modifier,
-    containerColor: Color = KalyanTheme.colors.primary,
+    containerColor: Color = MRTheme.colors.primary,
     contentColor: Color = contentColorFor(containerColor),
     content: @Composable RowScope.() -> Unit
 ) {
