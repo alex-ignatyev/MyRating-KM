@@ -20,11 +20,9 @@ import io.github.skeptick.libres.compose.painterResource
 import ui.KalyanTheme
 
 @Composable
-fun ErrorScreen(onRepeatClick: () -> Unit) {
+fun ErrorScreen(modifier: Modifier = Modifier, onRepeatClick: () -> Unit) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(KalyanTheme.colors.background),
+        modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {

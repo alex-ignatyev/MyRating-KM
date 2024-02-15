@@ -3,12 +3,11 @@ package screens.main.feed
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.backhandler.BackCallback
 import domain.repository.RatingRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import model.domain.Category
 import org.koin.core.component.inject
+import screens.main.feed.FeedAction.AddCategory
 import screens.main.feed.FeedAction.InitFeedScreen
 import screens.main.feed.FeedAction.OnAddRequest
 import screens.main.feed.FeedAction.OnCategoryClick
@@ -26,25 +25,32 @@ import utils.answer.onSuccess
 
 class DefaultFeedComponent(
     componentContext: ComponentContext,
-    val openCategoryInfoScreen: (String) -> Unit
+    val openCategoryScreen: (String) -> Unit,
+    val openAddCategoryScreen: () -> Unit
 ) : FeedComponent, BaseComponent<FeedEffect>(componentContext) {
 
     private val repository: RatingRepository by inject()
 
     override val state = MutableValue<FeedState>(Loading)
-    private val categoriesStack = ArrayDeque<List<Category>>()
+    private var shouldInit = true
 
-    init {
-        backHandler.register(BackCallback {
-            toPrevious()
-        })
-    }
+    /* init {
+            backHandler.register(BackCallback {
+                toPrevious()
+            })
+     } */
 
     override fun doAction(action: FeedAction) {
         when (action) {
-            is InitFeedScreen, is OnDataRefresh, is OnErrorRefresh -> fetchData()
+            is InitFeedScreen -> if (shouldInit) {
+                shouldInit = false
+                fetchData()
+            }
+
+            is AddCategory -> openAddCategoryScreen()
+            is OnDataRefresh, is OnErrorRefresh -> fetchData()
             is OnCategorySearch -> fetchData(action.search)
-            is OnCategoryClick -> toNext(action.category)
+            is OnCategoryClick -> openCategoryScreen(action.category.id)
             is OnAddRequest -> {} //TODO
         }
     }
@@ -55,32 +61,13 @@ class DefaultFeedComponent(
             delay(1000L)
             repository.getFeed(search).onSuccess { response ->
                 state.value = when {
-                    response.isEmpty() -> Empty(isLoading = false)
-                    else -> {
-                        categoriesStack.clear()
-                        categoriesStack.add(response)
-                        Data(data = categoriesStack.first())
-                    }
+                    response.isEmpty() -> Empty
+                    else -> Data(data = response)
                 }
             }.onFailure {
-                state.value = Error()
+                state.value = Error
             }
         }
-    }
-
-    private fun toNext(category: Category) {
-        if (category.subcategories.isEmpty()) {
-            openCategoryInfoScreen(category.id)
-        } else {
-            categoriesStack.add(category.subcategories)
-            state.value = Data(data = categoriesStack.last())
-        }
-    }
-
-    private fun toPrevious() {
-        if (categoriesStack.isEmpty()) return
-        categoriesStack.removeLast()
-        state.value = Data(data = categoriesStack.last())
     }
 }
 

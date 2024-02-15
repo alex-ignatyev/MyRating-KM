@@ -9,7 +9,7 @@ import ui.components.Tab as InternalTab
 
 internal data class FeedTab(
     override val index: Int = 0,
-    override val title: String = AppRes.string.title_tobacco_feed,
+    override val title: String = AppRes.string.title_feed,
     override val icon: ImageVector = Icons.Filled.Star
 ) : InternalTab
 

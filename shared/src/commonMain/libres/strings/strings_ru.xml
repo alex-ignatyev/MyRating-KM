@@ -25,22 +25,23 @@
     <string name="text_forgot_reset">Сбросить Пароль</string>
 
     // Main
-    <string name="title_tobacco_feed">Список тобаков</string>
-    <string name="title_mix">Микс</string>
-    <string name="title_admin">Админ</string>
+    <string name="title_feed">Рейтинг</string>
     <string name="title_profile">Профиль</string>
     <string name="title_settings">Настройки</string>
 
-    // Admin
-    <string name="title_admin_add_tobacco">Добавить табак</string>
-    <string name="text_admin_empty_choose">Не выбрано</string>
-    <string name="text_admin_manually">Ручной ввод</string>
+    // Categories
+    <string name="title_categories">Категории</string>
+    <string name="title_categories_empty">Список пуст</string>
+    <string name="text_categories_cant_find">Не нашли ваш любимый табак ? Всегда можно создать запрос и мы обязательно его добавим</string>
+    <string name="text_categories_name">Category name</string>
 
-    // Tobacco feed
-    <string name="title_create_request">Создать запрос</string>
+    // Add category
+    <string name="title_add_category">Добавить категорию</string>
+    <string name="title_of_category">Название категории</string>
+    <string name="description_of_category">Описание категории</string>
 
-    // Tobacco info
-    <string name="title_tobacco_info">Информация о табаке</string>
+    // Category info
+    <string name="title_category_info">Информация о категории</string>
     <string name="title_vote">Оценить</string>
 
     // All
@@ -52,8 +53,6 @@
     <string name="text_smokiness">Дымность</string>
     <string name="text_aroma">Аромат</string>
     <string name="text_search">Поиск</string>
-    <string name="text_empty_list">Список пуст</string>
-    <string name="text_cant_find">Не нашли ваш любимый табак ? Всегда можно создать запрос и мы обязательно его добавим</string>
     <string name="text_repeat">Повторить</string>
 
     // Settings

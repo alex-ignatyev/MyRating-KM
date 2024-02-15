@@ -1,7 +1,6 @@
 package navigation
 
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -26,13 +25,15 @@ import ui.components.TabNavigationItem
 
 @Composable
 internal fun MainScreensFlow(component: MainComponent, modifier: Modifier = Modifier) {
+
     var currentTab by remember { mutableIntStateOf(0) }
+
     Scaffold(
         modifier = modifier,
         content = { paddingValues ->
             Children(
                 stack = component.stack,
-                modifier = modifier.fillMaxSize(),
+                modifier = modifier,
                 animation = stackAnimation(
                     fade() + scale(
                         animationSpec = tween(durationMillis = 400),
@@ -48,7 +49,7 @@ internal fun MainScreensFlow(component: MainComponent, modifier: Modifier = Modi
 
                     is Feed -> {
                         currentTab = 0
-                        FeedScreen(instance.component)
+                        FeedScreen(instance.component, modifier.padding(paddingValues))
                     }
 
                     is Profile -> {

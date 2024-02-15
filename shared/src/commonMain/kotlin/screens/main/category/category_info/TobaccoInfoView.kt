@@ -64,7 +64,7 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
         backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(
-                title = AppResStrings.title_tobacco_info,
+                title = AppResStrings.title_category_info,
                 isTransparent = true,
                 onBackClick = {
                     obtainEvent(OnBackClick())

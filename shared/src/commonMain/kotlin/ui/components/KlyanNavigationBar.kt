@@ -47,7 +47,6 @@ fun KalyanNavigationBar(
             modifier = modifier,
             containerColor = containerColor,
             contentColor = contentColor,
-            onFloatingAction = onFloatingAction,
             content = content
         )
     }
