@@ -28,7 +28,7 @@ class DefaultSplashComponent(
     private fun fetchAuthorization() {
         componentScope.launch {
             delay(1000L)
-            if (settings.getToken().isBlank()) {
+            if (settings.getUserLogin().isBlank()) {
                 navigateToNextScreen(AuthFlow)
             } else {
                 navigateToNextScreen(MainFlow)

@@ -1,65 +1,22 @@
 package domain.repository
 
 import com.my_rating.shared.BuildKonfig
-import data.remote.RemoteMainDataSource
+import data.remote.RemoteCategoriesDataSource
 import model.domain.Category
 import utils.answer.Answer
+import utils.answer.map
 
 class RatingRepositoryImpl(
-    private val remote: RemoteMainDataSource
+    private val remote: RemoteCategoriesDataSource
 ) : RatingRepository {
 
     private val isMocked = BuildKonfig.isMocked
 
-    override suspend fun getCategories(search: String): Answer<List<Category>> {
-        return Answer.success(
-            listOf<Category>(
-                Category(
-                    id = "0",
-                    image = "",
-                    title = "Напиток",
-                    subcategories = listOf(
-                        Category(
-                            id = "1",
-                            title = "Газировка",
-                            image = "",
-                            subcategories = listOf(
-                                Category(
-                                    id = "2",
-                                    title = "Cola",
-                                    image = "",
-                                    subcategories = listOf(
-
-                                    )
-                                )
-                            )
-                        )
-                    )
-                ),
-                Category(
-                    id = "",
-                    image = "",
-                    title = "222",
-                    subcategories = listOf()
-                ),
-                Category(
-                    id = "",
-                    image = "",
-                    title = "333",
-                    subcategories = listOf()
-                ),
-                Category(
-                    id = "",
-                    image = "",
-                    title = "444",
-                    subcategories = listOf()
-                )
-            )
-        )
-        // return remote.getTobaccoFeed(search).map { it.toDomain() }
+    override suspend fun getCategories(): Answer<List<Category>> {
+        return remote.getUserInfo("root").map { it.categories }
     }
 }
 
 interface RatingRepository {
-    suspend fun getCategories(search: String): Answer<List<Category>>
+    suspend fun getCategories(): Answer<List<Category>>
 }

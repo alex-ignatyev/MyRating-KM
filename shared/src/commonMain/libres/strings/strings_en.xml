@@ -7,11 +7,6 @@
     <string name="text_password">Password</string>
     <string name="text_password_repeat">Repeat password</string>
 
-    // Create Account
-    <string name="text_account_name">Name</string>
-    <string name="text_account_create">Create an Account</string>
-    <string name="text_account_create_different">Login and name should be different</string>
-
     // Login
     <string name="title_login">Login Now</string>
     <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
@@ -19,10 +14,22 @@
     <string name="text_account_dont_have">Don't have account ?</string>
     <string name="text_account_create_one">Create one</string>
 
+    // Register
+    <string name="register_title">Create an Account</string>
+    <string name="register_subtitle">Login, Phone and Email should be unique</string>
+    <string name="register_login">Login</string>
+    <string name="register_password">Password</string>
+    <string name="register_repeat_password">Repeat Password</string>
+    <string name="register_email">Email</string>
+    <string name="register_phone">Phone</string>
+
     // Forgot
-    <string name="title_forgot">Forgot Password</string>
-    <string name="subtitle_forgot">Enter right Login and change your Password</string>
-    <string name="text_forgot_reset">Reset Password</string>
+    <string name="forgot_email">Email</string>
+    <string name="forgot_password">New Password</string>
+    <string name="forgot_repeat_password">Repeat New Password</string>
+    <string name="forgot_reset">Reset Password</string>
+    <string name="forgot_title">Forgot Password ?</string>
+    <string name="forgot_subtitle">Enter right Email and change your Password</string>
 
     // Main
     <string name="title_feed">Rating</string>

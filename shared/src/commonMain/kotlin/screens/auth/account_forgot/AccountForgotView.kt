@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.statusBars
 import com.my_rating.shared.AppRes
 import com.my_rating.shared.strings.AppResStrings
-import screens.auth.account_forgot.AccountForgotAction.ChangeLogin
+import screens.auth.account_forgot.AccountForgotAction.ChangeEmail
 import screens.auth.account_forgot.AccountForgotAction.ChangePassword
 import screens.auth.account_forgot.AccountForgotAction.ChangePasswordRepeat
 import screens.auth.account_forgot.AccountForgotAction.OnBackClick
@@ -50,12 +50,12 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = AppResStrings.title_forgot,
+                text = AppResStrings.forgot_title,
                 style = MRTheme.typography.header
             )
 
             Text(
-                text = AppResStrings.subtitle_forgot,
+                text = AppResStrings.forgot_subtitle,
                 modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
                 style = MRTheme.typography.body,
                 color = MRTheme.colors.secondaryText
@@ -64,17 +64,17 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
             Spacer(modifier = Modifier.height(20.dp))
 
             MRTextField(
-                value = state.login,
-                placeholder = AppResStrings.text_login,
+                value = state.email,
+                placeholder = AppResStrings.forgot_email,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
-                doAction(ChangeLogin(it))
+                doAction(ChangeEmail(it))
             }
 
             MRTextField(
                 value = state.password,
-                placeholder = AppResStrings.text_password,
+                placeholder = AppResStrings.forgot_password,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
                 fieldType = Password(state.isPasswordHidden),
@@ -89,7 +89,7 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
 
             MRTextField(
                 value = state.passwordRepeat,
-                placeholder = AppResStrings.text_password_repeat,
+                placeholder = AppResStrings.forgot_repeat_password,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
                 fieldType = Password(state.isPasswordRepeatHidden),
@@ -104,7 +104,7 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
 
             MRButton(
                 modifier = Modifier.padding(vertical = 32.dp),
-                text = if (state.isLoading) null else AppRes.string.text_forgot_reset,
+                text = if (state.isLoading) null else AppRes.string.forgot_reset,
                 enabled = !state.isLoading,
                 content = {
                     MRCircularProgress()

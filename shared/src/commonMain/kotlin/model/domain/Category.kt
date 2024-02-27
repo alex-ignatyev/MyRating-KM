@@ -1,10 +1,9 @@
 package model.domain
 
-import kotlin.random.Random
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Category(
-    val id: String = Random.nextInt(10000, 50000).toString(),
-    val title: String = "",
-    val image: String = "",
-    val subcategories: List<Category> = emptyList()
+    val id: String,
+    val title: String
 )

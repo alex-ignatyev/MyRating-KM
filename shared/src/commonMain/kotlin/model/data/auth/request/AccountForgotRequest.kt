@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccountForgotRequest(
-    @SerialName("login") val login: String,
+    @SerialName("email") val email: String,
     @SerialName("newPassword") val newPassword: String,
     @SerialName("repeatNewPassword") val repeatNewPassword: String
 )

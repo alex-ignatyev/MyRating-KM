@@ -59,7 +59,7 @@ class DefaultFeedComponent(
         state.value = Loading
         componentScope.launch {
             delay(1000L)
-            repository.getCategories(search).onSuccess { response ->
+            repository.getCategories().onSuccess { response ->
                 state.value = when {
                     response.isEmpty() -> Empty
                     else -> Data(data = response)

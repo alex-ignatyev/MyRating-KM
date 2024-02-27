@@ -23,12 +23,14 @@ import ui.MRTheme
 fun MRToolbar(
     title: String = "",
     isTransparent: Boolean = false,
+    modifier: Modifier = Modifier,
     onBackClick: (() -> Unit)? = null,
     onFirstIconClick: (() -> Unit)? = null
 ) {
     TopAppBar(
         backgroundColor = if (isTransparent) Color.Transparent else MRTheme.colors.background,
-        elevation = if (isTransparent) 0.dp else 8.dp
+        elevation = if (isTransparent) 0.dp else 8.dp,
+        modifier = modifier
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()

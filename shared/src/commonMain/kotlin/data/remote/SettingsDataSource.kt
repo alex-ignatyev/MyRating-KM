@@ -7,26 +7,17 @@ class SettingsDataSource(
     private val settings: Settings
 ) {
 
-    fun saveInfo(token: String, userId: String, isAdmin: Boolean) {
-        settings.putString(TOKEN_KEY, "Bearer $token")
-        settings.putString(USERID_KEY, userId)
-        settings.putBoolean(ADMIN_KEY, isAdmin)
-    }
-
     var isDarkMode: Boolean
         get() = settings[DARKMODE_KEY, false]
         set(value) = settings.putBoolean(DARKMODE_KEY, value)
 
-    fun getToken(): String {
-        return settings[TOKEN_KEY, ""]
+    fun saveInfo(login: String) {
+        //settings.putString(TOKEN_KEY, "Bearer $token")
+        settings.putString(USER_LOGIN_KEY, login)
     }
 
-    fun getUserId(): String {
-        return settings[USERID_KEY, ""]
-    }
-
-    fun getAdmin(): Boolean {
-        return settings[ADMIN_KEY, false]
+    fun getUserLogin(): String {
+        return settings[USER_LOGIN_KEY, ""]
     }
 
     fun clear(): Boolean {
@@ -35,9 +26,7 @@ class SettingsDataSource(
     }
 
     companion object {
-        private const val TOKEN_KEY = "tokenKey"
-        private const val USERID_KEY = "userIdKey"
-        private const val ADMIN_KEY = "adminKey"
-        private const val DARKMODE_KEY = "darkmodeKey"
+        private const val USER_LOGIN_KEY = "user_login_key"
+        private const val DARKMODE_KEY = "dark_mode_key"
     }
 }

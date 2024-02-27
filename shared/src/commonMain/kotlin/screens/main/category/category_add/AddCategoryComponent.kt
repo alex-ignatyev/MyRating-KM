@@ -32,7 +32,7 @@ class DefaultAddCategoryComponent(
     }
 
     private fun addCategory() {
-        // TODO Запрос на добавление категрии
+        repository.
         returnToPreviousScreen.invoke()
     }
 
