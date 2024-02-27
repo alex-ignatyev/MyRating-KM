@@ -19,7 +19,7 @@ class ProfileViewModel : BaseSharedViewModel<ProfileState, ProfileAction, Profil
     }
 
     private fun fetchData() {
-
+        viewState = ProfileState(name = "Test Name", login = "@testname")
     }
 
     private fun openSettingsScreen() {

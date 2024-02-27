@@ -1,4 +1,5 @@
 //TODO Разобраться что тут происходит
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.BOOLEAN
 
 plugins {
     alias(libs.plugins.android.library)
@@ -45,11 +46,10 @@ kotlin {
                 //implementation(libs.compose.imageLoaderBlur)
                 implementation(libs.compose.icons)
 
-                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha07") //TODO
+                implementation(libs.insetsx)
 
                 implementation(libs.kviewmodel.core)
                 implementation(libs.kviewmodel.compose)
-                implementation(libs.kviewmodel.odyssey)
 
                 implementation(libs.odyssey.core)
                 implementation(libs.odyssey.compose)
@@ -84,8 +84,8 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                implementation("com.google.android.material:material:1.7.0")
-                implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+                implementation("com.google.android.material:material:1.9.0")
+                implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
                 implementation(libs.sqldelight.android)
                 implementation(libs.ktor.android)
             }
@@ -103,6 +103,14 @@ kotlin {
                 implementation(libs.sqldelight.ios)
             }
         }
+    }
+}
+
+buildkonfig {
+    packageName = "com.my_rating.shared"
+
+    defaultConfigs {
+        buildConfigField(BOOLEAN, "isMocked", "true")
     }
 }
 

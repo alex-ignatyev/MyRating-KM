@@ -9,6 +9,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
 import screens.main.profile.profile.ProfileAction.OpenSettingsScreen
 import screens.main.profile.profile.ProfileEvent.ClearActions
+import screens.main.profile.profile.ProfileEvent.InitProfileScreen
 import screens.main.profile.settings.SettingsScreen
 
 object ProfileScreen : Screen {
@@ -20,6 +21,8 @@ object ProfileScreen : Screen {
         ViewModel(factory = { ProfileViewModel() }) { viewModel ->
             val state by viewModel.viewStates().collectAsState()
             val action by viewModel.viewActions().collectAsState(null)
+
+            viewModel.obtainEvent(InitProfileScreen())
 
             ProfileView(state) {
                 viewModel.obtainEvent(it)

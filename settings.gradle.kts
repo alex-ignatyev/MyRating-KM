@@ -19,6 +19,6 @@ dependencyResolutionManagement {
 
 include(
     ":androidApp",
-    ":iosAppp",
+    ":iosApp",
     ":shared"
 )
