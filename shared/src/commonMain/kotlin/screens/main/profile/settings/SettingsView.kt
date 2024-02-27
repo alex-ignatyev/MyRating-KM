@@ -71,8 +71,7 @@ fun SettingsView(state: SettingsState, doAction: (SettingsAction) -> Unit) {
             }
 
             KalyanButton(
-                modifier = Modifier.padding(bottom = 16.dp).align(Alignment.BottomCenter)
-                    .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars)),
+                modifier = Modifier.padding(bottom = 16.dp).align(Alignment.BottomCenter),
                 backgroundColor = KalyanTheme.colors.error,
                 text = AppResStrings.text_logout
             ) {

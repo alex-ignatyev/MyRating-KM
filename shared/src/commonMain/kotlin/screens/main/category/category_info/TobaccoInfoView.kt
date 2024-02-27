@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_info
+package screens.main.category.category_info
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -43,8 +43,8 @@ import model.data.tobacco.TobaccoVoteRequest.VoteType.Rating
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Smokiness
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Strength
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Taste
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.OnBackClick
-import screens.main.tobacco.tobacco_info.view.VoteBottomSheet
+import screens.main.category.category_info.TobaccoInfoEvent.OnBackClick
+import screens.main.category.category_info.view.VoteBottomSheet
 import ui.KalyanTheme
 import ui.components.KalyanDivider
 import ui.components.KalyanImage

@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_info.view
+package screens.main.category.category_info.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -18,8 +18,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.moriatsushi.insetsx.navigationBars
 import model.data.tobacco.TobaccoVoteRequest.VoteType
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.VoteForTobacco
+import screens.main.category.category_info.TobaccoInfoEvent
+import screens.main.category.category_info.TobaccoInfoEvent.VoteForTobacco
 import ui.components.KalyanButton
 import ui.components.KalyanDivider
 

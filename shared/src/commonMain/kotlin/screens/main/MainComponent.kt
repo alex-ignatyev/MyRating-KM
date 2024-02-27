@@ -5,10 +5,13 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import screens.main.MainComponent.MainScreen
+import screens.main.category.category_add.AddCategoryComponent
+import screens.main.category.category_add.DefaultAddCategoryComponent
 import screens.main.feed.DefaultFeedComponent
 import screens.main.feed.FeedComponent
 import screens.main.profile.DefaultProfileComponent
@@ -30,16 +33,29 @@ class DefaultMainComponent(
             childFactory = ::child,
         )
 
-    override fun navigateToFeed() {
+    override fun navigateToAddCategory() {
+        navigation.bringToFront(MainScreenConfig.AddCategory)
+    }
+
+    override fun navigateToFeedFlow() {
         navigation.bringToFront(MainScreenConfig.Feed)
     }
 
-    override fun navigateToProfile() {
+    override fun navigateToProfileFlow() {
         navigation.bringToFront(MainScreenConfig.Profile)
     }
 
     private fun child(config: MainScreenConfig, childComponentContext: ComponentContext): MainScreen =
         when (config) {
+            is MainScreenConfig.AddCategory -> MainScreen.AddCategory(
+                DefaultAddCategoryComponent(
+                    componentContext = childComponentContext,
+                    returnToPreviousScreen = {
+                        navigation.pop()
+                    }
+                )
+            )
+
             is MainScreenConfig.Feed -> MainScreen.Feed(
                 DefaultFeedComponent(
                     componentContext = childComponentContext,
@@ -65,6 +81,9 @@ class DefaultMainComponent(
     @Serializable
     sealed interface MainScreenConfig {
         @Serializable
+        data object AddCategory : MainScreenConfig
+
+        @Serializable
         data object Feed : MainScreenConfig
 
         @Serializable
@@ -75,12 +94,16 @@ class DefaultMainComponent(
 interface MainComponent {
     val stack: Value<ChildStack<*, MainScreen>>
 
-    fun navigateToFeed()
-    fun navigateToProfile()
+    fun navigateToAddCategory()
+    fun navigateToFeedFlow()
+    fun navigateToProfileFlow()
     fun onBackClicked(toIndex: Int)
 
     @Serializable
     sealed class MainScreen {
+        @Serializable
+        class AddCategory(val component: AddCategoryComponent) : MainScreen()
+
         @Serializable
         class Feed(val component: FeedComponent) : MainScreen()
 

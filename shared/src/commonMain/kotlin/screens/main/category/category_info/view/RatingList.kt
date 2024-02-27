@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_info.view
+package screens.main.category.category_info.view
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

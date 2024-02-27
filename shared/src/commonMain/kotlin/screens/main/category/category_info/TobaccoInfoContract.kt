@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_info
+package screens.main.category.category_info
 
 import model.data.tobacco.TobaccoVoteRequest.VoteType
 import model.domain.TobaccoInfo

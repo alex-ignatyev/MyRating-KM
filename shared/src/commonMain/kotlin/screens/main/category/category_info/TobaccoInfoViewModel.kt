@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_info
+package screens.main.category.category_info
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.RatingRepository
@@ -6,11 +6,11 @@ import kotlinx.coroutines.launch
 import model.data.tobacco.TobaccoVoteRequest.VoteType
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import screens.main.tobacco.tobacco_info.TobaccoInfoAction.ReturnBack
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.ClearActions
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.InitTobaccoInfoScreen
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.OnBackClick
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.VoteForTobacco
+import screens.main.category.category_info.TobaccoInfoAction.ReturnBack
+import screens.main.category.category_info.TobaccoInfoEvent.ClearActions
+import screens.main.category.category_info.TobaccoInfoEvent.InitTobaccoInfoScreen
+import screens.main.category.category_info.TobaccoInfoEvent.OnBackClick
+import screens.main.category.category_info.TobaccoInfoEvent.VoteForTobacco
 import utils.answer.onFailure
 import utils.answer.onSuccess
 

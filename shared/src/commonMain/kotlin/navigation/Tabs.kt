@@ -13,7 +13,7 @@ internal data class FeedTab(
     override val icon: ImageVector = Icons.Filled.Star
 ) : InternalTab
 
-internal data class MixTab(
+internal data class ProfileTab(
     override val index: Int = 1,
     override val title: String = AppRes.string.title_profile,
     override val icon: ImageVector = Icons.Filled.Person
