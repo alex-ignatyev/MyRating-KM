@@ -1,4 +1,4 @@
-package screens.main.profile.profile
+package screens.main.profile.user
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,12 +12,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import screens.main.profile.profile.ProfileEvent.ClickOnSettings
+import screens.main.profile.user.UserAction.ClickOnSettings
 import ui.KalyanTheme
 import ui.components.KalyanDivider
 
 @Composable
-fun ProfileSettingsBox(obtainEvent: (ProfileEvent) -> Unit) {
+fun ProfileSettingsBox(doAction: (UserAction) -> Unit) {
     Box(
         modifier = Modifier
             .padding(top = 24.dp, start = 16.dp, end = 16.dp)
@@ -27,7 +27,7 @@ fun ProfileSettingsBox(obtainEvent: (ProfileEvent) -> Unit) {
     ) {
         Column {
             SettingsItem("Настройки", modifier = Modifier.clickable {
-                obtainEvent.invoke(ClickOnSettings())
+                doAction.invoke(ClickOnSettings)
             })
             SettingsItem("Избранное")
             SettingsItem("Язык", false)

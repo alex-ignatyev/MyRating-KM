@@ -32,6 +32,10 @@ import screens.auth.account_login.AccountLoginScreen
 import screens.main.MainComponent
 import screens.main.MainComponent.MainScreen
 import screens.main.feed.FeedScreen
+import screens.main.profile.ProfileComponent
+import screens.main.profile.ProfileComponent.ProfileScreen
+import screens.main.profile.settings.SettingsScreen
+import screens.main.profile.user.UserScreen
 import screens.splash.SplashScreen
 import ui.KalyanTheme
 import ui.MainTheme
@@ -97,6 +101,7 @@ private fun Main(component: MainComponent) {
             ) {
                 when (val instance = it.instance) {
                     is MainScreen.Feed -> FeedScreen(instance.component)
+                    is MainScreen.Profile -> ProfileScreen(instance.component)
                 }
             }
         },
@@ -108,13 +113,27 @@ private fun Main(component: MainComponent) {
 
                 TabNavigationItem(tab = FeedTab(), currentTab) { index ->
                     currentTab = index
+                    component.navigateToFeed()
                 }
                 TabNavigationItem(MixTab(), currentTab) { index ->
                     currentTab = index
+                    component.navigateToProfile()
                 }
-                // if (isAdmin) TabNavigationItem(AdminTab)
                 //  TabNavigationItem(ProfileTab)
             }
         }
     )
+}
+
+@Composable
+private fun ProfileScreen(component: ProfileComponent) {
+    Children(
+        stack = component.stack,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        when (val instance = it.instance) {
+            is ProfileScreen.User -> UserScreen(instance.component)
+            is ProfileScreen.Settings -> SettingsScreen(instance.component)
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package screens.main.profile.tobacco_add
+package screens.main.tobacco.tobacco_add
 
 import model.domain.Company
 

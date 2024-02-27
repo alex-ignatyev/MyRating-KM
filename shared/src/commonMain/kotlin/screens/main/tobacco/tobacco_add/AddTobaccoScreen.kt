@@ -1,4 +1,4 @@
-package screens.main.profile.tobacco_add
+package screens.main.tobacco.tobacco_add
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -11,11 +11,11 @@ import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
-import screens.main.profile.tobacco_add.AddTobaccoAction.OpenCompanySheet
-import screens.main.profile.tobacco_add.AddTobaccoAction.OpenLineSheet
-import screens.main.profile.tobacco_add.AddTobaccoAction.ReturnToPreviousScreen
-import screens.main.profile.tobacco_add.AddTobaccoEvent.ClearActions
-import screens.main.profile.tobacco_add.AddTobaccoEvent.InitAddTobaccoScreen
+import screens.main.tobacco.tobacco_add.AddTobaccoAction.OpenCompanySheet
+import screens.main.tobacco.tobacco_add.AddTobaccoAction.OpenLineSheet
+import screens.main.tobacco.tobacco_add.AddTobaccoAction.ReturnToPreviousScreen
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.ClearActions
+import screens.main.tobacco.tobacco_add.AddTobaccoEvent.InitAddTobaccoScreen
 
 object AddTobaccoScreen : Screen {
 

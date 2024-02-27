@@ -29,8 +29,9 @@ class SettingsDataSource(
         return settings[ADMIN_KEY, false]
     }
 
-    fun clear() {
+    fun clear(): Boolean {
         settings.clear()
+        return true
     }
 
     companion object {

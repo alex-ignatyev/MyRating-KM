@@ -69,7 +69,7 @@ class DefaultFeedComponent(
 
     private fun toNext(category: Category) {
         if (category.subcategories.isEmpty()) {
-            openCategoryInfoScreen(category.id) // TODO Должен открываться экран рейтинга
+            openCategoryInfoScreen(category.id)
         } else {
             categoriesStack.add(category.subcategories)
             state.value = Data(data = categoriesStack.last())
