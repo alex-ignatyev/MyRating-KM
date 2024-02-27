@@ -5,12 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.my_rating"
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
     }
 
     compileOptions {
@@ -23,4 +22,5 @@ dependencies {
     implementation(project(":shared"))
     implementation(libs.appcompat)
     implementation(libs.activity.compose)
+    implementation(libs.decompose.core)
 }

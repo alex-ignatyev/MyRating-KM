@@ -17,28 +17,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.moriatsushi.insetsx.statusBars
 import com.my_rating.shared.AppRes
 import com.my_rating.shared.strings.AppResStrings
-import com.moriatsushi.insetsx.statusBars
-import screens.auth.account_create.AccountCreateEvent.ChangeLogin
-import screens.auth.account_create.AccountCreateEvent.ChangeName
-import screens.auth.account_create.AccountCreateEvent.ChangePassword
-import screens.auth.account_create.AccountCreateEvent.ChangePasswordRepeat
-import screens.auth.account_create.AccountCreateEvent.CreateAccountClick
-import screens.auth.account_create.AccountCreateEvent.OnBackClick
-import screens.auth.account_create.AccountCreateEvent.ShowPasswordClick
-import screens.auth.account_create.AccountCreateEvent.ShowPasswordRepeatClick
-import ui.view.PasswordShowIcon
+import screens.auth.account_create.AccountCreateAction.ChangeLogin
+import screens.auth.account_create.AccountCreateAction.ChangeName
+import screens.auth.account_create.AccountCreateAction.ChangePassword
+import screens.auth.account_create.AccountCreateAction.ChangePasswordRepeat
+import screens.auth.account_create.AccountCreateAction.CreateAccountClick
+import screens.auth.account_create.AccountCreateAction.OnBackClick
+import screens.auth.account_create.AccountCreateAction.ShowPasswordClick
+import screens.auth.account_create.AccountCreateAction.ShowPasswordRepeatClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
 import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
-import utils.mvi.Event
+import ui.view.PasswordShowIcon
 
 @Composable
-fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
+fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction) -> Unit) {
 
     Scaffold(
         modifier = Modifier.background(KalyanTheme.colors.background)
@@ -46,7 +45,7 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
         backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
-                obtainEvent.invoke(OnBackClick())
+                doAction.invoke(OnBackClick)
             })
         }
     ) {
@@ -75,7 +74,7 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
-                obtainEvent(ChangeLogin(it))
+                doAction(ChangeLogin(it))
             }
 
             KalyanTextField(
@@ -84,7 +83,7 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank()
             ) {
-                obtainEvent(ChangeName(it))
+                doAction(ChangeName(it))
             }
 
             KalyanTextField(
@@ -95,11 +94,11 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
                 fieldType = Password(state.isPasswordHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordHidden) {
-                        obtainEvent(ShowPasswordClick())
+                        doAction(ShowPasswordClick)
                     }
                 }
             ) {
-                obtainEvent(ChangePassword(it))
+                doAction(ChangePassword(it))
             }
 
             KalyanTextField(
@@ -110,11 +109,11 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
                 fieldType = Password(state.isPasswordRepeatHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordRepeatHidden) {
-                        obtainEvent(ShowPasswordRepeatClick())
+                        doAction(ShowPasswordRepeatClick)
                     }
                 }
             ) {
-                obtainEvent(ChangePasswordRepeat(it))
+                doAction(ChangePasswordRepeat(it))
             }
 
             KalyanButton(
@@ -125,7 +124,7 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (Event) -> Unit) {
                     KalyanCircularProgress()
                 },
                 onClick = {
-                    obtainEvent(CreateAccountClick())
+                    doAction(CreateAccountClick)
                 })
 
             Text(

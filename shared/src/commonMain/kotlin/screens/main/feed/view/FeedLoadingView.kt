@@ -1,4 +1,4 @@
-package screens.main.tobacco.tobacco_feed.view
+package screens.main.feed.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,7 +10,7 @@ import ui.KalyanTheme
 import ui.components.KalyanCircularProgress
 
 @Composable
-fun TobaccoFeedLoadingView() {
+fun FeedLoadingView() {
     Box(
         modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.background),
         contentAlignment = Alignment.Center
