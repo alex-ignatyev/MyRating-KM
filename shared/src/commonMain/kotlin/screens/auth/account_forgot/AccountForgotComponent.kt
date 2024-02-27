@@ -3,11 +3,10 @@ package screens.auth.account_forgot
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.backhandler.BackCallback
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
-import screens.auth.account_forgot.AccountForgotAction.ChangeLogin
+import screens.auth.account_forgot.AccountForgotAction.ChangeEmail
 import screens.auth.account_forgot.AccountForgotAction.ChangePassword
 import screens.auth.account_forgot.AccountForgotAction.ChangePasswordRepeat
 import screens.auth.account_forgot.AccountForgotAction.OnBackClick
@@ -30,7 +29,7 @@ class DefaultAccountForgotComponent(
 
     override fun doAction(action: AccountForgotAction) {
         when (action) {
-            is ChangeLogin -> changeLogin(action.value)
+            is ChangeEmail -> changeEmail(action.value)
             is ChangePassword -> changeNewPassword(action.value)
             is ShowPasswordClick -> changeNewPasswordVisibility()
             is ChangePasswordRepeat -> changeRepeatNewPassword(action.value)
@@ -40,8 +39,8 @@ class DefaultAccountForgotComponent(
         }
     }
 
-    private fun changeLogin(login: String) {
-        state.value = state.value.copy(login = login, error = EMPTY)
+    private fun changeEmail(email: String) {
+        state.value = state.value.copy(email = email, error = EMPTY)
     }
 
     private fun changeNewPassword(newPassword: String) {
@@ -66,13 +65,13 @@ class DefaultAccountForgotComponent(
         componentScope.launch {
             state.value = state.value.copy(isLoading = true)
             repository.forgot(
-                login = state.value.login,
+                email = state.value.email,
                 newPassword = state.value.password,
                 repeatNewPassword = state.value.passwordRepeat
             ).onSuccess {
                 returnToPreviousScreen()
             }.onFailure {
-                state.value = state.value.copy(isLoading = false, error = it.message)
+                state.value = state.value.copy(isLoading = false, error = it.message ?: EMPTY)
             }
         }
     }

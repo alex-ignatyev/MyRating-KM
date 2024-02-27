@@ -20,8 +20,8 @@ import com.moriatsushi.insetsx.navigationBars
 import model.data.tobacco.TobaccoVoteRequest.VoteType
 import screens.main.category.category_info.TobaccoInfoEvent
 import screens.main.category.category_info.TobaccoInfoEvent.VoteForTobacco
-import ui.components.KalyanButton
-import ui.components.KalyanDivider
+import ui.components.MRButton
+import ui.components.MRDivider
 
 data class VoteBottomSheet(val type: VoteType, val value: Long, val obtainEvent: (TobaccoInfoEvent) -> Unit) : Screen {
 
@@ -38,13 +38,13 @@ data class VoteBottomSheet(val type: VoteType, val value: Long, val obtainEvent:
                         .add(WindowInsets(bottom = 48.dp))
                 )
         ) {
-            KalyanDivider(thickness = 3.dp, modifier = Modifier.width(32.dp).padding(top = 8.dp).align(Alignment.CenterHorizontally))
+            MRDivider(thickness = 3.dp, modifier = Modifier.width(32.dp).padding(top = 8.dp).align(Alignment.CenterHorizontally))
 
             Rating(value = value.toInt()) {
                 rate = it
             }
 
-            KalyanButton(text = type.name) {
+            MRButton(text = type.name) {
                 obtainEvent(VoteForTobacco(type, rate.toLong()))
                 bottomSheetNavigator.hide()
             }

@@ -13,11 +13,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import ui.KalyanTheme
+import ui.MRTheme
 import ui.components.TextFieldType.Password
 
 @Composable
-fun KalyanTextField(
+fun MRTextField(
     value: String,
     modifier: Modifier = Modifier,
     placeholder: String = "",
@@ -35,7 +35,7 @@ fun KalyanTextField(
         singleLine = true,
         isError = isError,
         enabled = enabled,
-        label = { Text(text = placeholder, color = KalyanTheme.colors.secondaryText) },
+        label = { Text(text = placeholder, color = MRTheme.colors.secondaryText) },
         visualTransformation = if (fieldType is Password && fieldType.passwordState) {
             PasswordVisualTransformation()
         } else {
@@ -44,12 +44,12 @@ fun KalyanTextField(
         keyboardOptions = KeyboardOptions(keyboardType = inputType),
         trailingIcon = endIcon,
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = KalyanTheme.colors.primary,
-            unfocusedBorderColor = KalyanTheme.colors.surfaceVariant,
-            disabledBorderColor = KalyanTheme.colors.surfaceVariant,
-            errorBorderColor = KalyanTheme.colors.error,
-            textColor = KalyanTheme.colors.backgroundOn,
-            cursorColor = KalyanTheme.colors.primary
+            focusedBorderColor = MRTheme.colors.primary,
+            unfocusedBorderColor = MRTheme.colors.surfaceVariant,
+            disabledBorderColor = MRTheme.colors.surfaceVariant,
+            errorBorderColor = MRTheme.colors.error,
+            textColor = MRTheme.colors.backgroundOn,
+            cursorColor = MRTheme.colors.primary
         )
     )
 }

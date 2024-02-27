@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
 fun PasswordShowIcon(isPasswordHidden: Boolean, onClick: () -> Unit) {
@@ -26,6 +26,6 @@ fun PasswordShowIcon(isPasswordHidden: Boolean, onClick: () -> Unit) {
             onClick()
         },
         contentDescription = null,
-        tint = KalyanTheme.colors.surfaceVariant
+        tint = MRTheme.colors.surfaceVariant
     )
 }

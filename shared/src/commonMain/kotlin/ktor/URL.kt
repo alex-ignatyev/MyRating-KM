@@ -1,3 +1,3 @@
 package ktor
 
-expect fun getBaseUrl(): String
+fun getBaseUrl(): String = "http://185.128.107.136:8080"

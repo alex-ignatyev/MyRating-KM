@@ -10,7 +10,7 @@ import ui.components.android.AndroidDivider
 import ui.components.ios.IosDivider
 
 @Composable
-internal fun KalyanDivider(thickness: Dp = 1.dp, modifier: Modifier = Modifier) {
+internal fun MRDivider(thickness: Dp = 1.dp, modifier: Modifier = Modifier) {
     when (currentPlatform) {
         iOS -> IosDivider(modifier)
         else -> AndroidDivider(thickness, modifier)

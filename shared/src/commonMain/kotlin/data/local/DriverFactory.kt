@@ -1,4 +1,4 @@
-package database
+package data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import di.PlatformConfiguration

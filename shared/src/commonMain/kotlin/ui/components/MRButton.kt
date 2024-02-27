@@ -13,12 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
-internal fun KalyanButton(
+internal fun MRButton(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = KalyanTheme.colors.primary,
+    backgroundColor: Color = MRTheme.colors.primary,
     shape: Shape = RoundedCornerShape(8.dp),
     text: String? = null,
     enabled: Boolean = true,
@@ -32,14 +32,14 @@ internal fun KalyanButton(
         shape = shape,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
-            disabledBackgroundColor = KalyanTheme.colors.surfaceVariant
+            disabledBackgroundColor = MRTheme.colors.surfaceVariant
         )
     ) {
         text?.let {
             Text(
                 text = it,
-                style = KalyanTheme.typography.body,
-                color = KalyanTheme.colors.primaryOn
+                style = MRTheme.typography.body,
+                color = MRTheme.colors.primaryOn
             )
         } ?: content.invoke(this)
     }

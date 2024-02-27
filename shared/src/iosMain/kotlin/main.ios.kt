@@ -9,13 +9,13 @@ import di.LocalPlatform
 import di.Platform.iOS
 import platform.UIKit.UIViewController
 import screens.splash.SplashScreen
-import ui.MainTheme
+import ui.MRTheme
 
 fun MainViewController(): UIViewController = ComposeUIViewController {
     val settingsEventBus = remember { SettingsEventBus() }
     val currentSettings = settingsEventBus.currentSettings.collectAsState().value
 
-    MainTheme(
+    MRTheme(
         darkTheme = currentSettings.isDarkMode
     ) {
         CompositionLocalProvider(

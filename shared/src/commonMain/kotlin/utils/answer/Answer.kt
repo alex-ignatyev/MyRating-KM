@@ -24,10 +24,10 @@ class Answer<out T>(val value: Any?) {
 
     companion object {
         fun <T> success(value: T): Answer<T> = Answer(value)
-        fun <T> failure(code: ErrorCode, message: String = ""): Answer<T> = Answer(Failure(code, message))
+        fun <T> failure(code: Int, message: String = ""): Answer<T> = Answer(Failure(code, message))
     }
 
-    class Failure(val code: ErrorCode, val message: String) {
+    class Failure(val code: Int, val message: String) {
         override fun equals(other: Any?): Boolean = other is Failure && message == other.message
         override fun hashCode(): Int = message.hashCode()
         override fun toString(): String = "Code(${code}) message(${message})"

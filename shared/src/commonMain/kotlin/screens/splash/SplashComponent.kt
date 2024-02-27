@@ -1,7 +1,7 @@
 package screens.splash
 
 import com.arkivanov.decompose.ComponentContext
-import data.SettingsDataSource
+import data.remote.SettingsDataSource
 import domain.repository.AuthRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class DefaultSplashComponent(
     private fun fetchAuthorization() {
         componentScope.launch {
             delay(1000L)
-            if (settings.getToken().isBlank()) {
+            if (settings.getUserLogin().isBlank()) {
                 navigateToNextScreen(AuthFlow)
             } else {
                 navigateToNextScreen(MainFlow)

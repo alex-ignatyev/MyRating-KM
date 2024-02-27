@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun KalyanCircularProgress(
+fun MRCircularProgress(
     modifier: Modifier = Modifier,
     size: Dp = 32.dp,
     strokeWidth: Dp = 2.dp,

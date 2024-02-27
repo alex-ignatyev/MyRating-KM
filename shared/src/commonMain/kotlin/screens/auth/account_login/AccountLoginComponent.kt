@@ -3,7 +3,7 @@ package screens.auth.account_login
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import data.SettingsDataSource
+import data.remote.SettingsDataSource
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
@@ -26,6 +26,7 @@ class DefaultAccountLoginComponent(
 ) : AccountLoginComponent, BaseComponent<AccountLoginEffect>(componentContext) {
 
     private val repository: AuthRepository by inject()
+    private val settings: SettingsDataSource by inject()
 
     override val state = MutableValue(AccountLoginState())
 
@@ -54,17 +55,32 @@ class DefaultAccountLoginComponent(
     }
 
     private fun login() {
+        if (isFieldsNotCorrect()) return
         componentScope.launch {
             state.value = state.value.copy(isLoading = true, error = EMPTY)
             repository.login(
                 login = state.value.login,
                 password = state.value.password
             ).onSuccess {
+                settings.saveInfo(state.value.login) // TODO ложить из ответа логина
                 openMainScreen()
             }.onFailure {
                 state.value = state.value.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+
+    private fun isFieldsNotCorrect(): Boolean {
+        if (state.value.login.length < 4) {
+            state.value = state.value.copy(error = "Login should be more than 4 symbols")
+            return true
+        }
+        if (state.value.password.length < 4) {
+            state.value = state.value.copy(error = "Password should be more than 4 symbols")
+            return true
+        }
+        return false
     }
 }
 

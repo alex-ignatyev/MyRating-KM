@@ -6,10 +6,11 @@ import com.arkivanov.decompose.value.Value
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
+import screens.auth.account_create.AccountCreateAction.ChangeEmail
 import screens.auth.account_create.AccountCreateAction.ChangeLogin
-import screens.auth.account_create.AccountCreateAction.ChangeName
 import screens.auth.account_create.AccountCreateAction.ChangePassword
 import screens.auth.account_create.AccountCreateAction.ChangePasswordRepeat
+import screens.auth.account_create.AccountCreateAction.ChangePhone
 import screens.auth.account_create.AccountCreateAction.CreateAccountClick
 import screens.auth.account_create.AccountCreateAction.OnBackClick
 import screens.auth.account_create.AccountCreateAction.ShowPasswordClick
@@ -31,11 +32,12 @@ class DefaultAccountCreateComponent(
     override fun doAction(action: AccountCreateAction) {
         when (action) {
             is ChangeLogin -> changeLogin(action.value)
-            is ChangeName -> changeName(action.value)
             is ChangePassword -> changePassword(action.value)
             is ShowPasswordClick -> changePasswordVisible()
             is ChangePasswordRepeat -> changeRepeatPassword(action.value)
             is ShowPasswordRepeatClick -> changeRepeatPasswordVisible()
+            is ChangeEmail -> changeEmail(action.value)
+            is ChangePhone -> changePhone(action.value)
             is CreateAccountClick -> createAccount()
             is OnBackClick -> returnToPreviousScreen()
         }
@@ -43,10 +45,6 @@ class DefaultAccountCreateComponent(
 
     private fun changeLogin(login: String) {
         state.value = state.value.copy(login = login, error = EMPTY)
-    }
-
-    private fun changeName(name: String) {
-        state.value = state.value.copy(name = name, error = EMPTY)
     }
 
     private fun changePassword(password: String) {
@@ -67,14 +65,24 @@ class DefaultAccountCreateComponent(
         state.value = state.value.copy(isPasswordRepeatHidden = passwordVisible)
     }
 
+    private fun changeEmail(email: String) {
+        state.value = state.value.copy(email = email, error = EMPTY)
+    }
+
+    private fun changePhone(phone: String) {
+        state.value = state.value.copy(phone = phone, error = EMPTY)
+    }
+
     private fun createAccount() {
         componentScope.launch {
             state.value = state.value.copy(isLoading = true)
-            repository.create(
+            repository.register(
                 login = state.value.login,
-                name = state.value.name,
                 password = state.value.password,
-                repeatPassword = state.value.passwordRepeat
+                repeatPassword = state.value.passwordRepeat,
+                email = state.value.email,
+                phone = state.value.phone
+
             ).onSuccess {
                 returnToPreviousScreen()
             }.onFailure {

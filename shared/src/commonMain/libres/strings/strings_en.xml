@@ -7,11 +7,6 @@
     <string name="text_password">Password</string>
     <string name="text_password_repeat">Repeat password</string>
 
-    // Create Account
-    <string name="text_account_name">Name</string>
-    <string name="text_account_create">Create an Account</string>
-    <string name="text_account_create_different">Login and name should be different</string>
-
     // Login
     <string name="title_login">Login Now</string>
     <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
@@ -19,28 +14,41 @@
     <string name="text_account_dont_have">Don't have account ?</string>
     <string name="text_account_create_one">Create one</string>
 
+    // Register
+    <string name="register_title">Create an Account</string>
+    <string name="register_subtitle">Login, Phone and Email should be unique</string>
+    <string name="register_login">Login</string>
+    <string name="register_password">Password</string>
+    <string name="register_repeat_password">Repeat Password</string>
+    <string name="register_email">Email</string>
+    <string name="register_phone">Phone</string>
+
     // Forgot
-    <string name="title_forgot">Forgot Password</string>
-    <string name="subtitle_forgot">Enter right Login and change your Password</string>
-    <string name="text_forgot_reset">Reset Password</string>
+    <string name="forgot_email">Email</string>
+    <string name="forgot_password">New Password</string>
+    <string name="forgot_repeat_password">Repeat New Password</string>
+    <string name="forgot_reset">Reset Password</string>
+    <string name="forgot_title">Forgot Password ?</string>
+    <string name="forgot_subtitle">Enter right Email and change your Password</string>
 
     // Main
-    <string name="title_tobacco_feed">Tobacco Feed</string>
-    <string name="title_mix">Mix</string>
-    <string name="title_admin">Admin</string>
+    <string name="title_feed">Rating</string>
     <string name="title_profile">Profile</string>
     <string name="title_settings">Settings</string>
 
-    // Admin
-    <string name="title_admin_add_tobacco">Add tobacco</string>
-    <string name="text_admin_empty_choose">Has not chose</string>
-    <string name="text_admin_manually">Manually</string>
+    // Categories
+    <string name="title_categories">Categories</string>
+    <string name="title_categories_empty">Categories is empty</string>
+    <string name="text_categories_cant_find">You can create categories. Push to Add on top of screen.</string>
+    <string name="text_categories_name">Category name</string>
 
-    // Tobacco feed
-    <string name="title_create_request">Create request</string>
+    // Add category
+    <string name="title_add_category">Add category</string>
+    <string name="title_of_category">Category title</string>
+    <string name="description_of_category">Category description</string>
 
-    // Tobacco info
-    <string name="title_tobacco_info">Tobacco info</string>
+    // Category info
+    <string name="title_category_info">Category info</string>
     <string name="title_vote">Vote</string>
 
     // All
@@ -51,9 +59,7 @@
     <string name="text_rating">Rating</string>
     <string name="text_smokiness">Smokiness</string>
     <string name="text_aroma">Aroma</string>
-    <string name="text_search">Search</string>
-    <string name="text_empty_list">List is empty</string>
-    <string name="text_cant_find">Can't find your favorite tobacco ? You can create request and we will add soon</string>
+    <string name="text_search">Search categories...</string>
     <string name="text_repeat">Repeat</string>
 
     //Settings

@@ -1,7 +1,7 @@
 package screens.auth.account_forgot
 
 sealed interface AccountForgotAction {
-    data class ChangeLogin(val value: String) : AccountForgotAction
+    data class ChangeEmail(val value: String) : AccountForgotAction
     data class ChangePassword(val value: String) : AccountForgotAction
     data object ShowPasswordClick : AccountForgotAction
     data class ChangePasswordRepeat(val value: String) : AccountForgotAction
@@ -12,7 +12,7 @@ sealed interface AccountForgotAction {
 
 data class AccountForgotState(
     val isLoading: Boolean = false,
-    val login: String = "",
+    val email: String = "",
     val password: String = "",
     val isPasswordHidden: Boolean = true,
     val passwordRepeat: String = "",

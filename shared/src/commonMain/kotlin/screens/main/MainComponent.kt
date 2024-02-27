@@ -59,8 +59,11 @@ class DefaultMainComponent(
             is MainScreenConfig.Feed -> MainScreen.Feed(
                 DefaultFeedComponent(
                     componentContext = childComponentContext,
-                    openCategoryInfoScreen = { id ->
+                    openCategoryScreen = { id ->
 
+                    },
+                    openAddCategoryScreen = {
+                        navigateToAddCategory()
                     })
             )
 

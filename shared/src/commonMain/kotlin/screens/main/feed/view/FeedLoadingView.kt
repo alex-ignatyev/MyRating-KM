@@ -6,15 +6,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import ui.KalyanTheme
-import ui.components.KalyanCircularProgress
+import ui.MRTheme
+import ui.components.MRCircularProgress
 
 @Composable
 fun FeedLoadingView() {
     Box(
-        modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.background),
+        modifier = Modifier.fillMaxSize().background(MRTheme.colors.background),
         contentAlignment = Alignment.Center
     ) {
-        KalyanCircularProgress(color = KalyanTheme.colors.primary)
+        MRCircularProgress(color = MRTheme.colors.primary)
     }
 }

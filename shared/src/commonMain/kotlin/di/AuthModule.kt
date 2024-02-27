@@ -1,6 +1,6 @@
 package di
 
-import data.RemoteAuthDataSource
+import data.remote.RemoteAuthDataSource
 import domain.repository.AuthRepository
 import domain.repository.AuthRepositoryImpl
 import org.koin.dsl.module

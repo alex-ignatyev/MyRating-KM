@@ -1,7 +1,7 @@
 package di
 
 import Database
-import database.DriverFactory
+import data.local.DriverFactory
 import org.koin.dsl.module
 
 val databaseModule = module {

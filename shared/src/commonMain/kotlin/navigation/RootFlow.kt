@@ -9,11 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import screens.splash.SplashScreen
-import ui.KalyanTheme
+import ui.MRTheme
 
 @Composable
 internal fun RootFlow(component: DefaultRootComponent) {
-    val rootModifier = Modifier.fillMaxSize().background(KalyanTheme.colors.background)
+    val rootModifier = Modifier.fillMaxSize().background(MRTheme.colors.background)
     Surface(modifier = rootModifier) {
         Children(
             stack = component.stack,
