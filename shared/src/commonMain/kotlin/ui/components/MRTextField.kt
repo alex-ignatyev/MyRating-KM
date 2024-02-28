@@ -28,9 +28,13 @@ fun MRTextField(
     endIcon: @Composable () -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
+
     TextField(
-        modifier = modifier.fillMaxWidth().height(74.dp).padding(top = 16.dp, start = 32.dp, end = 32.dp),
-        value = value,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(74.dp)
+            .padding(top = 16.dp, start = 32.dp, end = 32.dp),
+        value = if (value.length > 20) value.take(20) else value,
         onValueChange = onValueChange,
         singleLine = true,
         isError = isError,

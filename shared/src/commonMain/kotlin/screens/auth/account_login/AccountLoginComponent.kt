@@ -61,8 +61,8 @@ class DefaultAccountLoginComponent(
             repository.login(
                 login = state.value.login,
                 password = state.value.password
-            ).onSuccess {
-                settings.saveInfo(state.value.login) // TODO ложить из ответа логина
+            ).onSuccess { login ->
+                settings.saveInfo(login = login)
                 openMainScreen()
             }.onFailure {
                 state.value = state.value.copy(isLoading = false, error = it.message)
@@ -72,6 +72,10 @@ class DefaultAccountLoginComponent(
 
 
     private fun isFieldsNotCorrect(): Boolean {
+        if (state.value.login.contains(" ") || state.value.password.contains(" ")) {
+            state.value = state.value.copy(error = "Can't use spaces")
+            return true
+        }
         if (state.value.login.length < 4) {
             state.value = state.value.copy(error = "Login should be more than 4 symbols")
             return true

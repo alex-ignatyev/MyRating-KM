@@ -34,6 +34,7 @@ import screens.auth.account_create.AccountCreateAction.ShowPasswordRepeatClick
 import ui.MRTheme
 import ui.components.MRButton
 import ui.components.MRCircularProgress
+import ui.components.MRTextError
 import ui.components.MRTextField
 import ui.components.MRToolbar
 import ui.components.TextFieldType.Password
@@ -54,7 +55,6 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
         topBar = {
             MRToolbar(
                 title = if (isKeyboardOpen) AppResStrings.register_title else EMPTY,
-                isTransparent = true,
                 onBackClick = {
                     doAction.invoke(OnBackClick)
                 })
@@ -153,11 +153,7 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                     doAction(CreateAccountClick)
                 })
 
-            Text(
-                text = state.error,
-                color = MRTheme.colors.error,
-                modifier = Modifier.padding(top = 16.dp)
-            )
+            MRTextError(errorText = state.error)
         }
     }
 }

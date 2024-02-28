@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.contentColorFor
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,6 +16,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.my_rating.shared.AppRes
 import di.LocalPlatform
 import di.Platform.iOS
 import di.currentPlatform
@@ -28,7 +32,6 @@ fun MRNavigationBar(
     contentColor: Color = contentColorFor(containerColor),
     tonalElevation: Dp = NavigationBarDefaults.AdaptiveElevation,
     isTransparent: () -> Boolean = { false },
-    onFloatingAction: () -> Unit = {},
     content: @Composable RowScope.() -> Unit
 ) {
     when (LocalPlatform.current) {
@@ -55,6 +58,19 @@ interface Tab {
     val title: String
     val icon: ImageVector
 }
+
+internal data class FeedTab(
+    override val index: Int = 0,
+    override val title: String = AppRes.string.title_feed,
+    override val icon: ImageVector = Icons.Filled.Star
+) : Tab
+
+internal data class ProfileTab(
+    override val index: Int = 1,
+    override val title: String = AppRes.string.title_profile,
+    override val icon: ImageVector = Icons.Filled.Person
+) : Tab
+
 
 @Composable
 internal fun RowScope.TabNavigationItem(tab: Tab, selectedIndexTab: Int, onClick: () -> Unit) {

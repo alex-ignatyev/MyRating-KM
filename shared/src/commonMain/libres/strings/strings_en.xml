@@ -51,6 +51,18 @@
     <string name="title_category_info">Category info</string>
     <string name="title_vote">Vote</string>
 
+    // Products
+    <string name="title_product_feed">Products</string>
+    <string name="title_products_empty">Products is empty</string>
+    <string name="text_products_cant_find">You can create product. Push to Add on top of screen.</string>
+    <string name="text_products_name">Product name</string>
+    <string name="text_products_rate">Product rate(1-10)</string>
+
+    // Add Products
+    <string name="title_add_product">Add product</string>
+    <string name="title_add_rate">Add rate</string>
+
+
     // All
     <string name="text_taste">Taste</string>
     <string name="text_company">Company</string>
@@ -60,14 +72,22 @@
     <string name="text_smokiness">Smokiness</string>
     <string name="text_aroma">Aroma</string>
     <string name="text_search">Search categories...</string>
-    <string name="text_repeat">Repeat</string>
 
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
     <string name="text_logout">Log Out</string>
+    <string name="change_language">Language</string>
+    <string name="change_password">Password</string>
+
+    // Change Password
+    <string name="change_current_password">Current Password</string>
+    <string name="change_new_password">New Password</string>
+    <string name="change_repeat_password">Repeat New Password</string>
+    <string name="change_password_button">Change Password</string>
 
     // Error
     <string name="error_something_went_wrong">Something went wrong, try later</string>
-    <string name="error_something_went_wrong_screen_title">Ohh...Что-то пошло не так</string>
-    <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или повторите позже</string>
+    <string name="error_something_went_wrong_screen_title">Something went wrong</string>
+    <string name="error_something_went_wrong_screen_hint">Try again later</string>
+    <string name="text_refresh">Refresh</string>
 </resources>

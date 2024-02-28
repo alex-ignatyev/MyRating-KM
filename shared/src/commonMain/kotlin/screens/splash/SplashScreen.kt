@@ -2,6 +2,7 @@ package screens.splash
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,10 +13,10 @@ import screens.splash.SplashAction.InitScreen
 import ui.MRTheme
 
 @Composable
-fun SplashScreen(component: SplashComponent, modifier: Modifier = Modifier) {
+fun SplashScreen(component: SplashComponent, rootModifier: Modifier = Modifier) {
 
     Column(
-        modifier = modifier,
+        modifier = rootModifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center
     ) {
         Text(

@@ -15,25 +15,22 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import screens.main.MainComponent
-import screens.main.MainComponent.MainScreen.AddCategory
-import screens.main.MainComponent.MainScreen.Feed
-import screens.main.MainComponent.MainScreen.Profile
-import screens.main.category.category_add.AddCategoryScreen
-import screens.main.feed.FeedScreen
+import screens.main.MainComponent.MainScreen.FeedFlow
+import screens.main.MainComponent.MainScreen.ProfileFlow
+import ui.components.FeedTab
 import ui.components.MRNavigationBar
+import ui.components.ProfileTab
 import ui.components.TabNavigationItem
 
 @Composable
-internal fun MainScreensFlow(component: MainComponent, modifier: Modifier = Modifier) {
+internal fun MainScreensFlow(component: MainComponent, rootModifier: Modifier = Modifier) {
 
     var currentTab by remember { mutableIntStateOf(0) }
 
     Scaffold(
-        modifier = modifier,
         content = { paddingValues ->
             Children(
                 stack = component.stack,
-                modifier = modifier,
                 animation = stackAnimation(
                     fade() + scale(
                         animationSpec = tween(durationMillis = 400),
@@ -43,30 +40,24 @@ internal fun MainScreensFlow(component: MainComponent, modifier: Modifier = Modi
                 )
             ) {
                 when (val instance = it.instance) {
-                    is AddCategory -> {
-                        AddCategoryScreen(instance.component, modifier.padding(paddingValues))
-                    }
-
-                    is Feed -> {
+                    is FeedFlow -> {
                         currentTab = 0
-                        FeedScreen(instance.component, modifier.padding(paddingValues))
+                        FeedFlow(instance.component, rootModifier.padding(paddingValues))
                     }
 
-                    is Profile -> {
+                    is ProfileFlow -> {
                         currentTab = 1
-                        ProfileFlow(instance.component, modifier.padding(paddingValues))
+                        ProfileFlow(instance.component, rootModifier.padding(paddingValues))
                     }
                 }
             }
         },
         bottomBar = {
-            MRNavigationBar(onFloatingAction = {
-                component.navigateToAddCategory()
-            }) {
+            MRNavigationBar {
                 TabNavigationItem(tab = FeedTab(), currentTab) {
                     component.navigateToFeedFlow()
                 }
-                TabNavigationItem(ProfileTab(), currentTab) {
+                TabNavigationItem(tab = ProfileTab(), currentTab) {
                     component.navigateToProfileFlow()
                 }
             }

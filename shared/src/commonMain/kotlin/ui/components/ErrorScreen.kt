@@ -3,6 +3,7 @@ package ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
@@ -19,7 +20,8 @@ import ui.MRTheme
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier, onRepeatClick: () -> Unit) {
     Box(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -42,7 +44,7 @@ fun ErrorScreen(modifier: Modifier = Modifier, onRepeatClick: () -> Unit) {
             )
 
             MRButton(
-                text = AppResStrings.text_repeat,
+                text = AppResStrings.text_refresh,
                 modifier = Modifier.padding(top = 32.dp)
             ) {
                 onRepeatClick()

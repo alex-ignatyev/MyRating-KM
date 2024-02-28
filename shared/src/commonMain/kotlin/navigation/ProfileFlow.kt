@@ -9,16 +9,15 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import screens.main.profile.ProfileComponent
-import screens.main.profile.ProfileComponent.ProfileScreen.Settings
+import screens.main.profile.ProfileComponent.ProfileScreen.ChangePassword
 import screens.main.profile.ProfileComponent.ProfileScreen.User
-import screens.main.profile.settings.SettingsScreen
+import screens.main.profile.change_password.ChangePasswordScreen
 import screens.main.profile.user.UserScreen
 
 @Composable
-internal fun ProfileFlow(component: ProfileComponent, modifier: Modifier = Modifier) {
+internal fun ProfileFlow(component: ProfileComponent, rootModifier: Modifier = Modifier) {
     Children(
         stack = component.stack,
-        modifier = modifier,
         animation = stackAnimation(
             fade() + scale(
                 animationSpec = tween(durationMillis = 400),
@@ -28,8 +27,8 @@ internal fun ProfileFlow(component: ProfileComponent, modifier: Modifier = Modif
         )
     ) {
         when (val instance = it.instance) {
-            is User -> UserScreen(instance.component)
-            is Settings -> SettingsScreen(instance.component)
+            is User -> UserScreen(instance.component, rootModifier)
+            is ChangePassword -> ChangePasswordScreen(instance.component, rootModifier)
         }
     }
 }

@@ -27,6 +27,7 @@ import screens.auth.account_forgot.AccountForgotAction.ShowPasswordRepeatClick
 import ui.MRTheme
 import ui.components.MRButton
 import ui.components.MRCircularProgress
+import ui.components.MRTextError
 import ui.components.MRTextField
 import ui.components.MRToolbar
 import ui.components.TextFieldType.Password
@@ -36,11 +37,12 @@ import ui.view.PasswordShowIcon
 fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction) -> Unit) {
 
     Scaffold(
-        modifier = Modifier.background(MRTheme.colors.background)
+        modifier = Modifier
+            .background(MRTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars),
         backgroundColor = MRTheme.colors.background,
         topBar = {
-            MRToolbar(isTransparent = true, onBackClick = {
+            MRToolbar(onBackClick = {
                 doAction.invoke(OnBackClick)
             })
         }
@@ -113,11 +115,7 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
                     doAction(ResetPasswordClick)
                 })
 
-            Text(
-                text = state.error,
-                color = MRTheme.colors.error,
-                modifier = Modifier.padding(top = 16.dp)
-            )
+            MRTextError(errorText = state.error)
         }
     }
 }
