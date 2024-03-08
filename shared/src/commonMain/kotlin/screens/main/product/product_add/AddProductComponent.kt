@@ -1,6 +1,5 @@
 package screens.main.product.product_add
 
-import androidx.compose.ui.text.toUpperCase
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
@@ -56,12 +55,12 @@ class DefaultAddProductComponent(
     }
 
     private fun canAddProduct(): Boolean {
-        if(state.value.title.isEmpty()) {
+        if (state.value.title.isEmpty()) {
             state.value = state.value.copy(error = "Empty")
             return true
         }
 
-        if(state.value.title.length < 4) {
+        if (state.value.title.length < 4) {
             state.value = state.value.copy(error = "Product title should be more than 3 symbols")
             return true
         }
@@ -70,7 +69,6 @@ class DefaultAddProductComponent(
             state.value = state.value.copy(error = "Rate should be 1-10")
             return true
         }
-
         return false
     }
 }

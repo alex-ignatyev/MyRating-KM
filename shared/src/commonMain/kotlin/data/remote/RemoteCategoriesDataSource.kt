@@ -1,12 +1,16 @@
 package data.remote
 
 import io.ktor.client.HttpClient
+import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
+import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import model.data.category.request.AddCategoryRequest
+import model.data.category.request.DeleteCategoryRequest
+import model.data.category.request.UpdateCategoryRequest
 import model.data.category.response.CategoryResponse
 import utils.answer.Answer
 import utils.answer.BaseRemoteDataSource
@@ -30,29 +34,26 @@ class RemoteCategoriesDataSource(
                 url("categories/add")
                 parameter("login", login)
                 setBody(request)
-                //header(HttpHeaders.Authorization, settings.getToken())
             }
         }
     }
 
-    suspend fun updateCategory(): Answer<Unit> {
+    suspend fun updateCategory(login: String, request: UpdateCategoryRequest): Answer<Unit> {
         return apiCall {
-            httpClient.post {
+            httpClient.put {
                 url("categories/update")
-                //header(HttpHeaders.Authorization, settings.getToken())
-                //parameter("userId", settings.getUserId())
-                //setBody(request)
+                parameter("login", login)
+                setBody(request)
             }
         }
     }
 
-    suspend fun deleteCategory(): Answer<Unit> {
+    suspend fun deleteCategory(login: String, request: DeleteCategoryRequest): Answer<Unit> {
         return apiCall {
-            httpClient.post {
+            httpClient.delete {
                 url("categories/delete")
-                //header(HttpHeaders.Authorization, settings.getToken())
-                //parameter("userId", settings.getUserId())
-                //setBody(request)
+                parameter("login", login)
+                setBody(request)
             }
         }
     }

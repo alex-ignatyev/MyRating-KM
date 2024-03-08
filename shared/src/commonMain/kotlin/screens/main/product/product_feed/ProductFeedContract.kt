@@ -7,6 +7,9 @@ sealed interface ProductFeedAction {
     data object InitProductFeedScreen : ProductFeedAction
     data object AddProduct : ProductFeedAction
     data object OnBackClick : ProductFeedAction
+    data object OnRepeatClick : ProductFeedAction
+    data object OnEditClick : ProductFeedAction
+    data object OnDeleteClick : ProductFeedAction
 }
 
 data class ProductFeedState(

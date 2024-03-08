@@ -1,21 +1,22 @@
-package screens.main.product.product_feed
+package screens.main.category.caategory_edit
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import screens.main.category.caategory_edit.EditCategoryAction.InitEditCategoryScreen
 
 @Composable
-fun ProductFeedScreen(component: ProductFeedComponent, rootModifier: Modifier = Modifier) {
+fun EditCategoryScreen(component: EditCategoryComponent, rootModifier: Modifier = Modifier) {
 
     val state by component.state.subscribeAsState()
 
-    ProductFeedView(state, rootModifier) { action ->
+    EditCategoryView(state, rootModifier) { action ->
         component.doAction(action)
     }
 
     LaunchedEffect(Unit) {
-        component.doAction(ProductFeedAction.InitProductFeedScreen)
+        component.doAction(InitEditCategoryScreen)
     }
 }

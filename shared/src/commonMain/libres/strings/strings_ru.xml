@@ -38,6 +38,7 @@
 
     // Categories
     <string name="title_categories">Категории</string>
+    <string name="title_categories_edit">Редактирование</string>
     <string name="title_categories_empty">Список пуст</string>
     <string name="text_categories_cant_find">Не нашли ваш любимый табак ? Всегда можно создать запрос и мы обязательно его добавим</string>
     <string name="text_categories_name">Имя категории</string>
@@ -46,6 +47,10 @@
     <string name="title_add_category">Добавить категорию</string>
     <string name="title_of_category">Название категории</string>
     <string name="description_of_category">Описание категории</string>
+
+    // Edit Category
+    <string name="title_edit_category">Редактировать</string>
+    <string name="change_category">Изменить категорию</string>
 
     // Category info
     <string name="title_category_info">Информация о категории</string>
@@ -87,6 +92,6 @@
     // Error
     <string name="error_something_went_wrong">Что-то пошло не так, попробуйте позже</string>
     <string name="error_something_went_wrong_screen_title">Ой...Что-то пошло не так</string>
-    <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или повторите позже</string>
-    <string name="text_refresh">Повторить</string>
+    <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или</string>
+    <string name="text_refresh">Обновить</string>
 </resources>
