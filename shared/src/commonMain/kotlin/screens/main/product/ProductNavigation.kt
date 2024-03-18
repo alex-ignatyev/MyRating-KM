@@ -10,10 +10,13 @@ import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
+import model.domain.Product
 import screens.main.product.DefaultProductNavigation.ProductScreenConfig.ProductFeed.ProductFeedArguments
 import screens.main.product.ProductNavigation.ProductScreen
 import screens.main.product.product_add.AddProductComponent
 import screens.main.product.product_add.DefaultAddProductComponent
+import screens.main.product.product_edit.DefaultEditProductComponent
+import screens.main.product.product_edit.EditProductComponent
 import screens.main.product.product_feed.DefaultProductFeedComponent
 import screens.main.product.product_feed.ProductFeedComponent
 
@@ -39,6 +42,10 @@ class DefaultProductNavigation(
         navigation.pushNew(ProductScreenConfig.AddProduct(categoryId))
     }
 
+    override fun toEditProductScreen(categoryId: Long, product: Product) {
+        navigation.pushNew(ProductScreenConfig.EditProduct(categoryId, product))
+    }
+
     override fun onBackClicked(toIndex: Int) {
         navigation.popTo(index = toIndex)
     }
@@ -50,6 +57,7 @@ class DefaultProductNavigation(
                     componentContext = childComponentContext,
                     args = ProductFeedArguments(config.args.categoryId, config.args.screenTitle),
                     openAddProductScreen = ::navigateToAddProduct,
+                    openEditProductScreen = ::toEditProductScreen,
                     returnToPreviousScreen = returnToPreviousScreen
                 )
             )
@@ -57,6 +65,17 @@ class DefaultProductNavigation(
             is ProductScreenConfig.AddProduct -> ProductScreen.AddProduct(
                 DefaultAddProductComponent(
                     componentContext = childComponentContext,
+                    categoryId = config.categoryId,
+                    returnToPreviousScreen = {
+                        navigation.pop()
+                    }
+                )
+            )
+
+            is ProductScreenConfig.EditProduct -> ProductScreen.EditProduct(
+                DefaultEditProductComponent(
+                    component = childComponentContext,
+                    product = config.product,
                     categoryId = config.categoryId,
                     returnToPreviousScreen = {
                         navigation.pop()
@@ -84,6 +103,12 @@ class DefaultProductNavigation(
         data class AddProduct(
             val categoryId: Long
         ) : ProductScreenConfig
+
+        @Serializable
+        data class EditProduct(
+            val categoryId: Long,
+            val product: Product
+        ) : ProductScreenConfig
     }
 }
 
@@ -91,6 +116,8 @@ interface ProductNavigation {
     val stack: Value<ChildStack<*, ProductScreen>>
 
     fun navigateToAddProduct(categoryId: Long)
+
+    fun toEditProductScreen(categoryId: Long, product: Product)
 
     fun onBackClicked(toIndex: Int)
 
@@ -101,5 +128,8 @@ interface ProductNavigation {
 
         @Serializable
         class AddProduct(val component: AddProductComponent) : ProductScreen()
+
+        @Serializable
+        class EditProduct(val component: EditProductComponent) : ProductScreen()
     }
 }

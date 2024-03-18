@@ -67,6 +67,10 @@
     <string name="title_add_product">Добавить продукт</string>
     <string name="title_add_rate">Добавить оценку</string>
 
+    // Edit Product
+    <string name="title_edit_product">Редактировать</string>
+    <string name="change_product">Изменить</string>
+
     // All
     <string name="text_taste">Вкус</string>
     <string name="text_company">Компания</string>

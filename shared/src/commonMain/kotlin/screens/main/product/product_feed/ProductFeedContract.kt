@@ -8,7 +8,9 @@ sealed interface ProductFeedAction {
     data object AddProduct : ProductFeedAction
     data object OnBackClick : ProductFeedAction
     data object OnRepeatClick : ProductFeedAction
-    data object OnEditClick : ProductFeedAction
+    data class OnEditClick(
+        val product: Product
+    ) : ProductFeedAction
     data object OnDeleteClick : ProductFeedAction
 }
 

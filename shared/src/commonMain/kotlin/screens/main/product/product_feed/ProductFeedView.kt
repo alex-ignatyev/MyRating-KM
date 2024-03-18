@@ -128,6 +128,7 @@ fun SwappableProductItem(index: Int, product: Product, modifier: Modifier = Modi
         ) {
             Box {
                 Actions(
+                    product = product,
                     modifier = Modifier.width(108.dp).align(Alignment.CenterEnd),
                     doAction = doAction
                 )
@@ -177,7 +178,7 @@ fun SwappableProductItem(index: Int, product: Product, modifier: Modifier = Modi
 }
 
 @Composable
-fun Actions(modifier: Modifier = Modifier, doAction: (ProductFeedAction) -> Unit) {
+fun Actions(modifier: Modifier = Modifier, product: Product, doAction: (ProductFeedAction) -> Unit) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -188,7 +189,7 @@ fun Actions(modifier: Modifier = Modifier, doAction: (ProductFeedAction) -> Unit
                 .fillMaxHeight()
                 .weight(0.5f)
                 .clickableRipple {
-                    doAction(OnEditClick)
+                    doAction(OnEditClick(product = product))
                 }) {
             Image(
                 imageVector = Icons.Default.Edit,
