@@ -11,7 +11,8 @@ sealed interface ProductFeedAction {
     data class OnEditClick(
         val product: Product
     ) : ProductFeedAction
-    data object OnDeleteClick : ProductFeedAction
+
+    data class OnDeleteClick(val productId: Long) : ProductFeedAction
 }
 
 data class ProductFeedState(
