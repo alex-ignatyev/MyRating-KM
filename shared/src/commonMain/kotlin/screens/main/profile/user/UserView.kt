@@ -39,7 +39,9 @@ fun ProfileView(
         backgroundColor = MRTheme.colors.background
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(top = 40.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
@@ -67,7 +69,9 @@ fun ProfileView(
                     style = MRTheme.typography.hint
                 )
                 Box(
-                    modifier = Modifier.background(MRTheme.colors.primary, CircleShape).size(4.dp)
+                    modifier = Modifier
+                        .background(MRTheme.colors.primary, CircleShape)
+                        .size(4.dp)
                 ) {}
                 Text(
                     text = state.email,

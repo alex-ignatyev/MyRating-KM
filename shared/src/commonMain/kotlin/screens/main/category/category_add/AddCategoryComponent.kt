@@ -44,7 +44,10 @@ class DefaultAddCategoryComponent(
         if (canAddCategory()) return
         state.value = state.value.copy(isLoading = true)
         componentScope.launch {
-            repository.addCategory(state.value.title, state.value.icon).onSuccess {
+            repository.addCategory(
+                title = state.value.title.trim(),
+                icon = state.value.icon
+            ).onSuccess {
                 returnToPreviousScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(isLoading = false, error = it.message)

@@ -33,6 +33,7 @@ import utils.shake
 
 @Composable
 fun CategoryFeedSuccessView(state: CategoryFeedState, doAction: (CategoryFeedAction) -> Unit) {
+
     Column {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 100.dp),

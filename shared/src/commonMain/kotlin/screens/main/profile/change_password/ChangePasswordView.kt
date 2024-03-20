@@ -53,7 +53,7 @@ fun ChangePasswordView(
             MRToolbar(
                 backIcon = Close,
                 onBackClick = {
-                    doAction(OnBackClick)
+                    doAction.invoke(OnBackClick)
                 }
             )
         }

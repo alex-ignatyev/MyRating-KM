@@ -39,23 +39,24 @@ class DefaultCategoryFeedComponent(
     override fun doAction(action: CategoryFeedAction) {
         when (action) {
             is InitCategoryFeedScreen -> fetchData()
-            is AddCategory -> openAddCategoryScreen()
+            is AddCategory -> openAddCategoryScreen.invoke()
             is EditCategory -> editMode()
             is DeleteCategory -> deleteCategory(action.categoryId)
             is OnDataRefresh, is OnErrorRefresh -> fetchData()
-            is OnCategoryClick -> openCategoryScreen(action.category.id, action.category.title)
-            is OnEditCategoryClick -> openEditCategoryScreen(action.category)
+            is OnCategoryClick -> openCategoryScreen.invoke(action.category.id, action.category.title)
+            is OnEditCategoryClick -> openEditCategoryScreen.invoke(action.category)
         }
     }
 
     private fun fetchData() {
         state.value = state.value.copy(isLoading = true)
         componentScope.launch {
-            repository.getCategories().onSuccess { response ->
-                state.value = state.value.copy(data = response, isLoading = false)
-            }.onFailure {
-                state.value = state.value.copy(error = it.message, isLoading = false)
-            }
+            repository.getCategories()
+                .onSuccess { response ->
+                    state.value = state.value.copy(data = response, isLoading = false)
+                }.onFailure {
+                    state.value = state.value.copy(error = it.message, isLoading = false)
+                }
         }
     }
 
@@ -65,11 +66,12 @@ class DefaultCategoryFeedComponent(
 
     private fun deleteCategory(categoryId: Long) {
         componentScope.launch {
-            repository.deleteCategory(categoryId = categoryId).onSuccess {
-                fetchData()
-            }.onFailure {
-                println(it)
-            }
+            repository.deleteCategory(categoryId = categoryId)
+                .onSuccess {
+                    fetchData()
+                }.onFailure {
+                    println(it)
+                }
         }
     }
 }

@@ -51,7 +51,7 @@ fun AddProductView(
                 title = AppResStrings.title_add_product,
                 backIcon = Close,
                 onBackClick = {
-                    doAction(OnBackClick)
+                    doAction.invoke(OnBackClick)
                 }
             )
         }

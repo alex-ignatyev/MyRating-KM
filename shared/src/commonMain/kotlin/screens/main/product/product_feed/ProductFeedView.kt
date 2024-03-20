@@ -70,10 +70,10 @@ fun ProductFeedView(
                 title = state.screenTitle,
                 backIcon = Close,
                 onBackClick = {
-                    doAction(OnBackClick)
+                    doAction.invoke(OnBackClick)
                 },
                 onRightIconActionClick = {
-                    doAction(AddProduct)
+                    doAction.invoke(AddProduct)
                 }
             )
         }
@@ -95,7 +95,9 @@ fun ProductFeedView(
                     SwappableProductItem(
                         index = index,
                         product = item,
-                        modifier = Modifier.padding(start = 8.dp, end = 16.dp, top = 16.dp).height(54.dp),
+                        modifier = Modifier
+                            .padding(start = 8.dp, end = 16.dp, top = 16.dp)
+                            .height(54.dp),
                         doAction = doAction
                     )
                 }
@@ -189,7 +191,7 @@ fun Actions(modifier: Modifier = Modifier, product: Product, doAction: (ProductF
                 .fillMaxHeight()
                 .weight(0.5f)
                 .clickableRipple {
-                    doAction(OnEditClick(product = product))
+                    doAction.invoke(OnEditClick(product = product))
                 }) {
             Image(
                 imageVector = Icons.Default.Edit,

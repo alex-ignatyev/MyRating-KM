@@ -57,7 +57,7 @@ fun AddCategoryView(
                 title = AppResStrings.title_add_category,
                 backIcon = Close,
                 onBackClick = {
-                    doAction(AddCategoryAction.OnBackClick)
+                    doAction.invoke(AddCategoryAction.OnBackClick)
                 })
         }
     ) {

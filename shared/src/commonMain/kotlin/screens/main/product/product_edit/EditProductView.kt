@@ -47,7 +47,7 @@ fun EditProductView(
                 title = AppResStrings.title_edit_product,
                 backIcon = Close,
                 onBackClick = {
-                    doAction(OnBackClick)
+                    doAction.invoke(OnBackClick)
                 }
             )
         }
