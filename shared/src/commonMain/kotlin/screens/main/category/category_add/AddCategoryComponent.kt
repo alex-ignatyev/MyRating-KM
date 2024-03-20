@@ -53,7 +53,7 @@ class DefaultAddCategoryComponent(
     }
 
     private fun canAddCategory(): Boolean {
-        if (state.value.title.length > 3) {
+        if (state.value.title.length < 3) {
             state.value = state.value.copy(error = "Category title should be more than 3 symbols")
             return true
         }

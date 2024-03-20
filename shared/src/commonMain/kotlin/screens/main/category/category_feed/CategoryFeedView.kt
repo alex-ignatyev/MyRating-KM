@@ -12,13 +12,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import model.domain.Category
 import screens.main.category.category_feed.CategoryFeedAction.OnDataRefresh
 import screens.main.category.category_feed.view.CategoryFeedSuccessView
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CategoryFeedView(categories: List<Category>, modifier: Modifier = Modifier, doAction: (CategoryFeedAction) -> Unit) {
+fun CategoryFeedView(state: CategoryFeedState, modifier: Modifier = Modifier, doAction: (CategoryFeedAction) -> Unit) {
 
     val refreshing by remember { mutableStateOf(false) }
     val refresh = rememberPullRefreshState(refreshing, {
@@ -30,7 +29,7 @@ fun CategoryFeedView(categories: List<Category>, modifier: Modifier = Modifier, 
             .pullRefresh(refresh)
     ) {
         Box(modifier = modifier) {
-            CategoryFeedSuccessView(categories, doAction)
+            CategoryFeedSuccessView(state, doAction)
             PullRefreshIndicator(refreshing, refresh, Modifier.align(Alignment.TopCenter))
         }
     }

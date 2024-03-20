@@ -89,7 +89,11 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
             doAction(ChangePassword(it))
         }
 
-        Row(modifier = Modifier.padding(end = 32.dp, top = 16.dp).fillMaxWidth()) {
+        Row(
+            modifier = Modifier
+                .padding(end = 32.dp, top = 16.dp)
+                .fillMaxWidth()
+        ) {
             Spacer(modifier = Modifier.weight(1f))
 
             Text(

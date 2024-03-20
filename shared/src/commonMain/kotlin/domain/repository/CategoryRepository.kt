@@ -5,6 +5,8 @@ import data.remote.RemoteCategoriesDataSource
 import data.remote.SettingsDataSource
 import domain.mapper.toDomain
 import model.data.category.request.AddCategoryRequest
+import model.data.category.request.DeleteCategoryRequest
+import model.data.category.request.UpdateCategoryRequest
 import model.domain.Category
 import utils.answer.Answer
 import utils.answer.map
@@ -24,13 +26,18 @@ class CategoryRepositoryImpl(
         return remote.addCategory(login = settings.getUserLogin(), request = AddCategoryRequest(title, icon))
     }
 
-    override suspend fun updateCategory(title: String, icon: Int): Answer<Unit> {
-        TODO("Not yet implemented")
+    override suspend fun updateCategory(categoryId: Long, title: String, icon: Int): Answer<Unit> {
+        return remote.updateCategory(login = settings.getUserLogin(), request = UpdateCategoryRequest(categoryId, title, icon))
+    }
+
+    override suspend fun deleteCategory(categoryId: Long): Answer<Unit> {
+        return remote.deleteCategory(login = settings.getUserLogin(), request = DeleteCategoryRequest(categoryId))
     }
 }
 
 interface CategoryRepository {
     suspend fun getCategories(): Answer<List<Category>>
     suspend fun addCategory(title: String, icon: Int): Answer<Unit>
-    suspend fun updateCategory(title: String, icon: Int): Answer<Unit>
+    suspend fun updateCategory(categoryId: Long, title: String, icon: Int): Answer<Unit>
+    suspend fun deleteCategory(categoryId: Long): Answer<Unit>
 }

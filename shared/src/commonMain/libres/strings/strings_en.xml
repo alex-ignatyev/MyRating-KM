@@ -38,9 +38,14 @@
 
     // Categories
     <string name="title_categories">Categories</string>
+    <string name="title_categories_edit">Categories Edit</string>
     <string name="title_categories_empty">Categories is empty</string>
     <string name="text_categories_cant_find">You can create categories. Push to Add on top of screen.</string>
     <string name="text_categories_name">Category name</string>
+
+    // Edit Category
+    <string name="title_edit_category">Edit category</string>
+    <string name="change_category">Change category</string>
 
     // Add category
     <string name="title_add_category">Add category</string>
@@ -88,6 +93,6 @@
     // Error
     <string name="error_something_went_wrong">Something went wrong, try later</string>
     <string name="error_something_went_wrong_screen_title">Something went wrong</string>
-    <string name="error_something_went_wrong_screen_hint">Try again later</string>
+    <string name="error_something_went_wrong_screen_hint">Try again later or</string>
     <string name="text_refresh">Refresh</string>
 </resources>

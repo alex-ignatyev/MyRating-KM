@@ -89,6 +89,10 @@ kotlin {
             dependencies {
                 implementation("com.google.android.material:material:1.9.0")
                 implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+
+                implementation(compose.preview)
+                implementation(compose.uiTooling)
+
                 implementation(libs.sqldelight.android)
                 implementation(libs.ktor.android)
             }
@@ -140,6 +144,9 @@ android {
     defaultConfig {
         minSdk = 24
     }
+
+    buildFeatures.compose = true
+    composeOptions.kotlinCompilerExtensionVersion = "1.5.10"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

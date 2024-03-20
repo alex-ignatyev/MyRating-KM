@@ -11,7 +11,9 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import screens.main.category.CategoryNavigation
 import screens.main.category.CategoryNavigation.CategoryScreen.AddCategory
 import screens.main.category.CategoryNavigation.CategoryScreen.CategoryFeed
+import screens.main.category.CategoryNavigation.CategoryScreen.EditCategory
 import screens.main.category.CategoryNavigation.CategoryScreen.ProductFlow
+import screens.main.category.caategory_edit.EditCategoryScreen
 import screens.main.category.category_add.AddCategoryScreen
 import screens.main.category.category_feed.CategoryFeedScreen
 
@@ -30,6 +32,7 @@ internal fun FeedFlow(component: CategoryNavigation, rootModifier: Modifier = Mo
         when (val instance = it.instance) {
             is CategoryFeed -> CategoryFeedScreen(instance.component, rootModifier)
             is AddCategory -> AddCategoryScreen(instance.component, rootModifier)
+            is EditCategory -> EditCategoryScreen(instance.component, rootModifier)
             is ProductFlow -> ProductFlow(instance.component, rootModifier)
         }
     }

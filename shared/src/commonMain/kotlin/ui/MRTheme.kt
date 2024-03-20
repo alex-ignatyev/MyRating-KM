@@ -35,7 +35,7 @@ internal fun MRTheme(
         ),
         caption = TextStyle(
             color = colors.primaryText,
-            fontSize = 14.sp,
+            fontSize = 18.sp,
             textAlign = Companion.Center
         ),
         hint = TextStyle(

@@ -11,6 +11,9 @@ import screens.main.product.DefaultProductNavigation.ProductScreenConfig.Product
 import screens.main.product.product_feed.ProductFeedAction.AddProduct
 import screens.main.product.product_feed.ProductFeedAction.InitProductFeedScreen
 import screens.main.product.product_feed.ProductFeedAction.OnBackClick
+import screens.main.product.product_feed.ProductFeedAction.OnDeleteClick
+import screens.main.product.product_feed.ProductFeedAction.OnEditClick
+import screens.main.product.product_feed.ProductFeedAction.OnRepeatClick
 import utils.BaseComponent
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -26,12 +29,14 @@ class DefaultProductFeedComponent(
     private val repository: ProductRepository by inject()
     override val state = MutableValue(ProductFeedState())
 
-
     override fun doAction(action: ProductFeedAction) {
         when (action) {
             is InitProductFeedScreen -> fetchData()
             is AddProduct -> openAddProductScreen.invoke(args.categoryId)
             is OnBackClick -> returnToPreviousScreen.invoke()
+            is OnRepeatClick -> fetchData()
+            is OnEditClick -> Unit
+            is OnDeleteClick -> Unit
         }
     }
 
