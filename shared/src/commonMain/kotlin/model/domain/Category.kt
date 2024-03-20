@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Category(
-    val id: String,
-    val title: String
+    val id: Long,
+    val title: String,
+    val icon: Int
 )

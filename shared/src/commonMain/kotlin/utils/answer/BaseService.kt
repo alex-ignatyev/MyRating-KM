@@ -13,6 +13,7 @@ abstract class BaseRemoteDataSource {
         val httpResponse = try {
             call.invoke()
         } catch (e: Exception) {
+            println(e)
             return Answer.failure(code = 500, message = AppRes.string.error_something_went_wrong)
         }
 
@@ -20,8 +21,12 @@ abstract class BaseRemoteDataSource {
         return if (code == 200) {
             Answer.success(httpResponse.body())
         } else {
-            val response = Json.decodeFromString<ApiError>(httpResponse.body())
-            Answer.failure(code = code, message = response.message)
+            try {
+                val response = Json.decodeFromString<ApiError>(httpResponse.body())
+                Answer.failure(code = code, message = response.message)
+            } catch (e: Exception) {
+                Answer.failure(code = code, message = e.message.toString())
+            }
         }
     }
 }
@@ -30,5 +35,5 @@ abstract class BaseRemoteDataSource {
 data class ApiError(
     @SerialName("statusCode") val statusCode: Int,
     @SerialName("message") val message: String,
-    @SerialName("description") val description: String,
+    @SerialName("description") val description: String
 )

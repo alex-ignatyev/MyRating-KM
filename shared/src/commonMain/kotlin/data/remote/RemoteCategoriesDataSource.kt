@@ -4,40 +4,32 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.client.request.url
-import model.domain.Category
-import model.domain.User
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import model.data.category.request.AddCategoryRequest
+import model.data.category.response.CategoryResponse
 import utils.answer.Answer
 import utils.answer.BaseRemoteDataSource
 
 class RemoteCategoriesDataSource(
     private val httpClient: HttpClient
-) : KoinComponent, BaseRemoteDataSource() {
+) : BaseRemoteDataSource() {
 
-    val settings: SettingsDataSource by inject()
-
-    // TODO Удалить
-    suspend fun getUserInfo(login: String): Answer<User> {
+    suspend fun getCategories(login: String): Answer<List<CategoryResponse>> {
         return apiCall {
             httpClient.get {
-                url("auth/user_info")
+                url("categories/all")
                 parameter("login", login)
             }
         }
     }
 
-    suspend fun getCategories(): Answer<List<Category>> {
-        //todo() Создаь запрос категорий на беке
-        return Answer.success(emptyList())
-    }
-
-    suspend fun addCategory(): Answer<Unit> {
+    suspend fun addCategory(login: String, request: AddCategoryRequest): Answer<Unit> {
         return apiCall {
-            httpClient.get {
+            httpClient.post {
                 url("categories/add")
-                //parameter("searchQuery", search)
+                parameter("login", login)
+                setBody(request)
                 //header(HttpHeaders.Authorization, settings.getToken())
             }
         }

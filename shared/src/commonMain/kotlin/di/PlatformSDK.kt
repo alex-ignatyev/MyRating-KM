@@ -1,6 +1,6 @@
 package di
 
-import ktor.ktoreModule
+import di.ktor.ktoreModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 

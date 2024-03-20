@@ -6,11 +6,11 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 
 @Composable
-fun AddCategoryScreen(component: AddCategoryComponent, modifier: Modifier = Modifier) {
+fun AddCategoryScreen(component: AddCategoryComponent, rootModifier: Modifier = Modifier) {
 
     val state by component.state.subscribeAsState()
 
-    AddCategoryView(state, modifier) { action ->
+    AddCategoryView(state, rootModifier) { action ->
         component.doAction(action)
     }
 }

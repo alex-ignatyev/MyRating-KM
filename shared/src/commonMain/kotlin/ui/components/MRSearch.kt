@@ -2,7 +2,6 @@ package ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,6 +30,7 @@ import com.my_rating.shared.strings.AppResStrings
 import kotlinx.coroutines.delay
 import ui.MRTheme
 import utils.EMPTY
+import utils.clickableRipple
 
 @Composable
 fun MRSearch(
@@ -66,9 +66,14 @@ fun MRSearch(
             },
             trailingIcon = {
                 if (inputText.isNotBlank()) {
-                    Icon(imageVector = Icons.Default.Close, contentDescription = null, modifier = Modifier.size(16.dp).clickable {
-                        inputText = EMPTY
-                    })
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(16.dp)
+                            .clickableRipple {
+                                inputText = EMPTY
+                            })
                 }
             },
             colors = TextFieldDefaults.textFieldColors(

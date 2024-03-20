@@ -7,6 +7,5 @@ data class User(
     val id: Long,
     val login: String,
     val email: String,
-    val phone: String,
-    val categories: List<Category>
+    val phone: String
 )

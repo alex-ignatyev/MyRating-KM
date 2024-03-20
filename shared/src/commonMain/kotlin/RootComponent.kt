@@ -8,9 +8,9 @@ import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import model.presentation.SplashFlow
-import screens.auth.AuthComponent
+import screens.auth.AuthNavigation
 import screens.auth.DefaultAuthComponent
-import screens.main.DefaultMainComponent
+import screens.main.DefaultMainNavigation
 import screens.main.MainComponent
 import screens.splash.DefaultSplashComponent
 import screens.splash.SplashComponent
@@ -50,7 +50,7 @@ class DefaultRootComponent(
             )
 
             is RootScreenConfig.Main -> RootScreen.Main(
-                DefaultMainComponent(
+                DefaultMainNavigation(
                     componentContext = childComponentContext,
                     openLoginScreen = {
                         navigation.replaceAll(RootScreenConfig.Login)
@@ -89,7 +89,7 @@ interface RootComponent {
         class Splash(val component: SplashComponent) : RootScreen()
 
         @Serializable
-        class Login(val component: AuthComponent) : RootScreen()
+        class Login(val component: AuthNavigation) : RootScreen()
 
         @Serializable
         class Main(val component: MainComponent) : RootScreen()

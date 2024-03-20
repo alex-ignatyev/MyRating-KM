@@ -19,12 +19,13 @@ fun PasswordShowIcon(isPasswordHidden: Boolean, onClick: () -> Unit) {
         } else {
             Icons.Default.VisibilityOff
         },
-        modifier = Modifier.clickable(
-            interactionSource = remember { MutableInteractionSource() },
-            indication = null
-        ) {
-            onClick()
-        },
+        modifier = Modifier
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {
+                onClick()
+            },
         contentDescription = null,
         tint = MRTheme.colors.surfaceVariant
     )

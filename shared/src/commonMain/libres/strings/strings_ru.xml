@@ -40,7 +40,7 @@
     <string name="title_categories">Категории</string>
     <string name="title_categories_empty">Список пуст</string>
     <string name="text_categories_cant_find">Не нашли ваш любимый табак ? Всегда можно создать запрос и мы обязательно его добавим</string>
-    <string name="text_categories_name">Category name</string>
+    <string name="text_categories_name">Имя категории</string>
 
     // Add category
     <string name="title_add_category">Добавить категорию</string>
@@ -51,6 +51,17 @@
     <string name="title_category_info">Информация о категории</string>
     <string name="title_vote">Оценить</string>
 
+    // Products
+    <string name="title_product_feed">Продукты</string>
+    <string name="title_products_empty">Список пуст</string>
+    <string name="text_products_cant_find">Вы можете создать продукт. Нажмите на кнопку "Добавить" в верхней части экрана.</string>
+    <string name="text_products_name">Имя продукта</string>
+    <string name="text_products_rate">Оценка(1-10)</string>
+
+    // Add Products
+    <string name="title_add_product">Добавить продукт</string>
+    <string name="title_add_rate">Добавить оценку</string>
+
     // All
     <string name="text_taste">Вкус</string>
     <string name="text_company">Компания</string>
@@ -60,14 +71,22 @@
     <string name="text_smokiness">Дымность</string>
     <string name="text_aroma">Аромат</string>
     <string name="text_search">Поиск</string>
-    <string name="text_repeat">Повторить</string>
 
     // Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
     <string name="text_logout">Выйти</string>
+    <string name="change_language">Язык</string>
+    <string name="change_password">Изменить пароль</string>
+
+    // Change Password
+    <string name="change_current_password">Текущий пароль</string>
+    <string name="change_new_password">Новый пароль</string>
+    <string name="change_repeat_password">Повторите новый пароль</string>
+    <string name="change_password_button">Изменить пароль</string>
 
     // Error
     <string name="error_something_went_wrong">Что-то пошло не так, попробуйте позже</string>
     <string name="error_something_went_wrong_screen_title">Ой...Что-то пошло не так</string>
     <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или повторите позже</string>
+    <string name="text_refresh">Повторить</string>
 </resources>

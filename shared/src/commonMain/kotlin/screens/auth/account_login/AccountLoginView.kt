@@ -1,7 +1,6 @@
 package screens.auth.account_login
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,9 +34,11 @@ import screens.auth.account_login.AccountLoginAction.ShowPasswordClick
 import ui.MRTheme
 import ui.components.MRButton
 import ui.components.MRCircularProgress
+import ui.components.MRTextError
 import ui.components.MRTextField
 import ui.components.TextFieldType.Password
 import ui.view.PasswordShowIcon
+import utils.clickableRipple
 
 @OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
@@ -95,7 +96,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
                 text = AppResStrings.text_password_forgot,
                 color = MRTheme.colors.primary,
                 fontSize = 14.sp,
-                modifier = Modifier.clickable {
+                modifier = Modifier.clickableRipple {
                     doAction.invoke(ForgotPasswordClick)
                 }
             )
@@ -111,11 +112,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
             onClick = { doAction(LoginClick) }
         )
 
-        Text(
-            text = state.error,
-            color = MRTheme.colors.error,
-            modifier = Modifier.padding(top = 16.dp)
-        )
+        MRTextError(errorText = state.error)
 
         Row(
             modifier = Modifier
@@ -137,7 +134,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
                 color = MRTheme.colors.primary,
                 style = MRTheme.typography.body,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable {
+                modifier = Modifier.clickableRipple {
                     doAction.invoke(CreateAccountClick)
                 }
             )
