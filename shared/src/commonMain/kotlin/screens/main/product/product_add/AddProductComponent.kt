@@ -44,9 +44,14 @@ class DefaultAddProductComponent(
     private fun addProduct() {
         if (canAddProduct()) return
         state.value = state.value.copy(isLoading = true)
-        val request = AddProductRequest(categoryId, state.value.title, state.value.rate.toInt())
         componentScope.launch {
-            repository.addProduct(request).onSuccess {
+            repository.addProduct(
+                AddProductRequest(
+                    categoryId = categoryId,
+                    title = state.value.title.trim(),
+                    rate = state.value.rate.toInt()
+                )
+            ).onSuccess {
                 returnToPreviousScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(error = it.message, isLoading = false)
@@ -60,8 +65,8 @@ class DefaultAddProductComponent(
             return true
         }
 
-        if (state.value.title.length < 4) {
-            state.value = state.value.copy(error = "Product title should be more than 3 symbols")
+        if (state.value.title.length < 3) {
+            state.value = state.value.copy(error = "Product title should be more than 2 symbols")
             return true
         }
 

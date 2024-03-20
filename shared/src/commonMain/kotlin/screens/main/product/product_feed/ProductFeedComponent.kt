@@ -46,18 +46,23 @@ class DefaultProductFeedComponent(
     private fun fetchData() {
         state.value = state.value.copy(isLoading = true, screenTitle = args.screenTitle)
         componentScope.launch {
-            repository.getProducts(args.categoryId).onSuccess { response ->
-                state.value = state.value.copy(data = response, isLoading = false)
-            }.onFailure {
-                state.value = state.value.copy(error = it.message, isLoading = false)
-            }
+            repository.getProducts(args.categoryId)
+                .onSuccess { response ->
+                    state.value = state.value.copy(data = response, isLoading = false)
+                }.onFailure {
+                    state.value = state.value.copy(error = it.message, isLoading = false)
+                }
         }
     }
 
     private fun deleteProduct(productId: Long) {
         componentScope.launch {
-            val request = DeleteProductRequest(categoryId = args.categoryId, productId = productId)
-            repository.deleteProduct(request).onSuccess {
+            repository.deleteProduct(
+                DeleteProductRequest(
+                    categoryId = args.categoryId,
+                    productId = productId
+                )
+            ).onSuccess {
                 fetchData()
             }.onFailure {
                 state.value = state.value.copy(error = it.message)

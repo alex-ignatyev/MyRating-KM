@@ -58,7 +58,7 @@ fun EditCategoryView(
                 title = AppResStrings.title_edit_category,
                 backIcon = Close,
                 onBackClick = {
-                    doAction(EditCategoryAction.OnBackClick)
+                    doAction.invoke(EditCategoryAction.OnBackClick)
                 })
         }
     ) { paddings ->

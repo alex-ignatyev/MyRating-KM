@@ -54,13 +54,14 @@ class DefaultEditProductComponent(
     private fun changeProduct() {
         if (canUpdateProduct()) return
         componentScope.launch {
-            val request = UpdateProductRequest(
-                categoryId = categoryId,
-                productId = product.id,
-                newTitle = state.value.title,
-                newRate = state.value.rate.toInt()
-            )
-            repository.updateProduct(request = request).onSuccess {
+            repository.updateProduct(
+                UpdateProductRequest(
+                    categoryId = categoryId,
+                    productId = product.id,
+                    newTitle = state.value.title.trim(),
+                    newRate = state.value.rate.toInt()
+                )
+            ).onSuccess {
                 returnToPreviousScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(error = it.message)

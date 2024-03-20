@@ -51,7 +51,11 @@ class DefaultEditCategoryComponent(
     private fun changeCategory() {
         if (canEditCategory()) return
         componentScope.launch {
-            repository.updateCategory(categoryId = category.id, title = state.value.title, icon = state.value.icon).onSuccess {
+            repository.updateCategory(
+                categoryId = category.id,
+                title = state.value.title.trim(),
+                icon = state.value.icon
+            ).onSuccess {
                 returnToPreviousScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(error = it.message)

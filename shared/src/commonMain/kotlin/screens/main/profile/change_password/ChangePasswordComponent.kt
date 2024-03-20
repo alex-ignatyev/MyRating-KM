@@ -16,6 +16,7 @@ import screens.main.profile.change_password.ChangePasswordAction.ShowPasswordCur
 import screens.main.profile.change_password.ChangePasswordAction.ShowPasswordRepeatClick
 import utils.BaseComponent
 import utils.EMPTY
+import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -36,7 +37,7 @@ class DefaultChangePasswordComponent(
             is ChangePasswordRepeat -> changeRepeatNewPassword(action.value)
             is ShowPasswordRepeatClick -> changeRepeatNewPasswordVisibility()
             is ResetPasswordClick -> resetPassword()
-            is OnBackClick -> returnToPreviousScreen()
+            is OnBackClick -> returnToPreviousScreen.invoke()
         }
     }
 
@@ -73,11 +74,11 @@ class DefaultChangePasswordComponent(
         componentScope.launch {
             state.value = state.value.copy(isLoading = true)
             repository.changePassword(
-                currentPassword = state.value.currentPassword,
-                newPassword = state.value.newPassword,
-                repeatNewPassword = state.value.repeatNewPassword
+                currentPassword = state.value.currentPassword.trim(),
+                newPassword = state.value.newPassword.trim(),
+                repeatNewPassword = state.value.repeatNewPassword.trim()
             ).onSuccess {
-                returnToPreviousScreen
+                returnToPreviousScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(isLoading = false, error = it.message)
             }
@@ -85,8 +86,17 @@ class DefaultChangePasswordComponent(
     }
 
     private fun checkFields(): Boolean {
-        if (state.value.currentPassword.length < 4 || state.value.newPassword.length < 4 || state.value.repeatNewPassword.length < 4) {
+        if (state.value.currentPassword.length < 5 || state.value.newPassword.length < 5 || state.value.repeatNewPassword.length < 5) {
             state.value = state.value.copy(error = "Password should be more than 4 symbols")
+            return true
+        }
+
+        if (
+            state.value.currentPassword.contains(SPACE) ||
+            state.value.newPassword.contains(SPACE) ||
+            state.value.repeatNewPassword.contains(SPACE)
+        ) {
+            state.value = state.value.copy(error = "Can't use spaces")
             return true
         }
         return false
