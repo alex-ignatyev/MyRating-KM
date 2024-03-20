@@ -15,6 +15,7 @@ import screens.auth.account_forgot.AccountForgotAction.ShowPasswordClick
 import screens.auth.account_forgot.AccountForgotAction.ShowPasswordRepeatClick
 import utils.BaseComponent
 import utils.EMPTY
+import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -62,18 +63,31 @@ class DefaultAccountForgotComponent(
     }
 
     private fun resetPassword() {
+        if (isFieldsNotCorrect()) return
         componentScope.launch {
             state.value = state.value.copy(isLoading = true)
             repository.forgot(
-                email = state.value.email,
-                newPassword = state.value.password,
-                repeatNewPassword = state.value.passwordRepeat
+                email = state.value.email.trim(),
+                newPassword = state.value.password.trim(),
+                repeatNewPassword = state.value.passwordRepeat.trim()
             ).onSuccess {
-                returnToPreviousScreen()
+                returnToPreviousScreen.invoke()
             }.onFailure {
-                state.value = state.value.copy(isLoading = false, error = it.message ?: EMPTY)
+                state.value = state.value.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+    private fun isFieldsNotCorrect(): Boolean {
+        if (
+            state.value.email.contains(SPACE) ||
+            state.value.password.contains(SPACE) ||
+            state.value.passwordRepeat.contains(SPACE)
+        ) {
+            state.value = state.value.copy(error = "Can't use spaces")
+            return true
+        }
+        return false
     }
 }
 
