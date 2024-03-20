@@ -6,6 +6,7 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import domain.repository.ProductRepository
 import kotlinx.coroutines.launch
+import model.domain.Product
 import org.koin.core.component.inject
 import screens.main.product.DefaultProductNavigation.ProductScreenConfig.ProductFeed.ProductFeedArguments
 import screens.main.product.product_feed.ProductFeedAction.AddProduct
@@ -23,6 +24,7 @@ class DefaultProductFeedComponent(
     componentContext: ComponentContext,
     private val args: ProductFeedArguments,
     private val openAddProductScreen: (Long) -> Unit,
+    private val openEditProductScreen: (Long, Product) -> Unit,
     private val returnToPreviousScreen: () -> Unit
 ) : ProductFeedComponent, BaseComponent<ProductFeedEffect>(componentContext) {
 
@@ -35,7 +37,7 @@ class DefaultProductFeedComponent(
             is AddProduct -> openAddProductScreen.invoke(args.categoryId)
             is OnBackClick -> returnToPreviousScreen.invoke()
             is OnRepeatClick -> fetchData()
-            is OnEditClick -> Unit
+            is OnEditClick -> openEditProductScreen.invoke(args.categoryId, action.product)
             is OnDeleteClick -> Unit
         }
     }

@@ -10,8 +10,10 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import screens.main.product.ProductNavigation
 import screens.main.product.ProductNavigation.ProductScreen.AddProduct
+import screens.main.product.ProductNavigation.ProductScreen.EditProduct
 import screens.main.product.ProductNavigation.ProductScreen.ProductFeed
 import screens.main.product.product_add.AddProductScreen
+import screens.main.product.product_edit.EditProductScreen
 import screens.main.product.product_feed.ProductFeedScreen
 
 @Composable
@@ -29,6 +31,7 @@ internal fun ProductFlow(component: ProductNavigation, rootModifier: Modifier = 
         when (val instance = it.instance) {
             is ProductFeed -> ProductFeedScreen(instance.component, rootModifier)
             is AddProduct -> AddProductScreen(instance.component, rootModifier)
+            is EditProduct -> EditProductScreen(instance.component, rootModifier)
         }
     }
 }

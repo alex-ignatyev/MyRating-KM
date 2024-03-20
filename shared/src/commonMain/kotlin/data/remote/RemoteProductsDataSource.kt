@@ -4,9 +4,11 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
+import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import model.data.product.request.AddProductRequest
+import model.data.product.request.UpdateProductRequest
 import model.data.product.response.ProductResponse
 import utils.answer.Answer
 import utils.answer.BaseRemoteDataSource
@@ -28,6 +30,16 @@ class RemoteProductsDataSource(
         return apiCall {
             httpClient.post {
                 url("products/add")
+                parameter("login", login)
+                setBody(request)
+            }
+        }
+    }
+
+    suspend fun updateProduct(login: String, request: UpdateProductRequest): Answer<Unit> {
+        return apiCall {
+            httpClient.put {
+                url("products/update")
                 parameter("login", login)
                 setBody(request)
             }
