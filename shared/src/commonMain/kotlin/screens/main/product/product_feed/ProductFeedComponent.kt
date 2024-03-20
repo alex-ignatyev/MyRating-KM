@@ -6,6 +6,7 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import domain.repository.ProductRepository
 import kotlinx.coroutines.launch
+import model.data.product.request.DeleteProductRequest
 import model.domain.Product
 import org.koin.core.component.inject
 import screens.main.product.DefaultProductNavigation.ProductScreenConfig.ProductFeed.ProductFeedArguments
@@ -38,7 +39,7 @@ class DefaultProductFeedComponent(
             is OnBackClick -> returnToPreviousScreen.invoke()
             is OnRepeatClick -> fetchData()
             is OnEditClick -> openEditProductScreen.invoke(args.categoryId, action.product)
-            is OnDeleteClick -> Unit
+            is OnDeleteClick -> deleteProduct(action.productId)
         }
     }
 
@@ -49,6 +50,17 @@ class DefaultProductFeedComponent(
                 state.value = state.value.copy(data = response, isLoading = false)
             }.onFailure {
                 state.value = state.value.copy(error = it.message, isLoading = false)
+            }
+        }
+    }
+
+    private fun deleteProduct(productId: Long) {
+        componentScope.launch {
+            val request = DeleteProductRequest(categoryId = args.categoryId, productId = productId)
+            repository.deleteProduct(request).onSuccess {
+                fetchData()
+            }.onFailure {
+                state.value = state.value.copy(error = it.message)
             }
         }
     }

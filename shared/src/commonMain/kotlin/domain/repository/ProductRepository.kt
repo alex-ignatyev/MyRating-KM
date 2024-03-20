@@ -4,6 +4,7 @@ import data.remote.RemoteProductsDataSource
 import data.remote.SettingsDataSource
 import domain.mapper.toDomain
 import model.data.product.request.AddProductRequest
+import model.data.product.request.DeleteProductRequest
 import model.data.product.request.UpdateProductRequest
 import model.domain.Product
 import utils.answer.Answer
@@ -26,8 +27,8 @@ class ProductRepositoryImpl(
         return remote.updateProduct(login = settings.getUserLogin(), request = request)
     }
 
-    override suspend fun deleteProduct(categoryId: Long): Answer<Unit> {
-        TODO("Not yet implemented")
+    override suspend fun deleteProduct(request: DeleteProductRequest): Answer<Unit> {
+        return remote.deleteProduct(login = settings.getUserLogin(), request = request)
     }
 }
 
@@ -35,5 +36,5 @@ interface ProductRepository {
     suspend fun getProducts(categoryId: Long): Answer<List<Product>>
     suspend fun addProduct(request: AddProductRequest): Answer<Unit>
     suspend fun updateProduct(request: UpdateProductRequest): Answer<Unit>
-    suspend fun deleteProduct(categoryId: Long): Answer<Unit>
+    suspend fun deleteProduct(request: DeleteProductRequest): Answer<Unit>
 }

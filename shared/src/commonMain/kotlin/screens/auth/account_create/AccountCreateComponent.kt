@@ -17,6 +17,7 @@ import screens.auth.account_create.AccountCreateAction.ShowPasswordClick
 import screens.auth.account_create.AccountCreateAction.ShowPasswordRepeatClick
 import utils.BaseComponent
 import utils.EMPTY
+import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -74,14 +75,15 @@ class DefaultAccountCreateComponent(
     }
 
     private fun createAccount() {
+        if (isFieldsNotCorrect()) return
         componentScope.launch {
             state.value = state.value.copy(isLoading = true)
             repository.register(
-                login = state.value.login,
-                password = state.value.password,
-                repeatPassword = state.value.passwordRepeat,
-                email = state.value.email,
-                phone = state.value.phone
+                login = state.value.login.trim(),
+                password = state.value.password.trim(),
+                repeatPassword = state.value.passwordRepeat.trim(),
+                email = state.value.email.trim(),
+                phone = state.value.phone.trim()
 
             ).onSuccess {
                 returnToPreviousScreen()
@@ -89,6 +91,21 @@ class DefaultAccountCreateComponent(
                 state.value = state.value.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+    private fun isFieldsNotCorrect(): Boolean {
+        if (
+            state.value.login.contains(SPACE) ||
+            state.value.password.contains(SPACE) ||
+            state.value.passwordRepeat.contains(SPACE) ||
+            state.value.email.contains(SPACE) ||
+            state.value.phone.contains(SPACE)
+        ) {
+            state.value = state.value.copy(error = "Can't use spaces")
+            return true
+        }
+
+        return false
     }
 }
 

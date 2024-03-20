@@ -205,7 +205,7 @@ fun Actions(modifier: Modifier = Modifier, product: Product, doAction: (ProductF
                 .fillMaxHeight()
                 .weight(0.5f)
                 .clickableRipple {
-                    doAction(OnDeleteClick)
+                    doAction(OnDeleteClick(product.id))
                 }) {
             Image(
                 imageVector = Icons.Default.Delete,
