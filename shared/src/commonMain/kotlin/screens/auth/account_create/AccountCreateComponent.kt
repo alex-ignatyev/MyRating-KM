@@ -84,7 +84,6 @@ class DefaultAccountCreateComponent(
                 repeatPassword = state.value.passwordRepeat.trim(),
                 email = state.value.email.trim(),
                 phone = state.value.phone.trim()
-
             ).onSuccess {
                 returnToPreviousScreen()
             }.onFailure {
@@ -104,7 +103,6 @@ class DefaultAccountCreateComponent(
             state.value = state.value.copy(error = "Can't use spaces")
             return true
         }
-
         return false
     }
 }

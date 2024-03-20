@@ -43,19 +43,20 @@ import utils.clickableRipple
 @OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (AccountLoginAction) -> Unit) {
+
     Column(
-        modifier = Modifier.fillMaxSize().background(MRTheme.colors.background)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MRTheme.colors.background)
             .windowInsetsPadding(WindowInsets.ime)
             .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(
             text = AppResStrings.title_login,
             modifier = Modifier.padding(top = 48.dp),
             style = MRTheme.typography.header
         )
-
         Text(
             text = AppResStrings.subtitle_login,
             modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
@@ -100,14 +101,17 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
                 text = AppResStrings.text_password_forgot,
                 color = MRTheme.colors.primary,
                 fontSize = 14.sp,
-                modifier = Modifier.clickableRipple {
-                    doAction.invoke(ForgotPasswordClick)
-                }
+                modifier = Modifier
+                    .clickableRipple {
+                        doAction.invoke(ForgotPasswordClick)
+                    }
             )
         }
 
         MRButton(
-            modifier = Modifier.padding(top = 24.dp).padding(vertical = 32.dp),
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .padding(vertical = 32.dp),
             text = if (state.isLoading) null else AppRes.string.title_login,
             enabled = !state.isLoading,
             content = {
@@ -138,9 +142,10 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
                 color = MRTheme.colors.primary,
                 style = MRTheme.typography.body,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickableRipple {
-                    doAction.invoke(CreateAccountClick)
-                }
+                modifier = Modifier
+                    .clickableRipple {
+                        doAction.invoke(CreateAccountClick)
+                    }
             )
         }
     }

@@ -15,6 +15,7 @@ import screens.auth.account_login.AccountLoginAction.LoginClick
 import screens.auth.account_login.AccountLoginAction.ShowPasswordClick
 import utils.BaseComponent
 import utils.EMPTY
+import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -59,11 +60,11 @@ class DefaultAccountLoginComponent(
         componentScope.launch {
             state.value = state.value.copy(isLoading = true, error = EMPTY)
             repository.login(
-                login = state.value.login,
-                password = state.value.password
+                login = state.value.login.trim(),
+                password = state.value.password.trim()
             ).onSuccess { login ->
                 settings.saveInfo(login = login)
-                openMainScreen()
+                openMainScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(isLoading = false, error = it.message)
             }
@@ -72,7 +73,7 @@ class DefaultAccountLoginComponent(
 
 
     private fun isFieldsNotCorrect(): Boolean {
-        if (state.value.login.contains(" ") || state.value.password.contains(" ")) {
+        if (state.value.login.contains(SPACE) || state.value.password.contains(SPACE)) {
             state.value = state.value.copy(error = "Can't use spaces")
             return true
         }

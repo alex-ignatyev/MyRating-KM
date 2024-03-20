@@ -60,6 +60,7 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 })
         }
     ) {
+
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -73,7 +74,6 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                         text = AppResStrings.register_title,
                         style = MRTheme.typography.header
                     )
-
                     Text(
                         text = AppResStrings.register_subtitle,
                         modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
@@ -142,6 +142,8 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 doAction(ChangePhone(it))
             }
 
+            MRTextError(errorText = state.error)
+
             MRButton(
                 modifier = Modifier.padding(vertical = 32.dp),
                 text = if (state.isLoading) null else AppRes.string.register_title,
@@ -152,8 +154,6 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 onClick = {
                     doAction(CreateAccountClick)
                 })
-
-            MRTextError(errorText = state.error)
         }
     }
 }

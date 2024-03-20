@@ -42,11 +42,13 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
             .windowInsetsPadding(WindowInsets.statusBars),
         backgroundColor = MRTheme.colors.background,
         topBar = {
-            MRToolbar(onBackClick = {
-                doAction.invoke(OnBackClick)
-            })
+            MRToolbar(
+                onBackClick = {
+                    doAction.invoke(OnBackClick)
+                })
         }
     ) {
+
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -55,7 +57,6 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
                 text = AppResStrings.forgot_title,
                 style = MRTheme.typography.header
             )
-
             Text(
                 text = AppResStrings.forgot_subtitle,
                 modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
