@@ -15,6 +15,8 @@ import screens.auth.account_login.AccountLoginAction.LoginClick
 import screens.auth.account_login.AccountLoginAction.ShowPasswordClick
 import utils.BaseComponent
 import utils.EMPTY
+import utils.LOGIN_MIN_LENGTH
+import utils.PASSWORD_MIN_LENGTH
 import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -35,8 +37,8 @@ class DefaultAccountLoginComponent(
         when (action) {
             is ChangeLogin -> changeLogin(action.value)
             is ChangePassword -> changePassword(action.value)
-            is CreateAccountClick -> openCreateAccountScreen()
-            is ForgotPasswordClick -> openForgotPasswordScreen()
+            is CreateAccountClick -> openCreateAccountScreen.invoke()
+            is ForgotPasswordClick -> openForgotPasswordScreen.invoke()
             is ShowPasswordClick -> changePasswordVisible()
             is LoginClick -> login()
         }
@@ -71,20 +73,25 @@ class DefaultAccountLoginComponent(
         }
     }
 
-
     private fun isFieldsNotCorrect(): Boolean {
-        if (state.value.login.contains(SPACE) || state.value.password.contains(SPACE)) {
+        if (
+            state.value.login.contains(SPACE) ||
+            state.value.password.contains(SPACE)
+        ) {
             state.value = state.value.copy(error = "Can't use spaces")
             return true
         }
-        if (state.value.login.length < 4) {
-            state.value = state.value.copy(error = "Login should be more than 4 symbols")
+
+        if (state.value.login.length < LOGIN_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Login should be more than 3 symbols")
             return true
         }
-        if (state.value.password.length < 4) {
-            state.value = state.value.copy(error = "Password should be more than 4 symbols")
+
+        if (state.value.password.length < PASSWORD_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Password should be more than 3 symbols")
             return true
         }
+
         return false
     }
 }

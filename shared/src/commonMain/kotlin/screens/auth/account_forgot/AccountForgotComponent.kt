@@ -14,7 +14,9 @@ import screens.auth.account_forgot.AccountForgotAction.ResetPasswordClick
 import screens.auth.account_forgot.AccountForgotAction.ShowPasswordClick
 import screens.auth.account_forgot.AccountForgotAction.ShowPasswordRepeatClick
 import utils.BaseComponent
+import utils.EMAIL_MIN_LENGTH
 import utils.EMPTY
+import utils.PASSWORD_MIN_LENGTH
 import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -36,7 +38,7 @@ class DefaultAccountForgotComponent(
             is ChangePasswordRepeat -> changeRepeatNewPassword(action.value)
             is ShowPasswordRepeatClick -> changeRepeatNewPasswordVisibility()
             is ResetPasswordClick -> resetPassword()
-            is OnBackClick -> returnToPreviousScreen()
+            is OnBackClick -> returnToPreviousScreen.invoke()
         }
     }
 
@@ -48,18 +50,16 @@ class DefaultAccountForgotComponent(
         state.value = state.value.copy(password = newPassword, error = EMPTY)
     }
 
+    private fun changeNewPasswordVisibility() {
+        state.value = state.value.copy(isPasswordHidden = !state.value.isPasswordHidden)
+    }
+
     private fun changeRepeatNewPassword(repeatNewPassword: String) {
         state.value = state.value.copy(passwordRepeat = repeatNewPassword, error = EMPTY)
     }
 
-    private fun changeNewPasswordVisibility() {
-        val passwordVisible = !state.value.isPasswordHidden
-        state.value = state.value.copy(isPasswordHidden = passwordVisible)
-    }
-
     private fun changeRepeatNewPasswordVisibility() {
-        val passwordVisible = !state.value.isPasswordRepeatHidden
-        state.value = state.value.copy(isPasswordRepeatHidden = passwordVisible)
+        state.value = state.value.copy(isPasswordRepeatHidden = !state.value.isPasswordRepeatHidden)
     }
 
     private fun resetPassword() {
@@ -87,6 +87,20 @@ class DefaultAccountForgotComponent(
             state.value = state.value.copy(error = "Can't use spaces")
             return true
         }
+
+        if (state.value.email.length < EMAIL_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Email should be more than 4 symbols")
+        }
+
+        if (state.value.password.length < PASSWORD_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Password should be more than 3 symbols")
+            return true
+        }
+
+        if (state.value.password != state.value.passwordRepeat) {
+            state.value = state.value.copy(error = "Passwords should be match")
+        }
+
         return false
     }
 }

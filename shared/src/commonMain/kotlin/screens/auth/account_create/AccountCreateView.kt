@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.statusBars
 import com.my_rating.shared.AppRes
@@ -43,7 +44,11 @@ import utils.EMPTY
 import utils.keyboardAsState
 
 @Composable
-fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction) -> Unit) {
+fun AccountCreateView(
+    state: AccountCreateState,
+    rootModifier: Modifier = Modifier,
+    doAction: (AccountCreateAction) -> Unit
+) {
 
     val isKeyboardOpen by keyboardAsState()
 
@@ -60,7 +65,6 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 })
         }
     ) {
-
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -91,7 +95,7 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
-                doAction(ChangeLogin(it))
+                doAction.invoke(ChangeLogin(it))
             }
 
             MRTextField(
@@ -102,11 +106,11 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 fieldType = Password(state.isPasswordHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordHidden) {
-                        doAction(ShowPasswordClick)
+                        doAction.invoke(ShowPasswordClick)
                     }
                 }
             ) {
-                doAction(ChangePassword(it))
+                doAction.invoke(ChangePassword(it))
             }
 
             MRTextField(
@@ -117,11 +121,11 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 fieldType = Password(state.isPasswordRepeatHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordRepeatHidden) {
-                        doAction(ShowPasswordRepeatClick)
+                        doAction.invoke(ShowPasswordRepeatClick)
                     }
                 }
             ) {
-                doAction(ChangePasswordRepeat(it))
+                doAction.invoke(ChangePasswordRepeat(it))
             }
 
             MRTextField(
@@ -130,7 +134,7 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
-                doAction(ChangeEmail(it))
+                doAction.invoke(ChangeEmail(it))
             }
 
             MRTextField(
@@ -138,8 +142,9 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                 placeholder = AppResStrings.register_phone,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
+                inputType = KeyboardType.Phone
             ) {
-                doAction(ChangePhone(it))
+                doAction.invoke(ChangePhone(it))
             }
 
             MRTextError(errorText = state.error)
@@ -152,7 +157,7 @@ fun AccountCreateView(state: AccountCreateState, doAction: (AccountCreateAction)
                     MRCircularProgress()
                 },
                 onClick = {
-                    doAction(CreateAccountClick)
+                    doAction.invoke(CreateAccountClick)
                 })
         }
     }
