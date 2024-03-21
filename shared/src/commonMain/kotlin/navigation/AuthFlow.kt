@@ -29,9 +29,9 @@ internal fun AuthFlow(component: AuthNavigation, rootModifier: Modifier = Modifi
         )
     ) {
         when (val instance = it.instance) {
-            is Login -> AccountLoginScreen(instance.component)
-            is Create -> AccountCreateScreen(instance.component)
-            is Forgot -> AccountForgotScreen(instance.component)
+            is Login -> AccountLoginScreen(instance.component, rootModifier)
+            is Create -> AccountCreateScreen(instance.component, rootModifier)
+            is Forgot -> AccountForgotScreen(instance.component, rootModifier)
         }
     }
 }

@@ -34,7 +34,11 @@ import ui.components.TextFieldType.Password
 import ui.view.PasswordShowIcon
 
 @Composable
-fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction) -> Unit) {
+fun AccountForgotView(
+    state: AccountForgotState,
+    rootModifier: Modifier = Modifier,
+    doAction: (AccountForgotAction) -> Unit
+) {
 
     Scaffold(
         modifier = Modifier
@@ -72,7 +76,7 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
-                doAction(ChangeEmail(it))
+                doAction.invoke(ChangeEmail(it))
             }
 
             MRTextField(
@@ -83,11 +87,11 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
                 fieldType = Password(state.isPasswordHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordHidden) {
-                        doAction(ShowPasswordClick)
+                        doAction.invoke(ShowPasswordClick)
                     }
                 }
             ) {
-                doAction(ChangePassword(it))
+                doAction.invoke(ChangePassword(it))
             }
 
             MRTextField(
@@ -98,11 +102,11 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
                 fieldType = Password(state.isPasswordRepeatHidden),
                 endIcon = {
                     PasswordShowIcon(state.isPasswordRepeatHidden) {
-                        doAction(ShowPasswordRepeatClick)
+                        doAction.invoke(ShowPasswordRepeatClick)
                     }
                 }
             ) {
-                doAction(ChangePasswordRepeat(it))
+                doAction.invoke(ChangePasswordRepeat(it))
             }
 
             MRButton(
@@ -113,7 +117,7 @@ fun AccountForgotView(state: AccountForgotState, doAction: (AccountForgotAction)
                     MRCircularProgress()
                 },
                 onClick = {
-                    doAction(ResetPasswordClick)
+                    doAction.invoke(ResetPasswordClick)
                 })
 
             MRTextError(errorText = state.error)

@@ -16,7 +16,11 @@ import screens.auth.account_create.AccountCreateAction.OnBackClick
 import screens.auth.account_create.AccountCreateAction.ShowPasswordClick
 import screens.auth.account_create.AccountCreateAction.ShowPasswordRepeatClick
 import utils.BaseComponent
+import utils.EMAIL_MIN_LENGTH
 import utils.EMPTY
+import utils.LOGIN_MIN_LENGTH
+import utils.PASSWORD_MIN_LENGTH
+import utils.PHONE_MIN_LENGTH
 import utils.SPACE
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -40,7 +44,7 @@ class DefaultAccountCreateComponent(
             is ChangeEmail -> changeEmail(action.value)
             is ChangePhone -> changePhone(action.value)
             is CreateAccountClick -> createAccount()
-            is OnBackClick -> returnToPreviousScreen()
+            is OnBackClick -> returnToPreviousScreen.invoke()
         }
     }
 
@@ -52,18 +56,16 @@ class DefaultAccountCreateComponent(
         state.value = state.value.copy(password = password, error = EMPTY)
     }
 
+    private fun changePasswordVisible() {
+        state.value = state.value.copy(isPasswordHidden = !state.value.isPasswordHidden)
+    }
+
     private fun changeRepeatPassword(repeatPassword: String) {
         state.value = state.value.copy(passwordRepeat = repeatPassword, error = EMPTY)
     }
 
-    private fun changePasswordVisible() {
-        val passwordVisible = !state.value.isPasswordHidden
-        state.value = state.value.copy(isPasswordHidden = passwordVisible)
-    }
-
     private fun changeRepeatPasswordVisible() {
-        val passwordVisible = !state.value.isPasswordRepeatHidden
-        state.value = state.value.copy(isPasswordRepeatHidden = passwordVisible)
+        state.value = state.value.copy(isPasswordRepeatHidden = !state.value.isPasswordRepeatHidden)
     }
 
     private fun changeEmail(email: String) {
@@ -85,7 +87,7 @@ class DefaultAccountCreateComponent(
                 email = state.value.email.trim(),
                 phone = state.value.phone.trim()
             ).onSuccess {
-                returnToPreviousScreen()
+                returnToPreviousScreen.invoke()
             }.onFailure {
                 state.value = state.value.copy(isLoading = false, error = it.message)
             }
@@ -103,6 +105,31 @@ class DefaultAccountCreateComponent(
             state.value = state.value.copy(error = "Can't use spaces")
             return true
         }
+
+        if (state.value.login.length < LOGIN_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Login should be more than 3 symbols")
+            return true
+        }
+
+        if (state.value.password.length < PASSWORD_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Password should be more than 3 symbols")
+            return true
+        }
+
+        if (state.value.password != state.value.passwordRepeat) {
+            state.value = state.value.copy(error = "Passwords should be match")
+            return true
+        }
+
+        if (state.value.email.length < EMAIL_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Email should be more than 4 symbols")
+            return true
+        }
+
+        if (state.value.phone.length < PHONE_MIN_LENGTH) {
+            state.value = state.value.copy(error = "Phone should be more than 4 symbols")
+        }
+
         return false
     }
 }

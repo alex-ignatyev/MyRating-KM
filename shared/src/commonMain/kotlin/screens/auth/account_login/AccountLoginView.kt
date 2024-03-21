@@ -42,8 +42,11 @@ import utils.clickableRipple
 
 @OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
-fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (AccountLoginAction) -> Unit) {
-
+fun AccountLoginView(
+    state: AccountLoginState = AccountLoginState(),
+    rootModifier: Modifier = Modifier,
+    doAction: (AccountLoginAction) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -72,7 +75,7 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
             enabled = !state.isLoading,
             isError = state.error.isNotBlank(),
         ) {
-            doAction(ChangeLogin(it))
+            doAction.invoke(ChangeLogin(it))
         }
 
         MRTextField(
@@ -83,11 +86,11 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
             fieldType = Password(state.isPasswordHidden),
             endIcon = {
                 PasswordShowIcon(state.isPasswordHidden) {
-                    doAction(ShowPasswordClick)
+                    doAction.invoke(ShowPasswordClick)
                 }
             }
         ) {
-            doAction(ChangePassword(it))
+            doAction.invoke(ChangePassword(it))
         }
 
         Row(
@@ -116,9 +119,9 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), doAction: (
             enabled = !state.isLoading,
             content = {
                 MRCircularProgress()
-            },
-            onClick = { doAction(LoginClick) }
-        )
+            }) {
+            doAction.invoke(LoginClick)
+        }
 
         MRTextError(errorText = state.error)
 
