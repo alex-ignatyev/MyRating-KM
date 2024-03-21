@@ -73,14 +73,7 @@
 
 
     // All
-    <string name="text_taste">Taste</string>
-    <string name="text_company">Company</string>
-    <string name="text_line">Line</string>
-    <string name="text_strength">Strength</string>
-    <string name="text_rating">Rating</string>
-    <string name="text_smokiness">Smokiness</string>
-    <string name="text_aroma">Aroma</string>
-    <string name="text_search">Search categories...</string>
+    <string name="text_refresh">Refresh</string>
 
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
@@ -98,5 +91,10 @@
     <string name="error_something_went_wrong">Something went wrong, try later</string>
     <string name="error_something_went_wrong_screen_title">Something went wrong</string>
     <string name="error_something_went_wrong_screen_hint">Try again later or</string>
-    <string name="text_refresh">Refresh</string>
+    <string name="error_spaces">Can't use spaces</string>
+    <string name="error_login_length">Login should be ${length}-20 symbols</string>
+    <string name="error_password_length">Password should be ${length}-20 symbols</string>
+    <string name="error_email_length">Email should be ${length}-20 symbols</string>
+    <string name="error_phone_length">Phone should ${length}-20 symbols</string>
+    <string name="error_passwords_match">Passwords should be match</string>
 </resources>

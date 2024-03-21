@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
@@ -26,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextAlign.Companion
 import androidx.compose.ui.unit.dp
-import com.my_rating.shared.strings.AppResStrings
 import kotlinx.coroutines.delay
 import ui.MRTheme
 import utils.EMPTY
@@ -56,7 +54,9 @@ fun MRSearch(
                 .background(color = MRTheme.colors.surfaceVariant.copy(alpha = 0.4f), shape = RoundedCornerShape(8.dp))
                 .weight(1f)
                 .height(48.dp),
-            placeholder = { Text(text = AppResStrings.text_search, style = MRTheme.typography.hint) },
+            placeholder = {
+                // TODO Добавить при использовании поиска
+            },
             leadingIcon = {
                 Image(
                     imageVector = Icons.Outlined.Search,

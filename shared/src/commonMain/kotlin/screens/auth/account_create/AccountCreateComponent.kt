@@ -3,6 +3,7 @@ package screens.auth.account_create
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
+import com.my_rating.shared.strings.AppResStrings
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
@@ -102,32 +103,32 @@ class DefaultAccountCreateComponent(
             state.value.email.contains(SPACE) ||
             state.value.phone.contains(SPACE)
         ) {
-            state.value = state.value.copy(error = "Can't use spaces")
+            state.value = state.value.copy(error = AppResStrings.error_spaces)
             return true
         }
 
         if (state.value.login.length < LOGIN_MIN_LENGTH) {
-            state.value = state.value.copy(error = "Login should be more than 3 symbols")
+            state.value = state.value.copy(error = AppResStrings.error_login_length.format(LOGIN_MIN_LENGTH.toString()))
             return true
         }
 
         if (state.value.password.length < PASSWORD_MIN_LENGTH) {
-            state.value = state.value.copy(error = "Password should be more than 3 symbols")
+            state.value = state.value.copy(error = AppResStrings.error_password_length.format(PASSWORD_MIN_LENGTH.toString()))
             return true
         }
 
         if (state.value.password != state.value.passwordRepeat) {
-            state.value = state.value.copy(error = "Passwords should be match")
+            state.value = state.value.copy(error = AppResStrings.error_passwords_match)
             return true
         }
 
         if (state.value.email.length < EMAIL_MIN_LENGTH) {
-            state.value = state.value.copy(error = "Email should be more than 4 symbols")
+            state.value = state.value.copy(error = AppResStrings.error_email_length.format(EMAIL_MIN_LENGTH.toString()))
             return true
         }
 
         if (state.value.phone.length < PHONE_MIN_LENGTH) {
-            state.value = state.value.copy(error = "Phone should be more than 4 symbols")
+            state.value = state.value.copy(error = AppResStrings.error_phone_length.format(PHONE_MIN_LENGTH.toString()))
         }
 
         return false
