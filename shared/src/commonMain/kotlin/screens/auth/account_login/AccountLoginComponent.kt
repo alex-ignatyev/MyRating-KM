@@ -3,6 +3,7 @@ package screens.auth.account_login
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
+import com.my_rating.shared.strings.AppResStrings
 import data.remote.SettingsDataSource
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
@@ -78,17 +79,17 @@ class DefaultAccountLoginComponent(
             state.value.login.contains(SPACE) ||
             state.value.password.contains(SPACE)
         ) {
-            state.value = state.value.copy(error = "Can't use spaces")
+            state.value = state.value.copy(error = AppResStrings.error_spaces)
             return true
         }
 
         if (state.value.login.length < LOGIN_MIN_LENGTH) {
-            state.value = state.value.copy(error = "Login should be more than 3 symbols")
+            state.value = state.value.copy(error = AppResStrings.error_login_length.format(LOGIN_MIN_LENGTH.toString()))
             return true
         }
 
         if (state.value.password.length < PASSWORD_MIN_LENGTH) {
-            state.value = state.value.copy(error = "Password should be more than 3 symbols")
+            state.value = state.value.copy(error = AppResStrings.error_password_length.format(PASSWORD_MIN_LENGTH.toString()))
             return true
         }
 
